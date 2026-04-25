@@ -1,0 +1,4231 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>13月亮曆全圖解 · Complete 13 Moon Calendar Reference</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg-page: #f7f3ea;
+  --bg-page-2: #efe8d8;
+  --bg-card: #ffffff;
+  --bg-soft: #faf6ed;
+  --bg-panel: #f0eadb;
+  --gold: #b8860b;
+  --gold-bright: #d4a017;
+  --gold-soft: #fcf3d9;
+  --purple-deep: #2c1f5c;
+  --purple: #4a3a8a;
+  --purple-soft: #8a7ab8;
+  --text: #1f1838;
+  --text-mid: #4a3f6a;
+  --text-dim: #6e608f;
+  --text-mute: #9a8eb8;
+  --border: #e2d8c0;
+  --border-soft: #ede4cf;
+  --red: #c0392b;
+  --red-soft: #fde8e4;
+  --white-clan: #d8d2c4;
+  --white-clan-text: #4a4030;
+  --blue: #2874a6;
+  --blue-soft: #e3f0fa;
+  --yellow: #d4a017;
+  --yellow-soft: #fcf3d9;
+  --green: #27ae60;
+  --green-soft: #e3f5ea;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--bg-page); }
+body {
+  font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  background:
+    radial-gradient(ellipse at top, #fdf9ee 0%, #f0e8d4 80%),
+    var(--bg-page);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+.header {
+  background: linear-gradient(135deg, #fdf6e2 0%, #f3ead2 100%);
+  padding: 36px 48px 24px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid var(--gold-bright);
+}
+.header::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 15% 25%, rgba(184,134,11,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 60% 60%, rgba(74,58,138,0.3), transparent),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(184,134,11,0.4), transparent),
+    radial-gradient(1px 1px at 30% 75%, rgba(74,58,138,0.3), transparent),
+    radial-gradient(1.5px 1.5px at 70% 85%, rgba(184,134,11,0.3), transparent);
+  opacity: 0.7;
+  pointer-events: none;
+}
+.header-inner { position: relative; max-width: 1600px; margin: 0 auto; }
+.header h1 {
+  font-size: 2.2em; font-weight: 700; letter-spacing: 0.05em;
+  color: var(--purple-deep);
+  margin-bottom: 6px;
+}
+.header h1 .deco { color: var(--gold-bright); margin: 0 6px; }
+.header .subtitle {
+  color: var(--text-mid);
+  font-size: 1em;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+.header .subtitle .dot { margin: 0 8px; color: var(--gold-bright); font-weight: 700; }
+
+.toolbar {
+  background: rgba(255, 250, 240, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 48px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  box-shadow: 0 2px 8px rgba(60, 40, 20, 0.04);
+}
+.search-box {
+  flex: 1; min-width: 280px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  display: flex; align-items: center; gap: 10px;
+  transition: border-color 0.15s;
+}
+.search-box:focus-within { border-color: var(--gold-bright); }
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-size: 0.95em;
+  font-family: inherit;
+  outline: none;
+}
+.search-box input::placeholder { color: var(--text-mute); }
+.filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9em;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--gold-bright); color: var(--gold); }
+.filter-btn.active {
+  background: var(--gold-bright);
+  border-color: var(--gold-bright);
+  color: #fff;
+  font-weight: 600;
+}
+.filter-btn.clan-red.active    { background: var(--red); border-color: var(--red); color: #fff; }
+.filter-btn.clan-white.active  { background: var(--white-clan); border-color: var(--white-clan-text); color: var(--white-clan-text); }
+.filter-btn.clan-blue.active   { background: var(--blue); border-color: var(--blue); color: #fff; }
+.filter-btn.clan-yellow.active { background: var(--yellow); border-color: var(--yellow); color: #2c1f00; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 0;
+  max-width: 1600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 200px);
+}
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { max-height: 360px; overflow-y: auto; position: relative !important; top: 0 !important; }
+}
+
+.sidebar {
+  background: var(--bg-soft);
+  border-right: 1px solid var(--border);
+  padding: 24px 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 130px);
+  position: sticky;
+  top: 80px;
+}
+.sidebar-section { margin-bottom: 28px; }
+.sidebar-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 24px;
+  margin-bottom: 8px;
+}
+.sidebar-header .title {
+  color: var(--purple-deep);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.sidebar-header .meta {
+  background: var(--gold-soft);
+  color: var(--gold);
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 0.75em;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+.sidebar-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 24px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.12s;
+  font-size: 0.92em;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+.sidebar-item:hover {
+  background: var(--gold-soft);
+  color: var(--purple-deep);
+}
+.sidebar-item.active {
+  background: linear-gradient(90deg, var(--gold-soft), rgba(252,243,217,0.3));
+  border-left-color: var(--gold-bright);
+  color: var(--purple-deep);
+  font-weight: 600;
+}
+.sidebar-item .num { color: var(--text-mute); font-variant-numeric: tabular-nums; font-size: 0.85em; font-weight: 600; }
+.sidebar-item.active .num { color: var(--gold); }
+.sidebar-item .name { color: inherit; }
+.sidebar-item .en { color: var(--text-mute); font-size: 0.8em; font-style: italic; font-weight: 400; }
+.sidebar-item.active .en { color: var(--purple); }
+.clan-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.clan-dot.red { background: var(--red); }
+.clan-dot.white { background: var(--white-clan); }
+.clan-dot.blue { background: var(--blue); }
+.clan-dot.yellow { background: var(--yellow); }
+
+.main { padding: 32px 48px; min-width: 0; }
+
+.howto {
+  background: var(--gold-soft);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold-bright);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 24px;
+}
+.howto h3 { color: var(--purple-deep); font-size: 1.05em; margin-bottom: 6px; font-weight: 700; }
+.howto p { color: var(--text-mid); font-size: 0.92em; line-height: 1.7; }
+
+.detail-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  overflow: hidden;
+  display: none;
+  box-shadow: 0 4px 20px rgba(60, 40, 20, 0.05);
+}
+.detail-card.visible { display: block; }
+.detail-inner { display: grid; grid-template-columns: 280px 1fr; gap: 32px; padding: 32px; }
+@media (max-width: 720px) { .detail-inner { grid-template-columns: 1fr; padding: 24px; } }
+.glyph-panel {
+  display: flex; flex-direction: column; align-items: center;
+  background: linear-gradient(180deg, var(--bg-soft), var(--bg-page));
+  border-radius: 12px;
+  padding: 28px 16px;
+  border: 1px solid var(--border);
+  position: relative;
+  min-height: 320px;
+  justify-content: center;
+}
+.glyph-panel .card-no {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  padding: 4px 10px; border-radius: 6px;
+  font-size: 0.75em; font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.glyph-panel .glyph-big {
+  font-size: 7em;
+  line-height: 1;
+  filter: drop-shadow(0 4px 16px rgba(184, 134, 11, 0.25));
+  margin-bottom: 16px;
+}
+.glyph-panel .glyph-clan {
+  width: 80px; height: 8px;
+  border-radius: 4px;
+  margin-top: 12px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.glyph-panel .glyph-clan.red { background: var(--red); }
+.glyph-panel .glyph-clan.white { background: var(--white-clan); }
+.glyph-panel .glyph-clan.blue { background: var(--blue); }
+.glyph-panel .glyph-clan.yellow { background: var(--yellow); }
+.glyph-panel .panel-label-1 { color: var(--text-mid); font-size: 0.95em; margin-top: 4px; font-weight: 500; }
+.glyph-panel .panel-label-2 { color: var(--gold); font-size: 0.85em; letter-spacing:0.1em; margin-top: 4px; font-weight: 700; }
+
+.detail-info h2 { font-size: 2.2em; color: var(--purple-deep); font-weight: 600; margin-bottom: 4px; }
+.detail-info h2 .en { color: var(--text-dim); font-size: 0.55em; font-style: italic; margin-left: 12px; font-weight: 400; }
+.detail-info .lead {
+  color: var(--text-mid);
+  font-size: 0.98em;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--border);
+  font-weight: 500;
+}
+.attr-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--border-soft);
+}
+.attr-label { color: var(--gold); font-size: 0.92em; font-weight: 700; }
+.attr-label .en { color: var(--text-mute); font-size: 0.85em; margin-left: 4px; font-weight: 400; }
+.attr-value { color: var(--text); font-size: 0.95em; font-weight: 500; }
+
+.kw-section { margin-top: 20px; }
+.kw-row { display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: center; margin: 10px 0; }
+.kw-tag { display: inline-block; padding: 5px 12px; border-radius: 6px; font-size: 0.85em; font-weight: 700; text-align: center; }
+.kw-tag.positive { background: var(--green-soft); color: #1e7a3e; border: 1px solid #a3d9b8; }
+.kw-tag.shadow   { background: var(--red-soft); color: #a02817; border: 1px solid #e8b5a8; }
+.kw-tag.medicine { background: var(--blue-soft); color: #1c5a82; border: 1px solid #a8d0e8; }
+.kw-text { color: var(--text); font-size: 0.95em; }
+
+.desc-block {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold-bright);
+}
+.desc-block .label { color: var(--purple-deep); font-size: 0.9em; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.05em; }
+.desc-block p { color: var(--text); font-size: 0.96em; line-height: 1.85; }
+
+.calc-section {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  padding: 32px;
+  display: none;
+  box-shadow: 0 4px 20px rgba(60, 40, 20, 0.05);
+}
+.calc-section.visible { display: block; }
+.calc-section h2 { font-size: 1.8em; color: var(--purple-deep); margin-bottom: 8px; font-weight: 700; }
+.calc-section .lead { color: var(--text-mid); margin-bottom: 24px; font-size: 0.98em; }
+.calc-row {
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+  background: var(--bg-soft);
+  padding: 18px 20px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+}
+.calc-row label { color: var(--purple-deep); font-weight: 600; }
+.calc-row input[type=date] {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1em;
+}
+.calc-row button {
+  background: var(--gold-bright);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(184, 134, 11, 0.25);
+  transition: transform 0.1s;
+}
+.calc-row button:hover { background: var(--gold); transform: translateY(-1px); }
+
+.kin-result {
+  text-align: center;
+  padding: 32px;
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  border-radius: 12px;
+  border: 1.5px solid var(--gold-bright);
+  margin-bottom: 20px;
+}
+.kin-result .kin-label { color: var(--gold); font-size: 0.85em; letter-spacing: 0.18em; font-weight: 700; }
+.kin-result .kin-num { font-size: 3.5em; color: var(--purple-deep); font-weight: 800; letter-spacing: 0.05em; line-height: 1; margin-top: 8px; }
+.kin-result .kin-name { font-size: 1.5em; color: var(--text); margin-top: 12px; font-weight: 600; }
+.kin-result .kin-en { color: var(--text-dim); font-style: italic; margin-top: 4px; }
+
+.kin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 600px) { .kin-grid { grid-template-columns: 1fr; } }
+.kin-card { background: var(--bg-soft); border: 1px solid var(--border); padding: 20px; border-radius: 10px; }
+.kin-card .label { color: var(--gold); font-size: 0.8em; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; font-weight: 700; }
+.kin-card .val { color: var(--purple-deep); font-size: 1.4em; font-weight: 700; }
+.kin-card .sub { color: var(--text-mid); font-size: 0.92em; margin-top: 6px; }
+
+.jump-buttons { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+.jump-btn {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.92em;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.jump-btn:hover { background: var(--purple); }
+
+.concept-section {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  padding: 32px;
+  display: none;
+  box-shadow: 0 4px 20px rgba(60, 40, 20, 0.05);
+}
+.concept-section.visible { display: block; }
+.concept-section h2 { color: var(--purple-deep); font-size: 1.8em; margin-bottom: 8px; font-weight: 700; }
+.concept-section .lead { color: var(--text-mid); margin-bottom: 24px; font-size: 0.98em; font-weight: 500; }
+.concept-section p { color: var(--text); }
+
+.equation {
+  background: linear-gradient(135deg, var(--purple-deep), var(--purple));
+  color: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  font-size: 1.4em;
+  margin: 20px 0;
+  font-family: Georgia, serif;
+  box-shadow: 0 4px 12px rgba(44, 31, 92, 0.2);
+}
+.equation .big { color: var(--gold-bright); font-size: 1.4em; margin: 0 6px; font-weight: 700; }
+.equation .note { display: block; margin-top: 12px; font-size: 0.6em; color: rgba(255,255,255,0.85); font-family: inherit; }
+
+.concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+.concept-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.concept-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(60, 40, 20, 0.08); }
+.concept-card h4 { color: var(--purple-deep); margin-bottom: 8px; font-size: 1.05em; font-weight: 700; }
+.concept-card p { color: var(--text-mid); font-size: 0.92em; line-height: 1.7; }
+
+.clan-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+@media (max-width: 720px) { .clan-grid { grid-template-columns: repeat(2, 1fr); } }
+.clan-box { padding: 22px 14px; border-radius: 12px; text-align: center; position: relative; overflow: hidden; font-weight: 600; }
+.clan-box .clan-en { display: block; font-size: 0.82em; opacity: 0.9; margin-top: 4px; font-style: italic; font-weight: 500; }
+.clan-box.red    { background: linear-gradient(135deg, #c0392b, #922b21); color: #fff; }
+.clan-box.white  { background: linear-gradient(135deg, #ecf0f1, #d8d2c4); color: #2c3e50; }
+.clan-box.blue   { background: linear-gradient(135deg, #2980b9, #1f5d8b); color: #fff; }
+.clan-box.yellow { background: linear-gradient(135deg, #f1c40f, #c79e0a); color: #2c1f00; }
+.clan-box h4 { font-size: 1.15em; margin-bottom: 4px; font-weight: 700; }
+.clan-box .clan-num { font-size: 0.78em; opacity: 0.85; display: block; margin-top: 8px; font-weight: 500; }
+
+.tzolkin-wrap { background: var(--bg-soft); padding: 20px; border-radius: 12px; border: 1px solid var(--border); overflow-x: auto; margin-top: 16px; }
+.tzolkin { display: grid; grid-template-columns: 36px repeat(20, minmax(28px, 1fr)); gap: 2px; min-width: 640px; font-size: 0.7em; text-align: center; }
+.tz-cell { padding: 6px 2px; border-radius: 4px; font-weight: 700; cursor: default; transition: transform 0.1s; }
+.tz-header, .tz-row-label { background: var(--purple-deep); color: var(--gold-bright); padding: 6px; }
+.tz-cell:hover { transform: scale(1.25); z-index: 10; box-shadow: 0 0 0 2px var(--gold-bright); }
+
+.footer { text-align: center; padding: 32px; color: var(--text-dim); font-size: 0.92em; border-top: 1px solid var(--border); margin-top: 32px; }
+.footer .accent { color: var(--gold-bright); }
+.footer em { color: var(--purple); font-style: italic; }
+
+.hidden { display: none !important; }
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.3); border-radius: 3px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* === DAILY KIN === */
+.daily-kin-section {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  display: none;
+  box-shadow: 0 4px 20px rgba(60, 40, 20, 0.05);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.daily-kin-section.visible { display: block; }
+.daily-kin-hero {
+  background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple) 100%);
+  color: #fff;
+  padding: 36px 32px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.daily-kin-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 15% 25%, rgba(241,196,15,0.5), transparent),
+    radial-gradient(1px 1px at 60% 60%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(241,196,15,0.4), transparent),
+    radial-gradient(1px 1px at 30% 75%, rgba(255,255,255,0.3), transparent);
+  opacity: 0.7; pointer-events: none;
+}
+.daily-date {
+  position: relative;
+  color: var(--gold-bright);
+  font-size: 0.95em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.daily-glyph {
+  position: relative;
+  font-size: 4.2em;
+  margin: 8px 0;
+  filter: drop-shadow(0 4px 16px rgba(241, 196, 15, 0.45));
+  line-height: 1;
+}
+.daily-kin-num {
+  position: relative;
+  font-size: 3em;
+  font-weight: 800;
+  color: var(--gold-bright);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  margin-top: 8px;
+}
+.daily-kin-name {
+  position: relative;
+  font-size: 1.6em;
+  margin-top: 10px;
+  font-weight: 600;
+}
+.daily-kin-en {
+  position: relative;
+  font-style: italic;
+  opacity: 0.85;
+  font-size: 0.98em;
+  margin-top: 4px;
+}
+.daily-attrs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 24px 32px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 600px) { .daily-attrs { grid-template-columns: 1fr; } }
+.daily-attr {
+  background: #fff;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  text-align: center;
+}
+.daily-attr .label {
+  color: var(--gold);
+  font-size: 0.78em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.daily-attr .val {
+  color: var(--purple-deep);
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.daily-attr .sub {
+  color: var(--text-mid);
+  font-size: 0.85em;
+  margin-top: 4px;
+}
+.daily-prompt {
+  padding: 24px 32px;
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  border-bottom: 1px solid var(--border);
+}
+.daily-prompt h3 {
+  color: var(--purple-deep);
+  font-size: 1.05em;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.daily-prompt .prompt-question {
+  color: var(--purple-deep);
+  font-size: 1.45em;
+  font-weight: 600;
+  margin: 14px 0 12px;
+  line-height: 1.5;
+  text-align: center;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 10px;
+  border: 1px dashed var(--gold-bright);
+}
+.daily-prompt .prompt-action {
+  color: var(--text-mid);
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+/* === GALACTIC COMPASS === */
+.compass-section { padding: 28px 32px; }
+.compass-section h3 {
+  color: var(--purple-deep);
+  font-size: 1.15em;
+  font-weight: 700;
+  margin-bottom: 18px;
+  text-align: center;
+}
+.compass-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+    ".       guide    ."
+    "hidden  self     antipode"
+    ".       analog   .";
+  gap: 12px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+@media (max-width: 720px) {
+  .compass-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "guide" "self" "antipode" "analog" "hidden";
+  }
+}
+.compass-cell {
+  padding: 14px 10px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.compass-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(60, 40, 20, 0.12);
+  border-color: var(--gold-bright);
+}
+.compass-cell.guide      { grid-area: guide; }
+.compass-cell.antipode   { grid-area: antipode; }
+.compass-cell.analog     { grid-area: analog; }
+.compass-cell.hidden-kin { grid-area: hidden; }
+.compass-cell.self {
+  grid-area: self;
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  border: 2.5px solid var(--gold-bright);
+  cursor: default;
+  box-shadow: 0 0 0 4px rgba(212, 160, 23, 0.1);
+}
+.compass-cell.self:hover { transform: none; }
+.compass-role {
+  display: block;
+  font-size: 0.78em;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+.compass-cell.guide .compass-role      { color: #c0392b; }
+.compass-cell.antipode .compass-role   { color: #2874a6; }
+.compass-cell.analog .compass-role     { color: #b8860b; }
+.compass-cell.hidden-kin .compass-role { color: #7d3c98; }
+.compass-cell.self .compass-role       { color: var(--gold); }
+.compass-glyph {
+  font-size: 1.9em;
+  margin: 4px 0;
+  display: block;
+  line-height: 1;
+}
+.compass-kin {
+  color: var(--purple-deep);
+  font-size: 0.85em;
+  font-weight: 700;
+  margin-top: 6px;
+}
+.compass-name {
+  color: var(--text);
+  font-size: 0.92em;
+  font-weight: 600;
+  margin-top: 4px;
+  line-height: 1.3;
+}
+.compass-meaning {
+  color: var(--text-mid);
+  font-size: 0.78em;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* === GLOBAL PROGRESS BAR === */
+.global-progress-bar {
+  position: fixed; top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold-bright), var(--gold));
+  z-index: 1000;
+  transition: width 0.4s ease;
+  box-shadow: 0 1px 4px rgba(184,134,11,0.3);
+}
+
+/* === LEARNING PATH SIDEBAR === */
+.learning-path {
+  background: linear-gradient(180deg, var(--gold-soft) 0%, transparent 100%);
+  border-bottom: 2px solid var(--border);
+  padding: 8px 0 14px;
+  margin-bottom: 12px;
+}
+.lp-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 24px 8px;
+  cursor: pointer; user-select: none;
+}
+.lp-header .title {
+  color: var(--purple-deep);
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.lp-header .progress-mini {
+  font-size: 0.72em;
+  color: var(--gold);
+  font-weight: 700;
+  background: #fff;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-left: 8px;
+}
+.lp-header .toggle { color: var(--gold); transition: transform 0.2s; font-size: 0.75em; }
+.learning-path.collapsed .lp-content { display: none; }
+.learning-path.collapsed .lp-header .toggle { transform: rotate(-90deg); }
+.lp-progress-bar {
+  height: 5px;
+  background: rgba(184,134,11,0.15);
+  margin: 4px 24px 8px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.lp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-bright), var(--gold));
+  transition: width 0.4s;
+  border-radius: 3px;
+}
+.lp-part {
+  margin-top: 4px;
+}
+.lp-part-header {
+  padding: 7px 24px;
+  color: var(--purple-deep);
+  font-size: 0.82em;
+  font-weight: 700;
+  cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.lp-part-header:hover { background: rgba(184,134,11,0.1); }
+.lp-part-meta { color: var(--text-mute); font-size: 0.72em; font-weight: 500; }
+.lp-part.collapsed .lp-lessons { display: none; }
+.lp-part-header .arrow { color: var(--gold); font-size: 0.7em; transition: transform 0.2s; }
+.lp-part.collapsed .arrow { transform: rotate(-90deg); }
+.lp-lesson {
+  display: grid;
+  grid-template-columns: 22px 1fr 16px;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 24px 6px 36px;
+  cursor: pointer;
+  font-size: 0.86em;
+  color: var(--text-mid);
+  border-left: 3px solid transparent;
+  transition: all 0.12s;
+}
+.lp-lesson:hover { background: rgba(184,134,11,0.08); color: var(--purple-deep); }
+.lp-lesson.active { background: var(--gold-soft); border-left-color: var(--gold-bright); color: var(--purple-deep); font-weight: 600; }
+.lp-lesson .lesson-num { color: var(--text-mute); font-size: 0.82em; font-variant-numeric: tabular-nums; font-weight: 600; }
+.lp-lesson.completed .lesson-num { color: #1e7a3e; }
+.lp-lesson .check { color: transparent; font-size: 0.95em; }
+.lp-lesson.completed .check { color: #27ae60; }
+
+/* === LESSON SECTION === */
+.lesson-section {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  display: none;
+  box-shadow: 0 4px 20px rgba(60,40,20,0.05);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.lesson-section.visible { display: block; }
+.lesson-header {
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.lesson-breadcrumb {
+  color: var(--gold);
+  font-size: 0.82em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.lesson-title {
+  color: var(--purple-deep);
+  font-size: 1.9em;
+  font-weight: 700;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 4px;
+}
+.lesson-title .lesson-icon { font-size: 1em; }
+.lesson-title .num-badge {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 0.45em;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+.lesson-en {
+  color: var(--text-dim);
+  font-style: italic;
+  font-size: 0.92em;
+}
+.lesson-summary {
+  color: var(--text-mid);
+  font-size: 1.02em;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.lesson-body {
+  padding: 28px 32px;
+  color: var(--text);
+  line-height: 1.85;
+  font-size: 0.98em;
+}
+.lesson-body h4 {
+  color: var(--purple-deep);
+  font-size: 1.12em;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.lesson-body h4:first-child { margin-top: 0; }
+.lesson-body p { margin-bottom: 12px; }
+.lesson-body .lesson-lead {
+  font-size: 1.08em;
+  color: var(--purple-deep);
+  font-weight: 500;
+  border-left: 4px solid var(--gold-bright);
+  padding: 6px 16px;
+  margin-bottom: 18px;
+  background: var(--gold-soft);
+  border-radius: 0 8px 8px 0;
+}
+.lesson-body ul, .lesson-body ol {
+  padding-left: 24px;
+  margin-bottom: 12px;
+}
+.lesson-body li { margin: 6px 0; }
+.lesson-body strong { color: var(--purple-deep); }
+.lesson-body em { color: var(--gold); font-style: italic; }
+.lesson-body .lesson-note {
+  background: var(--blue-soft);
+  border-left: 3px solid var(--blue);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 14px 0;
+  font-size: 0.94em;
+}
+.lesson-body .lesson-note strong { color: var(--blue); }
+.lesson-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.9em;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.lesson-table th {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.92em;
+}
+.lesson-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text);
+}
+.lesson-table tr:last-child td { border-bottom: none; }
+.lesson-table tr:hover td { background: var(--bg-soft); }
+
+/* Year visual */
+.year-structure { margin: 18px 0; }
+.year-bar {
+  display: flex;
+  gap: 2px;
+  height: 36px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.month-block {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7em;
+  color: #fff;
+  font-weight: 700;
+}
+.month-block.m1, .month-block.m5, .month-block.m9, .month-block.m13 { background: #c0392b; }
+.month-block.m2, .month-block.m6, .month-block.m10 { background: #d8d2c4; color: #2c3e50; }
+.month-block.m3, .month-block.m7, .month-block.m11 { background: #2874a6; }
+.month-block.m4, .month-block.m8, .month-block.m12 { background: #d4a017; color: #2c1f00; }
+.month-block.out { background: var(--purple-deep); flex: 0.4; color: var(--gold-bright); }
+.year-legend { font-size: 0.85em; color: var(--text-dim); margin-top: 8px; text-align: center; }
+
+/* Clan detail grid for lessons */
+.clan-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px 0;
+}
+@media (max-width: 600px) { .clan-detail-grid { grid-template-columns: 1fr; } }
+.clan-detail {
+  padding: 18px;
+  border-radius: 10px;
+}
+.clan-detail.red { background: linear-gradient(135deg, #fde8e4, #fad8d2); border: 1px solid #e8b5a8; }
+.clan-detail.white { background: linear-gradient(135deg, #f5f1e8, #e8e2d2); border: 1px solid #c8c2a8; }
+.clan-detail.blue { background: linear-gradient(135deg, #e3f0fa, #c8dff0); border: 1px solid #a8c8e0; }
+.clan-detail.yellow { background: linear-gradient(135deg, #fcf3d9, #f5e8b8); border: 1px solid #e8d8a0; }
+.clan-detail h4 { color: var(--purple-deep); font-size: 1.1em; margin-bottom: 10px; font-weight: 700; }
+.clan-detail p { font-size: 0.9em; margin: 4px 0; color: var(--text); }
+
+/* Lesson keypoints */
+.lesson-keypoints {
+  background: linear-gradient(135deg, var(--bg-soft), var(--bg-page));
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 0 32px 22px;
+}
+.lesson-keypoints h4 {
+  color: var(--gold);
+  font-size: 0.92em;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 0.05em;
+}
+.lesson-keypoints ul { padding-left: 22px; }
+.lesson-keypoints li { color: var(--text); font-size: 0.95em; margin: 6px 0; line-height: 1.6; }
+
+/* Notes textarea per lesson */
+.lesson-notes-area {
+  margin: 0 32px 22px;
+  padding: 16px;
+  background: var(--bg-soft);
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+}
+.lesson-notes-area h4 {
+  color: var(--gold);
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.lesson-notes-area textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 0.95em;
+  background: #fff;
+  color: var(--text);
+  resize: vertical;
+  line-height: 1.6;
+}
+.lesson-notes-area textarea:focus { outline: none; border-color: var(--gold-bright); }
+.lesson-notes-area .save-btn {
+  margin-top: 10px;
+  background: var(--gold-bright);
+  color: #fff;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.88em;
+  font-weight: 600;
+  font-family: inherit;
+}
+.lesson-notes-area .save-btn:hover { background: var(--gold); }
+.lesson-notes-area .save-status { margin-left: 10px; font-size: 0.85em; color: #1e7a3e; }
+
+/* Lesson related */
+.lesson-related {
+  padding: 20px 32px;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+}
+.lesson-related h4 {
+  color: var(--purple-deep);
+  font-size: 0.92em;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.related-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.related-link {
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--purple-deep);
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85em;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.related-link:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold-bright);
+}
+
+/* Lesson navigation */
+.lesson-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding: 18px 32px;
+  background: var(--bg-page-2);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 600px) { .lesson-nav { grid-template-columns: 1fr; gap: 6px; } }
+.lesson-nav-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.92em;
+  transition: all 0.15s;
+  font-weight: 500;
+  color: var(--text-mid);
+}
+.lesson-nav-btn:hover:not(:disabled) { border-color: var(--gold-bright); color: var(--purple-deep); }
+.lesson-nav-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.lesson-nav-btn.complete {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  border-color: var(--purple-deep);
+  font-weight: 700;
+}
+.lesson-nav-btn.complete:hover { background: var(--purple); }
+.lesson-nav-btn.completed-state {
+  background: #27ae60;
+  color: #fff;
+  border-color: #27ae60;
+}
+
+/* Cross-links on seal/tone pages */
+.cross-links {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.cross-links h4 {
+  color: var(--gold);
+  font-size: 0.92em;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.cross-link-item {
+  display: block;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--purple-deep);
+  cursor: pointer;
+  margin-bottom: 6px;
+  font-size: 0.92em;
+  transition: all 0.12s;
+}
+.cross-link-item:hover {
+  border-color: var(--gold-bright);
+  background: var(--gold-soft);
+}
+.cross-link-item .label {
+  color: var(--gold);
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-right: 8px;
+}
+
+/* Notes hub section */
+.notes-hub {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  padding: 32px;
+  display: none;
+  box-shadow: 0 4px 20px rgba(60,40,20,0.05);
+}
+.notes-hub.visible { display: block; }
+.notes-hub h2 { color: var(--purple-deep); font-size: 1.8em; font-weight: 700; margin-bottom: 8px; }
+.notes-hub .lead { color: var(--text-mid); margin-bottom: 20px; font-size: 0.98em; }
+.notes-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  background: var(--bg-soft);
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  font-style: italic;
+}
+.note-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-bright);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.note-card .note-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.82em; color: var(--gold); margin-bottom: 8px; font-weight: 700;
+}
+.note-card .note-meta a {
+  color: var(--purple-deep); text-decoration: underline; cursor: pointer;
+}
+.note-card .note-content { color: var(--text); font-size: 0.95em; white-space: pre-wrap; line-height: 1.6; }
+.note-card .note-actions { margin-top: 10px; }
+.note-card .delete-btn {
+  background: transparent; border: 1px solid var(--border); color: var(--text-mute);
+  padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8em; font-family: inherit;
+}
+.note-card .delete-btn:hover { border-color: var(--red); color: var(--red); }
+
+/* === PERSONAL KIN PANEL === */
+.personal-card {
+  background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple) 100%);
+  color: #fff;
+  padding: 22px 28px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 20px rgba(60,40,20,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.personal-card::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(241,196,15,0.4), transparent),
+    radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1.5px 1.5px at 85% 25%, rgba(241,196,15,0.3), transparent);
+  opacity: 0.6; pointer-events: none;
+}
+.personal-card .pc-label {
+  position: relative;
+  color: var(--gold-bright);
+  font-size: 0.75em;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+}
+.personal-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  margin-top: 10px;
+}
+@media (max-width: 600px) { .personal-content { grid-template-columns: 1fr; text-align: center; } }
+.personal-glyph { font-size: 3em; line-height: 1; filter: drop-shadow(0 2px 8px rgba(241,196,15,0.4)); }
+.personal-info { display: flex; flex-direction: column; gap: 2px; }
+.personal-kin-num { font-size: 1.7em; font-weight: 800; color: var(--gold-bright); letter-spacing: 0.04em; line-height: 1.1; }
+.personal-name { font-size: 1.1em; font-weight: 600; margin-top: 4px; }
+.personal-en { font-size: 0.88em; opacity: 0.8; font-style: italic; }
+.personal-edit-btn {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(241,196,15,0.4);
+  color: var(--gold-bright);
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.82em;
+  font-family: inherit;
+  font-weight: 600;
+}
+.personal-edit-btn:hover { background: rgba(241,196,15,0.25); }
+.personal-empty {
+  text-align: center;
+  padding: 22px 24px;
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  border: 1.5px dashed var(--gold-bright);
+  border-radius: 16px;
+  margin-bottom: 24px;
+}
+.personal-empty p { color: var(--text-mid); margin-bottom: 12px; font-size: 0.95em; }
+.personal-empty p strong { color: var(--purple-deep); }
+.personal-empty .setup-btn {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+.personal-empty .setup-btn:hover { background: var(--purple); }
+
+/* Today relationship */
+.today-relationship {
+  margin: 0 32px 18px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.92em;
+}
+.today-relationship.same { background: linear-gradient(90deg, #fcf3d9, #faf3e0); border-left: 4px solid var(--gold-bright); color: var(--purple-deep); }
+.today-relationship.guide { background: #fde8e4; border-left: 4px solid var(--red); color: #7a1f12; }
+.today-relationship.antipode { background: #e3f0fa; border-left: 4px solid var(--blue); color: #1c4a72; }
+.today-relationship.analog { background: var(--gold-soft); border-left: 4px solid var(--gold); color: #6a4a00; }
+.today-relationship.hiddenkin { background: #ede0fa; border-left: 4px solid #7d3c98; color: #4a1f7a; }
+.today-relationship.other { background: var(--bg-soft); border-left: 4px solid var(--text-mid); color: var(--text-mid); }
+.today-relationship .icon { font-size: 1.5em; line-height: 1; }
+.today-relationship .rel-text { line-height: 1.5; }
+.today-relationship .label { font-weight: 700; letter-spacing: 0.05em; }
+
+/* User Kin marker on lists */
+.user-kin-marker {
+  display: inline-block;
+  background: var(--gold-bright);
+  color: #fff;
+  padding: 1px 7px;
+  border-radius: 8px;
+  font-size: 0.62em;
+  font-weight: 700;
+  margin-left: 6px;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+/* Setup modal */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(20, 14, 50, 0.55);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.visible { display: flex; }
+.modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 460px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+}
+.modal h2 {
+  color: var(--purple-deep);
+  font-size: 1.4em;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.modal p { color: var(--text-mid); margin-bottom: 16px; font-size: 0.93em; line-height: 1.6; }
+.modal label { display: block; color: var(--purple-deep); font-weight: 600; margin-bottom: 6px; font-size: 0.92em; }
+.modal input[type=date] {
+  width: 100%;
+  border: 1.5px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-family: inherit;
+  color: var(--text);
+  background: #fff;
+  margin-bottom: 16px;
+}
+.modal input[type=date]:focus { outline: none; border-color: var(--gold-bright); }
+.modal-actions { display: flex; justify-content: space-between; gap: 10px; margin-top: 6px; }
+.modal-actions button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.92em;
+}
+.modal .btn-primary { background: var(--gold-bright); color: #fff; flex: 1; }
+.modal .btn-primary:hover { background: var(--gold); }
+.modal .btn-cancel { background: var(--bg-soft); color: var(--text-mid); border: 1px solid var(--border); }
+.modal .btn-clear { background: transparent; color: var(--red); border: 1px solid var(--red); }
+.modal .btn-clear:hover { background: var(--red-soft); }
+
+/* === CALENDAR === */
+.cal-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+.cal-nav button {
+  background: var(--purple-deep);
+  color: var(--gold-bright);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.cal-nav button:hover { background: var(--purple); }
+.cal-title { color: var(--purple-deep); font-weight: 700; font-size: 1.15em; text-align: center; }
+.cal-title .sub { color: var(--text-mid); font-size: 0.78em; font-weight: 500; display: block; margin-top: 2px; }
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 16px;
+}
+@media (max-width: 600px) { .calendar-grid { grid-template-columns: repeat(4, 1fr); gap: 4px; } }
+.cal-cell {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 4px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  position: relative;
+}
+.cal-cell:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(60,40,20,0.1); }
+.cal-cell.today {
+  border: 2px solid var(--gold-bright);
+  background: var(--gold-soft);
+  box-shadow: 0 0 0 3px rgba(184,134,11,0.15);
+}
+.cal-cell.today::after {
+  content: "今";
+  position: absolute; top: 4px; right: 4px;
+  background: var(--gold-bright); color: #fff;
+  font-size: 0.55em; padding: 1px 5px; border-radius: 6px;
+  font-weight: 700;
+}
+.cal-cell.is-user-kin {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 2px rgba(74,58,138,0.2);
+}
+.cal-cell.is-user-kin::before {
+  content: "★";
+  position: absolute; top: 4px; left: 4px;
+  color: var(--purple); font-size: 0.7em;
+}
+.cal-cell.red { border-top: 4px solid var(--red); }
+.cal-cell.white { border-top: 4px solid var(--white-clan); }
+.cal-cell.blue { border-top: 4px solid var(--blue); }
+.cal-cell.yellow { border-top: 4px solid var(--yellow); }
+.cal-day-num { font-size: 0.78em; color: var(--text-mid); font-weight: 600; }
+.cal-date { font-size: 0.72em; color: var(--text-mute); margin-top: 2px; }
+.cal-glyph { font-size: 1.4em; margin: 4px 0 2px; line-height: 1; }
+.cal-kin { font-size: 0.78em; color: var(--gold); font-weight: 700; }
+.cal-week-headers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.cal-week-header {
+  text-align: center;
+  font-size: 0.78em;
+  font-weight: 700;
+  padding: 6px;
+  border-radius: 6px;
+  color: #fff;
+}
+.cal-week-header.red { background: var(--red); }
+.cal-week-header.white { background: var(--white-clan); color: #2c1f4a; }
+.cal-week-header.blue { background: var(--blue); }
+.cal-week-header.yellow { background: var(--yellow); color: #2c1f00; }
+
+/* === WAVESPELL === */
+.wavespell-hero {
+  background: linear-gradient(135deg, var(--purple-deep), var(--purple));
+  color: #fff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.wavespell-hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(241,196,15,0.4), transparent),
+    radial-gradient(1.5px 1.5px at 75% 60%, rgba(255,255,255,0.3), transparent);
+  opacity: 0.6; pointer-events: none;
+}
+.wavespell-hero .ws-label {
+  position: relative;
+  color: var(--gold-bright);
+  font-size: 0.78em;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+}
+.wavespell-hero .ws-name {
+  position: relative;
+  font-size: 1.6em;
+  font-weight: 700;
+  margin-top: 8px;
+}
+.wavespell-hero .ws-meta {
+  position: relative;
+  opacity: 0.9;
+  margin-top: 4px;
+  font-size: 0.95em;
+}
+.wavespell-progress {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+  margin-top: 18px;
+  position: relative;
+}
+.ws-day {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(241,196,15,0.3);
+  padding: 6px 2px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.7em;
+  cursor: pointer;
+  transition: all 0.12s;
+  position: relative;
+}
+.ws-day:hover { background: rgba(241,196,15,0.2); }
+.ws-day.past { opacity: 0.5; }
+.ws-day.today {
+  background: var(--gold-bright);
+  color: #2c1f00;
+  font-weight: 700;
+  border-color: var(--gold-bright);
+  transform: scale(1.15);
+  z-index: 5;
+}
+.ws-day .ws-tone-num { font-weight: 700; font-size: 1.1em; line-height: 1; }
+.ws-day .ws-tone-name { font-size: 0.75em; opacity: 0.85; margin-top: 2px; }
+
+.wavespell-today {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold-bright);
+  padding: 18px 22px;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+.wavespell-today h3 { color: var(--purple-deep); font-size: 1.05em; font-weight: 700; margin-bottom: 8px; }
+.wavespell-today .prompt-q {
+  font-size: 1.2em;
+  color: var(--purple-deep);
+  font-weight: 600;
+  font-style: italic;
+  padding: 12px 14px;
+  background: var(--gold-soft);
+  border-radius: 8px;
+  margin: 10px 0;
+}
+.wavespell-journal {
+  margin-top: 16px;
+}
+.wavespell-journal textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 0.95em;
+  background: #fff;
+  color: var(--text);
+  resize: vertical;
+}
+.wavespell-journal textarea:focus { outline: none; border-color: var(--gold-bright); }
+.ws-save-btn {
+  margin-top: 10px;
+  background: var(--gold-bright);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 0.92em;
+}
+.ws-save-btn:hover { background: var(--gold); }
+
+/* === QUIZ === */
+.quiz-section {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+  padding: 32px;
+  display: none;
+  box-shadow: 0 4px 20px rgba(60,40,20,0.05);
+}
+.quiz-section.visible { display: block; }
+.quiz-section h2 {
+  color: var(--purple-deep);
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.quiz-section .lead { color: var(--text-mid); margin-bottom: 20px; font-size: 0.98em; }
+
+.quiz-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .quiz-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.quiz-stat-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.quiz-stat-card .stat-num {
+  font-size: 1.7em;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+}
+.quiz-stat-card .stat-label {
+  font-size: 0.78em;
+  color: var(--text-mid);
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+.quiz-modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .quiz-modes { grid-template-columns: 1fr; } }
+.quiz-mode-btn {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-soft);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.15s;
+}
+.quiz-mode-btn:hover { border-color: var(--gold-bright); background: var(--gold-soft); }
+.quiz-mode-btn .mode-title { color: var(--purple-deep); font-weight: 700; font-size: 1.05em; margin-bottom: 4px; }
+.quiz-mode-btn .mode-desc { color: var(--text-mid); font-size: 0.88em; }
+
+.quiz-game {
+  background: linear-gradient(135deg, var(--gold-soft), #faf3e0);
+  border: 1.5px solid var(--gold-bright);
+  border-radius: 12px;
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.quiz-progress {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+.quiz-progress .q-num { color: var(--gold); font-weight: 700; font-size: 0.9em; letter-spacing: 0.05em; }
+.quiz-progress .q-stats { color: var(--text-mid); font-size: 0.85em; }
+.quiz-question {
+  font-size: 1.3em;
+  color: var(--purple-deep);
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+  padding: 10px;
+}
+.quiz-glyph {
+  font-size: 4em;
+  text-align: center;
+  margin: 8px 0 16px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(184,134,11,0.3));
+}
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+@media (max-width: 600px) { .quiz-options { grid-template-columns: 1fr; } }
+.quiz-option {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  padding: 14px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  color: var(--purple-deep);
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.15s;
+  display: flex; align-items: center; gap: 10px;
+}
+.quiz-option:hover:not(:disabled) {
+  border-color: var(--gold-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(184,134,11,0.15);
+}
+.quiz-option:disabled { cursor: default; }
+.quiz-option.correct {
+  background: var(--green-soft);
+  border-color: #27ae60;
+  color: #1e7a3e;
+  font-weight: 700;
+}
+.quiz-option.wrong {
+  background: var(--red-soft);
+  border-color: var(--red);
+  color: #a02817;
+}
+.quiz-option .opt-prefix { color: var(--gold); font-weight: 700; font-size: 0.85em; }
+.quiz-feedback {
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95em;
+  display: none;
+}
+.quiz-feedback.visible { display: block; }
+.quiz-feedback.correct { background: var(--green-soft); color: #1e7a3e; border-left: 3px solid #27ae60; }
+.quiz-feedback.wrong { background: var(--red-soft); color: #a02817; border-left: 3px solid var(--red); }
+
+.quiz-actions {
+  display: flex; gap: 12px; justify-content: center; margin-top: 18px;
+}
+.quiz-actions button {
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+.quiz-actions .btn-next { background: var(--gold-bright); color: #fff; }
+.quiz-actions .btn-next:hover { background: var(--gold); }
+.quiz-actions .btn-end { background: var(--bg-soft); color: var(--text-mid); border: 1px solid var(--border); }
+
+.quiz-summary {
+  background: var(--bg-card);
+  border: 1.5px solid var(--gold-bright);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+}
+.quiz-summary .score-big {
+  font-size: 3em;
+  color: var(--purple-deep);
+  font-weight: 800;
+  line-height: 1;
+}
+.quiz-summary .score-label { color: var(--text-mid); margin: 8px 0 16px; }
+.quiz-weak {
+  margin-top: 20px;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.quiz-weak h4 { color: var(--gold); font-size: 0.92em; margin-bottom: 10px; font-weight: 700; }
+.quiz-weak ul { padding-left: 24px; margin: 0; color: var(--text-mid); font-size: 0.9em; }
+
+/* === DARK MODE === */
+[data-theme="dark"] {
+  --bg-page: #1a1530;
+  --bg-page-2: #251f3f;
+  --bg-card: #2a2347;
+  --bg-soft: #221b3d;
+  --bg-panel: #1f1838;
+  --text: #e8e3f5;
+  --text-mid: #b8b0d0;
+  --text-dim: #8a82a8;
+  --text-mute: #6c648a;
+  --border: #3a3258;
+  --border-soft: #322a4e;
+  --gold: #f1c40f;
+  --gold-bright: #f9d74e;
+  --gold-soft: #3a2f1a;
+  --purple-deep: #c8b8f0;
+  --purple: #a898d8;
+  --red-soft: #4a1f18;
+  --blue-soft: #1a2f4a;
+  --green-soft: #1a3a25;
+  --yellow-soft: #3a2f1a;
+}
+[data-theme="dark"] body {
+  background: radial-gradient(ellipse at top, #2a2247 0%, #1a1530 80%), var(--bg-page);
+}
+[data-theme="dark"] .header { background: linear-gradient(135deg, #2a2247 0%, #1a1530 100%); }
+[data-theme="dark"] .toolbar { background: rgba(26,21,48,0.95); }
+[data-theme="dark"] .search-box { background: var(--bg-card); }
+[data-theme="dark"] .filter-btn { background: var(--bg-card); }
+[data-theme="dark"] .calc-row input[type=date] { background: var(--bg-card); color: var(--text); color-scheme: dark; }
+[data-theme="dark"] .modal input[type=date] { background: var(--bg-card); color: var(--text); color-scheme: dark; }
+[data-theme="dark"] .lesson-table { background: var(--bg-soft); }
+[data-theme="dark"] .quiz-option { background: var(--bg-soft); color: var(--text); }
+[data-theme="dark"] .cal-cell { background: var(--bg-soft); }
+[data-theme="dark"] .lesson-notes-area textarea,
+[data-theme="dark"] .wavespell-journal textarea { background: var(--bg-soft); color: var(--text); }
+[data-theme="dark"] .related-link { background: var(--bg-soft); color: var(--purple-deep); }
+[data-theme="dark"] .lesson-nav-btn { background: var(--bg-soft); color: var(--text-mid); }
+[data-theme="dark"] .cross-link-item { background: var(--bg-soft); color: var(--purple-deep); }
+[data-theme="dark"] .compass-cell { background: var(--bg-soft); }
+
+/* Theme toggle button in header */
+.theme-toggle {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: rgba(184,134,11,0.15);
+  border: 1px solid rgba(184,134,11,0.3);
+  color: var(--gold);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85em;
+  font-weight: 600;
+  z-index: 5;
+}
+.theme-toggle:hover { background: rgba(184,134,11,0.3); }
+
+/* Keyboard shortcut help overlay */
+.shortcuts-overlay {
+  position: fixed; inset: 0;
+  background: rgba(20,14,50,0.7);
+  z-index: 2100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.shortcuts-overlay.visible { display: flex; }
+.shortcuts-modal {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--gold-bright);
+}
+.shortcuts-modal h2 {
+  color: var(--purple-deep); font-size: 1.4em; font-weight: 700; margin-bottom: 14px;
+}
+.shortcut-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  align-items: center;
+  border-bottom: 1px dashed var(--border);
+}
+.shortcut-row:last-child { border-bottom: none; }
+.shortcut-key {
+  display: inline-block;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.85em;
+  text-align: center;
+}
+.shortcut-desc { color: var(--text); font-size: 0.92em; }
+
+/* Print mode */
+@media print {
+  .global-progress-bar, .header, .toolbar, .sidebar, .footer,
+  .lesson-nav, .lesson-related, .lesson-notes-area, .modal-overlay,
+  .theme-toggle, .shortcuts-overlay { display: none !important; }
+  .layout { grid-template-columns: 1fr !important; }
+  .main { padding: 0 !important; }
+  .lesson-section, .detail-card, .concept-section { box-shadow: none !important; border: 1px solid #ccc !important; }
+  body { background: white !important; color: black !important; }
+}
+
+/* Smart search hints */
+.search-hints {
+  background: rgba(255,250,240,0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 4px;
+  font-size: 0.85em;
+  color: var(--text-mid);
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  max-width: 400px;
+  display: none;
+}
+.search-hints.visible { display: block; }
+.search-hint-item {
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.search-hint-item:hover { background: var(--gold-soft); }
+.search-hint-item .hint-cat { color: var(--gold); font-size: 0.85em; font-weight: 700; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<div class="global-progress-bar" id="globalProgress" style="width: 0%;"></div>
+
+<!-- Shortcuts overlay -->
+<div class="shortcuts-overlay" id="shortcutsOverlay">
+  <div class="shortcuts-modal">
+    <h2>⌨️ 鍵盤快捷鍵</h2>
+    <div class="shortcut-row"><span class="shortcut-key">J</span><span class="shortcut-desc">下一課（在課程頁時）</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">K</span><span class="shortcut-desc">上一課（在課程頁時）</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">Enter</span><span class="shortcut-desc">標記課程完成</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">/</span><span class="shortcut-desc">聚焦搜尋框</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">Esc</span><span class="shortcut-desc">清除搜尋 / 關閉視窗</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">H</span><span class="shortcut-desc">回到首頁（今日Kin）</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">Q</span><span class="shortcut-desc">開啟測驗</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">D</span><span class="shortcut-desc">切換深/淺主題</span></div>
+    <div class="shortcut-row"><span class="shortcut-key">?</span><span class="shortcut-desc">顯示此快捷鍵說明</span></div>
+    <div style="text-align:right; margin-top:18px;">
+      <button onclick="hideShortcuts()" style="padding:8px 18px; background:var(--gold-bright); color:#fff; border:none; border-radius:8px; cursor:pointer; font-weight:600;">關閉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Setup Modal -->
+<div class="modal-overlay" id="setupModal">
+  <div class="modal">
+    <h2>✨ 設定你的本命 Kin</h2>
+    <p>輸入你的西元生日，這個系統會圍繞「你的銀河身份」展開——印記、音調、銀河羅盤、今日對你的影響都會自動連結。</p>
+    <label for="setupBirthday">📅 你的生日</label>
+    <input type="date" id="setupBirthday" min="1900-01-01" max="2100-12-31">
+    <div class="modal-actions">
+      <button class="btn-clear" onclick="clearUserKin()">清除</button>
+      <button class="btn-cancel" onclick="closeSetupModal()">取消</button>
+      <button class="btn-primary" onclick="saveUserKin()">儲存</button>
+    </div>
+  </div>
+</div>
+
+<div class="header">
+  <button class="theme-toggle" onclick="toggleTheme()" title="切換深淺主題">🌓 主題</button>
+  <button class="theme-toggle" onclick="showShortcuts()" title="鍵盤快捷鍵 (按 ?)" style="right: 100px;">⌨️ 快捷鍵</button>
+  <div class="header-inner">
+    <h1><span class="deco">✦</span> 13月亮曆 全圖解 <span class="deco">✦</span></h1>
+    <div class="subtitle">
+      Complete 13 Moon Calendar Reference
+      <span class="dot">·</span> Dreamspell 銀河時間之鑰
+      <span class="dot">·</span> 20印記 × 13音調 × 260卓爾金曆
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="search-box">
+    🔍 <input type="text" id="search" placeholder="搜尋印記、音調、關鍵字 (e.g. 紅龍 / Dragon / 滋養 / 創造)">
+  </div>
+  <div class="filter-group">
+    <button class="filter-btn active" data-filter="all">全部</button>
+    <button class="filter-btn clan-red" data-filter="red">🔴 紅族</button>
+    <button class="filter-btn clan-white" data-filter="white">⚪ 白族</button>
+    <button class="filter-btn clan-blue" data-filter="blue">🔵 藍族</button>
+    <button class="filter-btn clan-yellow" data-filter="yellow">🟡 黃族</button>
+  </div>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+
+    <!-- Learning Path -->
+    <div class="learning-path collapsed" id="learningPath">
+      <div class="lp-header" onclick="toggleLearningPath()">
+        <span class="title">🎓 學習旅程</span>
+        <span class="progress-mini" id="lpProgressMini">0/28</span>
+        <span class="toggle">▼</span>
+      </div>
+      <div class="lp-content">
+        <div class="lp-progress-bar"><div class="lp-progress-fill" id="lpProgressFill" style="width: 0%;"></div></div>
+        <div id="lpParts"></div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header"><span class="title">📖 核心概念</span></div>
+      <div class="sidebar-item" data-type="concept" data-id="philosophy">
+        <span class="num">★</span><span class="name">時間就是藝術</span><span class="en">Philosophy</span>
+      </div>
+      <div class="sidebar-item" data-type="concept" data-id="structure">
+        <span class="num">★</span><span class="name">13×28曆法結構</span><span class="en">Structure</span>
+      </div>
+      <div class="sidebar-item" data-type="concept" data-id="tzolkin">
+        <span class="num">★</span><span class="name">卓爾金曆260</span><span class="en">Tzolkin</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header"><span class="title">☀️ 太陽印記</span><span class="meta">Solar · 20</span></div>
+      <div id="sealsList"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header"><span class="title">🌀 銀河音調</span><span class="meta">Tones · 13</span></div>
+      <div id="tonesList"></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-header"><span class="title">🔮 工具</span></div>
+      <div class="sidebar-item" data-type="daily" data-id="today">
+        <span class="num">🌅</span><span class="name">今日 Kin</span><span class="en">Today</span>
+      </div>
+      <div class="sidebar-item" data-type="tool" data-id="calculator">
+        <span class="num">✦</span><span class="name">Kin計算器</span><span class="en">Calculator</span>
+      </div>
+      <div class="sidebar-item" data-type="tool" data-id="quiz">
+        <span class="num">🎯</span><span class="name">互動測驗</span><span class="en">Quiz</span>
+      </div>
+      <div class="sidebar-item" data-type="tool" data-id="calendar">
+        <span class="num">📅</span><span class="name">月曆視圖</span><span class="en">Calendar</span>
+      </div>
+      <div class="sidebar-item" data-type="tool" data-id="wavespell">
+        <span class="num">🌊</span><span class="name">波符追蹤</span><span class="en">Wavespell</span>
+      </div>
+      <div class="sidebar-item" data-type="tool" data-id="notes">
+        <span class="num">📓</span><span class="name">我的筆記</span><span class="en">Notes</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <main class="main">
+    <div class="howto">
+      <h3>使用說明 | How to use</h3>
+      <p>左側選單可瀏覽 20 個太陽印記、13 個銀河音調、核心概念與 Kin 計算器。每個印記包含：圖騰、顏色族群、力量·行動·本質三屬性、正向關鍵字、陰影課題、藥引（醫藥）、深度描述。上方搜尋框可即時過濾，按色族按鈕可篩選四個族群。</p>
+    </div>
+
+    <div id="personalPanelHost"></div>
+
+    <div class="daily-kin-section" id="dailyKinSection">
+      <div class="daily-kin-hero">
+        <div class="daily-date" id="dailyDate">—</div>
+        <div class="daily-glyph" id="dailyGlyph">—</div>
+        <div class="daily-kin-num" id="dailyKinNum">Kin —</div>
+        <div class="daily-kin-name" id="dailyKinName">—</div>
+        <div class="daily-kin-en" id="dailyKinEn">—</div>
+      </div>
+      <div class="daily-attrs">
+        <div class="daily-attr">
+          <div class="label">音調 Tone</div>
+          <div class="val" id="dailyToneName">—</div>
+          <div class="sub" id="dailyToneAttr">—</div>
+        </div>
+        <div class="daily-attr">
+          <div class="label">印記 Seal</div>
+          <div class="val" id="dailySealName">—</div>
+          <div class="sub" id="dailySealAttr">—</div>
+        </div>
+        <div class="daily-attr">
+          <div class="label">族群 Clan</div>
+          <div class="val" id="dailyClanName">—</div>
+          <div class="sub" id="dailyClanAttr">—</div>
+        </div>
+      </div>
+      <div class="daily-prompt">
+        <h3>🌟 今日反思 Today's Reflection</h3>
+        <p class="prompt-question" id="dailyPrompt">—</p>
+        <p class="prompt-action" id="dailyAction">—</p>
+      </div>
+      <div id="todayRelationshipHost"></div>
+      <div class="compass-section">
+        <h3>🧭 今日銀河羅盤 · Galactic Compass</h3>
+        <div class="compass-grid" id="dailyCompass"></div>
+        <p style="margin-top:18px; font-size:0.85em; color:var(--text-dim); text-align:center;">
+          💫 點擊任一相鄰 Kin 可查看該印記詳情
+        </p>
+      </div>
+    </div>
+
+    <div class="detail-card" id="detailCard"></div>
+
+    <!-- Lesson Section -->
+    <div class="lesson-section" id="lessonSection"></div>
+
+    <!-- Quiz Section -->
+    <div class="quiz-section" id="quizSection"></div>
+
+    <!-- Calendar Section -->
+    <div class="quiz-section" id="calendarSection"></div>
+
+    <!-- Wavespell Section -->
+    <div class="quiz-section" id="wavespellSection"></div>
+
+    <!-- Notes Hub -->
+    <div class="notes-hub" id="notesHub">
+      <h2>📓 我的學習筆記</h2>
+      <p class="lead">所有你在課程中寫下的筆記都會收集在這裡。透過記錄，把學習變成你的修行。</p>
+      <div id="notesList"></div>
+    </div>
+
+    <div class="calc-section" id="calcSection">
+      <h2>✨ Kin 計算器</h2>
+      <p class="lead">輸入你的西元生日，找出你的銀河身份 Galactic Signature。</p>
+
+      <div class="calc-row">
+        <label for="birthday">📅 生日：</label>
+        <input type="date" id="birthday" value="1990-01-01" min="1900-01-01" max="2100-12-31">
+        <button onclick="calculateKin()">計算我的 Kin</button>
+      </div>
+
+      <div id="kinOutput" style="display:none;">
+        <div class="kin-result">
+          <div class="kin-label">YOUR GALACTIC SIGNATURE</div>
+          <div class="kin-num" id="kinNum">—</div>
+          <div class="kin-name" id="kinName">—</div>
+          <div class="kin-en" id="kinEn">—</div>
+        </div>
+
+        <div class="kin-grid">
+          <div class="kin-card">
+            <div class="label">太陽印記 Solar Seal</div>
+            <div class="val" id="resultSeal">—</div>
+            <div class="sub" id="resultSealKw">—</div>
+          </div>
+          <div class="kin-card">
+            <div class="label">銀河音調 Galactic Tone</div>
+            <div class="val" id="resultTone">—</div>
+            <div class="sub" id="resultToneKw">—</div>
+          </div>
+        </div>
+
+        <div class="desc-block">
+          <div class="label">🌟 解讀 Interpretation</div>
+          <p id="resultMeaning">—</p>
+        </div>
+
+        <div class="compass-section" style="padding: 28px 0 8px;">
+          <h3>🧭 你的銀河羅盤 · Galactic Compass</h3>
+          <div class="compass-grid" id="calcCompass"></div>
+          <p style="margin-top:18px; font-size:0.85em; color:var(--text-dim); text-align:center;">
+            💫 點擊任一相鄰 Kin 可查看該印記詳情
+          </p>
+        </div>
+
+        <div class="jump-buttons">
+          <button class="jump-btn" onclick="jumpToSeal()">→ 查看完整印記詳情</button>
+          <button class="jump-btn" onclick="jumpToTone()">→ 查看完整音調詳情</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-section" id="conceptPhilosophy">
+      <h2>★ 時間就是藝術</h2>
+      <p class="lead">Time is Art — 13月亮曆的核心哲學</p>
+      <p style="margin-bottom:18px;">13月亮曆由 José Argüelles 博士於1990年代依據馬雅曆法靈感發展而成，旨在取代現行的格里高利曆（公曆）。其核心信念：「時間不是金錢（Time is Money），而是藝術（Time is Art）。」</p>
+      <div class="concept-grid">
+        <div class="concept-card"><h4>🌍 自然韻律</h4><p>回到13個月亮、28天的自然週期，與月亮繞地球週期、女性月經週期同步。</p></div>
+        <div class="concept-card"><h4>🌌 銀河同步</h4><p>2013年7月26日為「銀河同步年」啟動，標誌人類意識進入新時代。</p></div>
+        <div class="concept-card"><h4>🎨 創造性時間</h4><p>每一天都是宇宙能量的獨特顯化，是創造、覺察、藝術表達的契機。</p></div>
+        <div class="concept-card"><h4>🤝 In Lak'ech</h4><p>馬雅問候語：「我是另一個你」。眾生一體、宇宙同源的核心精神。</p></div>
+      </div>
+      <div class="cross-links" style="margin-top:24px;">
+        <h4>📚 想更深入？</h4>
+        <div class="cross-link-item" onclick="selectItem('lesson', 1)"><span class="label">課程</span>第1課 什麼是13月亮曆？</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 2)"><span class="label">課程</span>第2課 時間就是藝術（深度版）</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 20)"><span class="label">課程</span>第20課 13:20 vs 12:60 時間法則</div>
+      </div>
+    </div>
+
+    <div class="concept-section" id="conceptStructure">
+      <h2>★ 13×28 曆法結構</h2>
+      <p class="lead">完美的時間幾何 — 13個月亮、28天循環</p>
+      <div class="equation">
+        <span class="big">13</span> 個月亮 × <span class="big">28</span> 天 + <span class="big">1</span> 天 = <span class="big">365</span> 天
+        <span class="note">＋每四年一個閏日 · 那「+1天」是 7 月 25 日「無時間日 Day Out of Time」</span>
+      </div>
+      <div class="concept-grid">
+        <div class="concept-card"><h4>🌕 13個月亮</h4><p>每月有獨特能量主題（磁性月、月亮月、電力月⋯共13個），對應13音調。</p></div>
+        <div class="concept-card"><h4>🌀 28天月相</h4><p>每個月亮28天，分四週、每週7天，對應四個顏色族群、四個方位。</p></div>
+        <div class="concept-card"><h4>✨ 7月26日新年</h4><p>13月亮年從7月26日開始，對應天狼星與太陽合相、尼羅河氾濫。</p></div>
+        <div class="concept-card"><h4>🎭 7月25日無時間日</h4><p>不屬於任何月亮的特殊日，全球以藝術、儀式、和平慶祝。</p></div>
+      </div>
+      <h3 style="margin-top:28px; color:var(--purple-deep); font-weight:700;">🎨 四個顏色族群</h3>
+      <div class="clan-grid">
+        <div class="clan-box red"><h4>紅 啟動</h4><span class="clan-en">Initiate</span><span class="clan-num">東方 East · 印記 1·5·9·13·17</span></div>
+        <div class="clan-box white"><h4>白 淨化</h4><span class="clan-en">Refine</span><span class="clan-num">北方 North · 印記 2·6·10·14·18</span></div>
+        <div class="clan-box blue"><h4>藍 蛻變</h4><span class="clan-en">Transform</span><span class="clan-num">西方 West · 印記 3·7·11·15·19</span></div>
+        <div class="clan-box yellow"><h4>黃 成熟</h4><span class="clan-en">Ripen</span><span class="clan-num">南方 South · 印記 4·8·12·16·20</span></div>
+      </div>
+      <div class="cross-links" style="margin-top:24px;">
+        <h4>📚 想更深入？</h4>
+        <div class="cross-link-item" onclick="selectItem('lesson', 5)"><span class="label">課程</span>第5課 13個月亮詳解</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 6)"><span class="label">課程</span>第6課 28天月相循環（含 7 電漿）</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 7)"><span class="label">課程</span>第7課 7月25日 無時間日</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 8)"><span class="label">課程</span>第8課 7月26日 新年與年度承載者</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 9)"><span class="label">課程</span>第9課 365天結構視覺化</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 10)"><span class="label">課程</span>第10課 4個顏色族群（深度版）</div>
+      </div>
+    </div>
+
+    <div class="concept-section" id="conceptTzolkin">
+      <h2>★ 卓爾金曆 Tzolkin 260</h2>
+      <p class="lead">13個音調 × 20個印記 = 260個獨特的Kin（銀河生命密碼）</p>
+      <p style="margin-bottom:14px;">卓爾金曆是馬雅文明最神聖的曆法，被視為「銀河母體」、「生命的基因密碼」。每個Kin都有獨特的能量印記，循環一周為260天，正好接近人類懷孕週期。</p>
+      <div class="tzolkin-wrap"><div class="tzolkin" id="tzolkin"></div></div>
+      <p style="margin-top:12px; font-size:0.88em; color:var(--text-dim); text-align:center;">
+        💫 縱軸：13個音調 · 橫軸：20個印記 · 顏色：四色族群循環 · 滑鼠移上去顯示Kin名稱
+      </p>
+      <div class="cross-links" style="margin-top:24px;">
+        <h4>📚 想更深入？</h4>
+        <div class="cross-link-item" onclick="selectItem('lesson', 14)"><span class="label">課程</span>第14課 卓爾金曆 Tzolkin 260</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 12)"><span class="label">課程</span>第12課 20 太陽印記總論</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 13)"><span class="label">課程</span>第13課 13 銀河音調總論</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 16)"><span class="label">課程</span>第16課 5 個城堡 The 5 Castles</div>
+        <div class="cross-link-item" onclick="selectItem('lesson', 17)"><span class="label">課程</span>第17課 20 個波符 Wavespells</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="footer">
+  <span class="accent">✦</span> 願時間成為藝術，願你回歸自然韻律 <span class="accent">✦</span><br>
+  <em>In Lak'ech · 我是另一個你</em>
+</div>
+
+<script>
+const SEALS = [
+  { id:1, name:"紅龍", en:"Red Dragon", clan:"red", glyph:"🐉", power:"誕生 Birth", action:"滋養 Nurtures", essence:"存在 Being", direction:"東方 East", element:"火 Fire", element_alt:"血脈 Blood", positive:["原初", "信任", "母性", "源頭"], shadow:["過度依賴", "封閉", "缺乏安全感"], medicine:"回到生命本源、信任宇宙的支持", desc:"宇宙之母，原初生命力的源頭。象徵起始、誕生、家族與信任。紅龍提醒我們存在本身就是恩典——我們不需要證明任何事就值得被愛。當紅龍的能量出現，是時候回到內在的母性，滋養自己也滋養他人。" },
+  { id:2, name:"白風", en:"White Wind", clan:"white", glyph:"💨", power:"靈性 Spirit", action:"溝通 Communicates", essence:"呼吸 Breath", direction:"北方 North", element:"風 Air", element_alt:"靈性 Spirit", positive:["傳訊", "靈感", "表達", "靈性連結"], shadow:["散漫", "言不及義", "缺乏定見"], medicine:"傾聽風的訊息、透過呼吸與聲音傳遞神性", desc:"靈性之風，傳遞訊息的使者。透過呼吸與聲音傳達神性。提醒我們言語的力量與內在傳導。當白風出現，留意自己的呼吸、留意身旁的同步性訊息——宇宙正透過微風向你低語。" },
+  { id:3, name:"藍夜", en:"Blue Night", clan:"blue", glyph:"🌙", power:"豐盛 Abundance", action:"做夢 Dreams", essence:"直覺 Intuition", direction:"西方 West", element:"水 Water", element_alt:"夢境 Dreams", positive:["豐盛", "夢想", "潛意識", "內在寶藏"], shadow:["逃避現實", "無力感", "停留在夢中"], medicine:"記錄夢境、信任直覺、創造夢想成真的步驟", desc:"豐盛的藍夜，內在夢想的寶庫。連結潛意識與直覺。提醒我們夢想是創造豐盛的鑰匙——但夢想必須被行動所滋養。藍夜的能量邀請你深入潛意識，挖掘藏在夜晚深處的真實渴望。" },
+  { id:4, name:"黃種子", en:"Yellow Seed", clan:"yellow", glyph:"🌱", power:"開花 Flowering", action:"覺察 Targets", essence:"目標 Awareness", direction:"南方 South", element:"土 Earth", element_alt:"耐心 Patience", positive:["潛能", "覺察", "耐心", "教導"], shadow:["過度分析", "停滯不發芽", "強行催熟"], medicine:"耐心等待時機、相信內在的種子會開花", desc:"覺察的黃種子，蘊含無限可能。提醒我們耐心等待時機，種下意識的種子，相信它會開花結果。每一個現在的選擇，都是未來收穫的種子。黃種子是教師、是覺醒者，看見事物的根本。" },
+  { id:5, name:"紅蛇", en:"Red Serpent", clan:"red", glyph:"🐍", power:"生命力 Life Force", action:"存活 Survives", essence:"本能 Instinct", direction:"東方 East", element:"火 Fire", element_alt:"性能量 Sexual Energy", positive:["熱情", "本能", "蛻變", "肉身覺醒"], shadow:["過度反應", "壓抑", "毒性情緒"], medicine:"連結身體、釋放性能量為生命力、蛻舊皮迎新生", desc:"本能的紅蛇，連結身體與大地的智慧。象徵性能量、熱情、療癒與蛻變。聆聽身體的聲音——身體是靈魂最忠實的訊息傳遞者。如蛇蛻皮般，定期釋放不再屬於你的能量。" },
+  { id:6, name:"白世界橋", en:"White Worldbridger", clan:"white", glyph:"🌉", power:"死亡 Death", action:"平等 Equalizes", essence:"機會 Opportunity", direction:"北方 North", element:"風 Air", element_alt:"連結 Bridge", positive:["放下", "連結", "平等", "新機會"], shadow:["過度執著", "拒絕改變", "孤立"], medicine:"透過放下舊的、迎接新的；連結兩個世界", desc:"連結兩個世界的橋樑。象徵放下、結束、跨越與新的機會。死亡不是終點，而是轉化的門戶。白世界橋是溝通者、調解者、跨文化的橋樑——也是讓我們學會放手的老師。" },
+  { id:7, name:"藍手", en:"Blue Hand", clan:"blue", glyph:"✋", power:"完成 Accomplishment", action:"知曉 Knows", essence:"療癒 Healing", direction:"西方 West", element:"水 Water", element_alt:"行動 Action", positive:["療癒", "完成", "實踐", "雙手創造"], shadow:["半途而廢", "拖延", "過度勞動"], medicine:"透過雙手實踐知識、完成未竟之事、療癒自己與他人", desc:"療癒的藍手，行動的力量。透過雙手創造、療癒、完成。象徵實踐知識、實際展現的能力。藍手提醒我們：知道不等於做到，唯有透過雙手實際接觸、創造、服務，才能真正完成靈魂功課。" },
+  { id:8, name:"黃星星", en:"Yellow Star", clan:"yellow", glyph:"⭐", power:"優雅 Elegance", action:"美麗 Beautifies", essence:"藝術 Art", direction:"南方 South", element:"土 Earth", element_alt:"和諧 Harmony", positive:["美感", "藝術", "優雅", "和諧"], shadow:["虛榮", "完美主義", "外在導向"], medicine:"透過創造美、欣賞美讓生命綻放優雅", desc:"美麗的黃星星，藝術與和諧的能量。透過創造美、欣賞美讓生命綻放優雅。黃星星看見萬物的內在之美，並透過藝術表達為這個世界注入光輝。提醒我們，美不在外表，而在和諧的存在狀態。" },
+  { id:9, name:"紅月", en:"Red Moon", clan:"red", glyph:"🌝", power:"普遍之水 Universal Water", action:"流動 Purifies", essence:"淨化 Flow", direction:"東方 East", element:"火 Fire", element_alt:"水 Water", positive:["淨化", "流動", "感受", "情緒智能"], shadow:["情緒淹沒", "拒絕感受", "停滯"], medicine:"釋放情緒、跟隨流動、信任宇宙之水的療癒", desc:"淨化的紅月，宇宙之水。釋放情緒、淨化身心、跟隨流動。提醒我們水的療癒力量——眼淚是靈魂的清洗，月經是子宮的釋放，流動是生命的本質。讓自己像水一樣，柔軟卻有力量。" },
+  { id:10, name:"白狗", en:"White Dog", clan:"white", glyph:"🐕", power:"心 Heart", action:"愛 Loves", essence:"忠誠 Loyalty", direction:"北方 North", element:"風 Air", element_alt:"愛 Love", positive:["無條件的愛", "忠誠", "陪伴", "心連結"], shadow:["盲目奉獻", "依附", "失去自我"], medicine:"愛是最大的力量、從心出發、忠於真實的自己", desc:"忠誠的白狗，無條件的愛。連結家人、伴侶、社群。提醒我們愛是最大的力量，但真正的愛始於愛自己。白狗教導我們忠誠——對自己的真心忠誠、對承諾忠誠、對愛忠誠。" },
+  { id:11, name:"藍猴", en:"Blue Monkey", clan:"blue", glyph:"🐒", power:"魔法 Magic", action:"幻象 Plays", essence:"遊戲 Illusion", direction:"西方 West", element:"水 Water", element_alt:"幽默 Humor", positive:["幽默", "創意", "遊戲心", "看穿幻象"], shadow:["惡作劇", "欺騙", "不負責任"], medicine:"透過遊戲與幽默看穿幻象、找回赤子之心", desc:"遊戲的藍猴，神聖小丑。透過幽默、遊戲看穿幻象，揭露真實。生活就是一場魔法。藍猴提醒我們：別把自己看得太嚴肅，輕鬆才能看見真相。當你能笑看人生，魔法就會發生。" },
+  { id:12, name:"黃人", en:"Yellow Human", clan:"yellow", glyph:"👤", power:"影響 Influence", action:"智慧 Influences", essence:"自由意志 Free Will", direction:"南方 South", element:"土 Earth", element_alt:"心 Heart", positive:["自由意志", "智慧", "影響力", "選擇"], shadow:["優柔寡斷", "被動", "推卸責任"], medicine:"運用自由意志、做出有意識的選擇、影響世界", desc:"自由意志的黃人。透過選擇展現智慧。提醒我們：每一個決定都在創造實相。黃人是智者、是有意識的選擇者，理解人類擁有最神聖的禮物——自由意志。用智慧選擇，用愛影響。" },
+  { id:13, name:"紅天行者", en:"Red Skywalker", clan:"red", glyph:"🌌", power:"空間 Space", action:"警醒 Explores", essence:"探索 Wakefulness", direction:"東方 East", element:"火 Fire", element_alt:"空間 Space", positive:["勇氣", "探索", "天地連通", "警覺"], shadow:["過度冒險", "脫離現實", "焦慮"], medicine:"勇敢探索新領域、保持警醒、連結天地", desc:"探索的紅天行者，跨越時空的旅人。象徵勇氣、冒險、新領域的開拓。天地連通的橋樑。紅天行者是先知、是探險家，從天而降將靈性訊息帶到大地。提醒我們：保持警醒，新世界正在敲門。" },
+  { id:14, name:"白巫師", en:"White Wizard", clan:"white", glyph:"🧙", power:"永恆 Timelessness", action:"施魔法 Enchants", essence:"接受性 Receptivity", direction:"北方 North", element:"風 Air", element_alt:"魔法 Magic", positive:["接納", "永恆", "靜心", "魔法施展"], shadow:["過度被動", "自我封閉", "操控"], medicine:"進入內在寧靜、以接納召喚永恆、心無罣礙", desc:"接受性的白巫師。透過內在的寧靜與接納，召喚永恆的智慧。心無罣礙，魔法自然顯化。白巫師不是施咒者，而是純粹的存在——當你完全接納當下，魔法就會發生。是靜默中的力量。" },
+  { id:15, name:"藍鷹", en:"Blue Eagle", clan:"blue", glyph:"🦅", power:"心智 Mind", action:"願景 Creates", essence:"創造 Vision", direction:"西方 West", element:"水 Water", element_alt:"視野 Vision", positive:["遠見", "創造", "全局觀", "心智清晰"], shadow:["過度理性", "高傲", "脫離情感"], medicine:"從高處俯瞰全局、看見願景、創造新可能", desc:"創造的藍鷹，遠見之眼。從高處俯瞰全局，看見遠方的可能性。心智清晰，願景成形。藍鷹是領導者、是有遠見的創造者，能夠看見當下細節背後的宏觀模式。提醒我們：飛得越高，看得越遠。" },
+  { id:16, name:"黃戰士", en:"Yellow Warrior", clan:"yellow", glyph:"⚔️", power:"無懼 Fearlessness", action:"質問 Questions", essence:"智能 Intelligence", direction:"南方 South", element:"土 Earth", element_alt:"勇氣 Courage", positive:["無懼", "探究", "勇氣", "智慧行動"], shadow:["攻擊性", "盲目戰鬥", "抗拒"], medicine:"勇敢提問、面對恐懼、用智慧而非蠻力戰鬥", desc:"無懼的黃戰士。透過提問與探索找到真理。勇於面對挑戰，智慧地行動。黃戰士不是好戰者，而是真理的追尋者——透過提出對的問題，戰勝內在的恐懼。提醒我們：真正的戰士，先戰勝自己。" },
+  { id:17, name:"紅地球", en:"Red Earth", clan:"red", glyph:"🌍", power:"同步 Synchronicity", action:"進化 Navigates", essence:"導航 Evolution", direction:"東方 East", element:"火 Fire", element_alt:"大地 Earth", positive:["同步性", "進化", "腳踏實地", "蓋亞連結"], shadow:["失去方向", "分離", "破壞環境"], medicine:"留意共時訊號、跟隨蓋亞母親、腳踏實地", desc:"同步的紅地球。連結蓋亞母親，跟隨共時性的指引。提醒我們腳踏實地、與大地同行。紅地球是地球的守護者、是進化的導航者，能讀懂宇宙透過共時性傳遞的訊息。地球本身就是一個有意識的生命體。" },
+  { id:18, name:"白鏡", en:"White Mirror", clan:"white", glyph:"🪞", power:"無止境 Endlessness", action:"反射 Reflects", essence:"秩序 Order", direction:"北方 North", element:"風 Air", element_alt:"真實 Truth", positive:["真實", "反射", "秩序", "看見本質"], shadow:["評判", "苛責", "完美主義"], medicine:"如鏡子般反映真實、誠實面對自己、接受本然", desc:"反射的白鏡。映照真實，揭示秩序。提醒我們外在世界是內在的反射，誠實面對自己。白鏡不創造也不評判，只是清晰地映照——當你能像鏡子般如實看見，自由就會降臨。每個遇見的人，都是你的鏡子。" },
+  { id:19, name:"藍風暴", en:"Blue Storm", clan:"blue", glyph:"⛈️", power:"能量 Energy", action:"自我生成 Catalyzes", essence:"催化 Self-Generation", direction:"西方 West", element:"水 Water", element_alt:"轉化 Transformation", positive:["蛻變", "重生", "能量催化", "突破"], shadow:["破壞性", "失控", "戲劇化"], medicine:"擁抱改變、讓風暴清理舊有、雨後天晴帶來重生", desc:"催化的藍風暴。打破舊有結構的雷霆能量。突破與蛻變的力量，雨後天晴帶來重生。藍風暴不是破壞，而是必要的清理——當生命中出現風暴，那是宇宙在為你打掃，騰出空間讓新的可能性進來。" },
+  { id:20, name:"黃太陽", en:"Yellow Sun", clan:"yellow", glyph:"☀️", power:"普世之火 Universal Fire", action:"生命 Enlightens", essence:"開悟 Life", direction:"南方 South", element:"土 Earth", element_alt:"光 Light", positive:["開悟", "圓滿", "覺醒", "光明"], shadow:["自我膨脹", "自命不凡", "燃燒殆盡"], medicine:"成為自己的光、活出圓滿、照亮他人", desc:"開悟的黃太陽。20個印記的圓滿，宇宙意識的完整綻放。光明、智慧、覺醒。黃太陽是這20個印記的最高頻率——當你完成所有的學習，就成為了太陽，成為自己的光，並毫不費力地照亮他人。生命的圓滿。" }
+];
+
+const TONES = [
+  { id:1, name:"磁性", en:"Magnetic", power:"吸引 Attract", action:"統一 Unify", essence:"目的 Purpose", desc:"啟動之音。「我吸引什麼目的？」確立意圖、開啟新的13天波符。如磁鐵般吸引你的目標靠近。", keyword:"統一一切" },
+  { id:2, name:"月亮", en:"Lunar", power:"極化 Polarize", action:"穩定 Stabilize", essence:"挑戰 Challenge", desc:"挑戰之音。「我面對什麼挑戰？」看見二元對立，覺察阻礙，將挑戰轉化為動力。", keyword:"穩定一切挑戰" },
+  { id:3, name:"電力", en:"Electric", power:"啟動 Activate", action:"連結 Bond", essence:"服務 Service", desc:"服務之音。「我如何服務？」啟動行動的能量，透過服務他人連結愛的本質。", keyword:"連結一切服務" },
+  { id:4, name:"自我存在", en:"Self-Existing", power:"定義 Define", action:"度量 Measure", essence:"形式 Form", desc:"形式之音。「我採取什麼形式？」建立穩定的結構、為意圖賦予具體的形狀。", keyword:"定義一切形式" },
+  { id:5, name:"超頻", en:"Overtone", power:"賦能 Empower", action:"發光 Command", essence:"指揮 Radiance", desc:"輻射之音。「我如何賦予自己力量？」聚焦中心力量，從核心發光，賦能整個過程。", keyword:"指揮一切力量" },
+  { id:6, name:"韻律", en:"Rhythmic", power:"組織 Organize", action:"平等 Balance", essence:"平衡 Equality", desc:"平衡之音。「我如何擴展平等？」建立節奏，讓內外、陰陽、行動與休息達到平衡。", keyword:"平衡一切組織" },
+  { id:7, name:"共振", en:"Resonant", power:"激勵 Inspire", action:"引導 Channel", essence:"調頻 Attunement", desc:"神秘之音。「我如何啟發？」調頻於更高的真理，成為神性的通道，激勵他人。", keyword:"啟發一切調頻" },
+  { id:8, name:"銀河", en:"Galactic", power:"和諧 Harmonize", action:"整合 Model", essence:"模範 Integrity", desc:"和諧之音。「我如何活出實相？」整合內外，活出言行一致的模範，傳遞和諧。", keyword:"模範一切整合" },
+  { id:9, name:"太陽", en:"Solar", power:"實現 Realize", action:"脈動 Pulse", essence:"意圖 Intention", desc:"意圖之音。「我如何達成意圖？」脈動向前，將意圖實現在物質層面。", keyword:"脈動一切實現" },
+  { id:10, name:"行星", en:"Planetary", power:"完美 Perfect", action:"產生 Produce", essence:"顯化 Manifestation", desc:"顯化之音。「我如何完美顯化？」讓事物落地，將靈感顯化為實際成果。", keyword:"完美一切顯化" },
+  { id:11, name:"光譜", en:"Spectral", power:"解放 Liberate", action:"消融 Dissolve", essence:"釋放 Release", desc:"釋放之音。「我如何釋放與放下？」解構不再服務的，讓光散開、釋放執著。", keyword:"消融一切解放" },
+  { id:12, name:"水晶", en:"Crystal", power:"奉獻 Dedicate", action:"普遍化 Universalize", essence:"合作 Cooperation", desc:"合作之音。「我如何奉獻給所有生命？」水晶清澈的合作，將個人成就奉獻給集體。", keyword:"普遍化一切合作" },
+  { id:13, name:"宇宙", en:"Cosmic", power:"超越 Transcend", action:"忍耐 Endure", essence:"出席 Presence", desc:"出席之音。「我如何超越並出席？」將所學擴展到宇宙，圓滿一個波符的學習。", keyword:"忍耐一切出席" }
+];
+
+const TONE_COLORS = ['#c0392b','#d35400','#e67e22','#d4a017','#27ae60','#16a085','#2874a6','#1f4e79','#7d3c98','#5b2c6f','#922b21','#0e6655','#34495e'];
+
+// === LESSONS DATA (28 lessons in 7 parts) ===
+const PARTS = [
+  { id:1, title:'第一部 入門', en:'Beginner', icon:'🌱' },
+  { id:2, title:'第二部 曆法結構', en:'Calendar Structure', icon:'🌿' },
+  { id:3, title:'第三部 銀河母體', en:'Galactic Matrix', icon:'🌳' },
+  { id:4, title:'第四部 進階結構', en:'Advanced', icon:'🌌' },
+  { id:5, title:'第五部 個人探索', en:'Personal', icon:'🪞' },
+  { id:6, title:'第六部 每日實踐', en:'Daily Practice', icon:'🌅' },
+  { id:7, title:'第七部 延伸資源', en:'Resources', icon:'📚' }
+];
+
+const LESSONS = [
+  // === PART 1: 入門 ===
+  { id:1, part:1, icon:'🌟', title:'什麼是13月亮曆？', en:'What is the 13 Moon Calendar?',
+    summary:'一個邀請你回到自然韻律的古老新曆法',
+    body:`<p class="lesson-lead">想像一個曆法，每個月都一樣長、月份本身有獨特能量、跟月亮和女性身體的週期完全同步——這就是13月亮曆。</p>
+<h4>它是什麼？</h4>
+<p>13月亮曆 (13 Moon Calendar / Dreamspell) 是一套以 <strong>13 個月、每月 28 天</strong>為基礎的曆法系統，由人類學家暨藝術家 <strong>José Argüelles 博士</strong>於 1990 年代基於馬雅曆法的智慧發展而成。</p>
+<h4>誰發明的？</h4>
+<p>José Argüelles (1939-2011) 是美國學者，致力於詮釋馬雅曆法。他與妻子 Lloydine 一起發展了 Dreamspell 系統，希望透過曆法的轉換，幫助人類意識揚升。</p>
+<h4>為什麼要學？</h4>
+<p>它不只是另一種「日期系統」，而是一套提醒你「<em>時間就是藝術</em>」的修行工具——每一天都帶著獨特的宇宙能量，邀請你以覺察活出當下。</p>
+<div class="lesson-note">💡 <strong>初學建議</strong>：從每天看「今日 Kin」開始，慢慢進入。不需要一次學完所有概念。</div>`,
+    keypoints:['13個月 × 28天 + 1天無時間日 = 365天','由 José Argüelles 於 1990 年代基於馬雅曆法智慧發展','是修行工具，不只是日期系統','每一天都有獨特的「Kin」能量印記'],
+    related:[{type:'lesson',id:2},{type:'lesson',id:3}]
+  },
+  { id:2, part:1, icon:'🎨', title:'時間就是藝術', en:'Time is Art',
+    summary:'從「時間就是金錢」到「時間就是藝術」的革命',
+    body:`<p class="lesson-lead">「時間就是金錢」(Time is Money) 是工業文明的格言。Argüelles 提出的，是另一個句子：<strong>時間就是藝術</strong> (Time is Art)。</p>
+<h4>機械時間 vs 自然時間</h4>
+<p>現代人的時間被切成 60 秒、60 分、24 小時的均等格子——這是「<strong>12:60</strong>」的機械時間頻率。它讓我們把時間視為可以被「花費」、「節省」、「浪費」的資源。</p>
+<p>但自然界的時間不是這樣。月亮繞地球 28 天、心跳的脈動、植物的生長——它們依循的是「<strong>13:20</strong>」的自然頻率 (13個音調 × 20個印記)。</p>
+<h4>時間就是藝術，意思是？</h4>
+<p>當你不再把時間當成商品，而是當成宇宙能量的展現，每一個當下就成為一場創造。喝茶可以是儀式、走路可以是冥想、寫字可以是修行——時間不再被「填滿」，而是被「綻放」。</p>`,
+    keypoints:['12:60 = 機械時間（公曆）；13:20 = 自然時間（13月亮曆）','時間不是金錢、不是商品，而是創造的能量','T(E) = Art：時間（能量）= 藝術'],
+    related:[{type:'lesson',id:1},{type:'lesson',id:3},{type:'lesson',id:20}]
+  },
+  { id:3, part:1, icon:'⚖️', title:'公曆 vs 13月亮曆對照', en:'Gregorian vs 13 Moon',
+    summary:'一張表看懂兩個曆法的根本差異',
+    body:`<p class="lesson-lead">兩種曆法、兩種世界觀。它們不是「對與錯」，而是「不同維度」。</p>
+<table class="lesson-table">
+<tr><th>項目</th><th>公曆 Gregorian</th><th>13月亮曆</th></tr>
+<tr><td>月份數</td><td>12 (長度不一)</td><td>13 (每月相同)</td></tr>
+<tr><td>每月天數</td><td>28-31 天混亂</td><td>每月 28 天</td></tr>
+<tr><td>新年</td><td>1月1日 (任意)</td><td>7月26日 (天狼星合相)</td></tr>
+<tr><td>時間頻率</td><td>12:60 機械</td><td>13:20 自然</td></tr>
+<tr><td>月份命名</td><td>羅馬皇帝/數字</td><td>能量主題 (磁性月、月亮月⋯)</td></tr>
+<tr><td>每天意義</td><td>「星期幾、第幾號」</td><td>獨特能量 (Kin 1-260)</td></tr>
+<tr><td>核心概念</td><td>分配時間、計算工作</td><td>對齊宇宙、活出當下</td></tr>
+<tr><td>來源</td><td>1582 年教皇 Gregory XIII</td><td>1990 年代 José Argüelles</td></tr>
+</table>
+<div class="lesson-note">💡 13月亮曆並不否定公曆——它是一套<strong>覆蓋層</strong>，提供另一個維度的時間意義。你可以同時用兩個曆法。</div>`,
+    keypoints:['公曆是商業/行政曆，13月亮曆是修行/能量曆','兩者可以並存，13月亮曆作為覆蓋層','差異不在「對錯」，而在「不同維度」'],
+    related:[{type:'lesson',id:2},{type:'lesson',id:4}]
+  },
+  { id:4, part:1, icon:'🗺️', title:'系統總覽 + 詞彙表', en:'System Overview',
+    summary:'一張圖看懂整個 13月亮曆系統',
+    body:`<p class="lesson-lead">在深入各個部分之前，先建立整體概念。</p>
+<h4>三大基本元素</h4>
+<ul>
+<li><strong>20 個太陽印記 Solar Seals</strong>：宇宙的 20 種「名詞」，代表 20 種能量本質</li>
+<li><strong>13 個銀河音調 Galactic Tones</strong>：宇宙的 13 種「動詞」，代表創造的階段</li>
+<li><strong>260 個 Kin</strong>：印記 × 音調的組合，構成卓爾金曆的母體</li>
+</ul>
+<h4>時間單位嵌套</h4>
+<p>日 → 週(7天/顏色) → 月(28天) → 年(13月+1) → 52年大循環</p>
+<p>同時運行：卓爾金 260天 + 13月亮 365天 = 兩個齒輪每52年對齊一次</p>
+<h4>關鍵術語速查</h4>
+<table class="lesson-table">
+<tr><th>詞彙</th><th>意義</th></tr>
+<tr><td>Kin</td><td>銀河生命單位，260種獨特能量印記</td></tr>
+<tr><td>Seal 印記</td><td>20個能量原型，代表「是什麼」</td></tr>
+<tr><td>Tone 音調</td><td>13個能量階段，代表「怎麼做」</td></tr>
+<tr><td>Wavespell 波符</td><td>13天為一個學習循環</td></tr>
+<tr><td>Castle 城堡</td><td>52天為一段大循環，共5個</td></tr>
+<tr><td>Tzolkin 卓爾金</td><td>260天的銀河母體曆法</td></tr>
+<tr><td>Day Out of Time</td><td>7月25日，年度藝術慶典日</td></tr>
+<tr><td>Year Bearer 年度承載者</td><td>每年 7/26 對應的 Kin</td></tr>
+</table>
+<div class="lesson-note">📖 完整詞彙表請見「第26課 完整詞彙表」</div>`,
+    keypoints:['三大基本：20印記 × 13音調 = 260 Kin','時間單位：13天波符 → 52天城堡 → 260天卓爾金','7月25日無時間日、7月26日新年','卓爾金260 + 13月亮365 = 52年對齊'],
+    related:[{type:'lesson',id:5},{type:'lesson',id:14},{type:'lesson',id:16},{type:'lesson',id:26}]
+  },
+
+  // === PART 2: 曆法結構 ===
+  { id:5, part:2, icon:'🌕', title:'13個月亮詳解', en:'The 13 Moons',
+    summary:'每年的 13 個月各有獨特能量主題',
+    body:`<p class="lesson-lead">一年有 13 個月，每個月 28 天，對應一個音調主題。</p>
+<table class="lesson-table">
+<tr><th>#</th><th>月名</th><th>能量</th><th>日期 (公曆)</th></tr>
+<tr><td>1</td><td>磁性月 Magnetic</td><td>確立目的</td><td>7/26 - 8/22</td></tr>
+<tr><td>2</td><td>月亮月 Lunar</td><td>面對挑戰</td><td>8/23 - 9/19</td></tr>
+<tr><td>3</td><td>電力月 Electric</td><td>啟動服務</td><td>9/20 - 10/17</td></tr>
+<tr><td>4</td><td>自我存在月 Self-Existing</td><td>定義形式</td><td>10/18 - 11/14</td></tr>
+<tr><td>5</td><td>超頻月 Overtone</td><td>賦予力量</td><td>11/15 - 12/12</td></tr>
+<tr><td>6</td><td>韻律月 Rhythmic</td><td>建立平衡</td><td>12/13 - 1/9</td></tr>
+<tr><td>7</td><td>共振月 Resonant</td><td>調頻啟發</td><td>1/10 - 2/6</td></tr>
+<tr><td>8</td><td>銀河月 Galactic</td><td>整合活出</td><td>2/7 - 3/6</td></tr>
+<tr><td>9</td><td>太陽月 Solar</td><td>實現意圖</td><td>3/7 - 4/3</td></tr>
+<tr><td>10</td><td>行星月 Planetary</td><td>完美顯化</td><td>4/4 - 5/1</td></tr>
+<tr><td>11</td><td>光譜月 Spectral</td><td>釋放解放</td><td>5/2 - 5/29</td></tr>
+<tr><td>12</td><td>水晶月 Crystal</td><td>水晶合作</td><td>5/30 - 6/26</td></tr>
+<tr><td>13</td><td>宇宙月 Cosmic</td><td>超越出席</td><td>6/27 - 7/24</td></tr>
+</table>
+<div class="lesson-note">💡 月份名稱跟對應的 13 銀河音調完全一致——這不是巧合。每個月份就是該音調的 28 天展現。</div>`,
+    keypoints:['13個月名與13銀河音調一一對應','每月 28 天，整年 364 天，加 7/25 無時間日 = 365','當前所在的月份決定整體能量主題'],
+    related:[{type:'lesson',id:6},{type:'lesson',id:13}]
+  },
+  { id:6, part:2, icon:'🌀', title:'28天月相循環', en:'The 28-Day Cycle',
+    summary:'每月 4 週、每週 7 天的細緻結構',
+    body:`<p class="lesson-lead">28 天 = 4 週 × 7 天，每週對應一個顏色族群、每天對應一個電漿維度。</p>
+<h4>4 週對應 4 顏色族群</h4>
+<table class="lesson-table">
+<tr><th>週</th><th>族群</th><th>主題</th><th>方位</th></tr>
+<tr><td>第 1-7 天</td><td>🔴 紅週</td><td>啟動 Initiate</td><td>東方</td></tr>
+<tr><td>第 8-14 天</td><td>⚪ 白週</td><td>淨化 Refine</td><td>北方</td></tr>
+<tr><td>第 15-21 天</td><td>🔵 藍週</td><td>蛻變 Transform</td><td>西方</td></tr>
+<tr><td>第 22-28 天</td><td>🟡 黃週</td><td>成熟 Ripen</td><td>南方</td></tr>
+</table>
+<h4>7天對應 7 大電漿（七大維度）</h4>
+<p>每週的 7 天對應 7 種「電漿」(plasma)，代表七大維度能量：</p>
+<ol>
+<li><strong>Dali 達利</strong> (週日) — 目標 / 火焰 / 頂輪</li>
+<li><strong>Seli 賽利</strong> (週一) — 流動 / 光 / 根輪</li>
+<li><strong>Gamma 伽瑪</strong> (週二) — 平靜 / 中和 / 第三眼</li>
+<li><strong>Kali 卡利</strong> (週三) — 催化 / 喚醒 / 性輪</li>
+<li><strong>Alpha 阿爾法</strong> (週四) — 解放 / 雙極 / 喉輪</li>
+<li><strong>Limi 利米</strong> (週五) — 淨化 / 清空 / 太陽神經叢</li>
+<li><strong>Silio 希利歐</strong> (週六) — 釋放 / 發射 / 心輪</li>
+</ol>`,
+    keypoints:['28天 = 4 週 × 7 天','4 週對應紅、白、藍、黃四個顏色族群','7 天對應 7 種電漿：Dali, Seli, Gamma, Kali, Alpha, Limi, Silio'],
+    related:[{type:'lesson',id:5},{type:'lesson',id:19}]
+  },
+  { id:7, part:2, icon:'🎭', title:'7月25日 無時間日', en:'Day Out of Time',
+    summary:'一年中最特別的一天，不屬於任何月份',
+    body:`<p class="lesson-lead">如果一年是 13 × 28 = 364 天，那剩下的 1 天去哪了？答案是：<strong>那一天不屬於任何月份</strong>。</p>
+<h4>什麼是無時間日？</h4>
+<p>每年 <strong>7 月 25 日</strong>是「Day Out of Time」(無時間日)——它不是 13 月亮年的最後一天 (那是 13 月第 28 日 = 7/24)，也不是新年 (7/26)。它是「<em>時間之外的時間</em>」、年度的暫停鍵。</p>
+<h4>怎麼度過？</h4>
+<ul>
+<li>🎨 全球以藝術活動慶祝 (Festival of Time is Art)</li>
+<li>🕊️ 和平、寬恕、原諒</li>
+<li>🪷 釋放過去一年的能量、清理空間</li>
+<li>🎵 音樂、舞蹈、詩歌、儀式</li>
+<li>🤝 社群聚會、共同創造</li>
+</ul>
+<h4>為什麼是 7/25？</h4>
+<p>這天接近天狼星與太陽合相的時刻，是古埃及與馬雅都重視的「時間打開」之日。將它定為「無時間日」，是回歸古老智慧的選擇。</p>`,
+    keypoints:['7月25日不屬於任何月份，是「時間之外的時間」','全球同步慶祝藝術、和平、寬恕','是年度重置與淨化的儀式日'],
+    related:[{type:'lesson',id:8}]
+  },
+  { id:8, part:2, icon:'✨', title:'7月26日 新年與年度承載者', en:'New Year & Year Bearer',
+    summary:'13月亮新年，與該年的能量代表 Kin',
+    body:`<p class="lesson-lead">7月26日是13月亮曆的元旦，也是「年度承載者 Year Bearer」就位的一天。</p>
+<h4>為什麼是 7/26？</h4>
+<p>這天天狼星與太陽合相、尼羅河開始氾濫——古埃及人視之為新年。13月亮曆延續這個傳統。</p>
+<h4>年度承載者 Year Bearer</h4>
+<p>每年 7/26 對應的那個 Kin，就是該年的「年度承載者」——它代表整年的能量主題。年度承載者只能是 4 種印記之一：<strong>紅月 / 白巫師 / 藍風暴 / 黃種子</strong>（這稱為 4 個 Year Bearer Seals）。</p>
+<table class="lesson-table">
+<tr><th>年度</th><th>Year Bearer</th></tr>
+<tr><td>2013-2014</td><td>黃銀河種子年（Galactic Synchronization 起點）</td></tr>
+<tr><td>2024-2025</td><td>藍水晶風暴年</td></tr>
+<tr><td>2025-2026</td><td>黃宇宙種子年</td></tr>
+<tr><td>2026-2027</td><td>紅磁性月年</td></tr>
+</table>
+<h4>為什麼只有 4 個 Year Bearer？</h4>
+<p>因為一年 365 天，連續四年的新年印記正好循環四個顏色族群一次。這個 52 年週期叫做「<strong>卡爾普 Calendar Round</strong>」。</p>`,
+    keypoints:['7月26日是13月亮曆元旦','當天的 Kin 是「年度承載者」，代表整年能量','Year Bearer 只能是：紅月 / 白巫師 / 藍風暴 / 黃種子','52 年為一個完整循環 (Calendar Round)'],
+    related:[{type:'lesson',id:7},{type:'lesson',id:18}]
+  },
+  { id:9, part:2, icon:'📅', title:'365天結構視覺化', en:'365-Day Structure',
+    summary:'一年的完整輪廓',
+    body:`<p class="lesson-lead">用一張條狀圖看懂一年的結構。</p>
+<div class="year-structure">
+<h4>一年 = 13 月亮 + 1 無時間日</h4>
+<div class="year-bar">
+<div class="month-block m1">M1</div><div class="month-block m2">M2</div><div class="month-block m3">M3</div><div class="month-block m4">M4</div><div class="month-block m5">M5</div><div class="month-block m6">M6</div><div class="month-block m7">M7</div><div class="month-block m8">M8</div><div class="month-block m9">M9</div><div class="month-block m10">M10</div><div class="month-block m11">M11</div><div class="month-block m12">M12</div><div class="month-block m13">M13</div><div class="month-block out">⏸</div>
+</div>
+<p class="year-legend">每方塊 = 28 天 (從 7/26 開始) ｜ 暫停符 = 7/25 無時間日</p>
+</div>
+<h4>三層時間嵌套</h4>
+<ul>
+<li><strong>日 Day</strong>：1 天，1 個 Kin</li>
+<li><strong>週 Week</strong>：7 天，1 個顏色族群</li>
+<li><strong>月 Moon</strong>：28 天 = 4 週，1 個音調主題</li>
+<li><strong>年 Year</strong>：13 月 + 1 無時間日 = 365 天</li>
+<li><strong>52 年 Round</strong>：4 個年度承載者循環一輪</li>
+</ul>
+<h4>同時運作的銀河時間</h4>
+<p>除了「13月亮年 365天」之外，還有「卓爾金曆 260天」同時運作。兩者像兩個齒輪互相轉動，每 52 年精確對齊一次 (73 × 260 = 52 × 365 = 18,980 天)。</p>`,
+    keypoints:['一年 = 13月 × 28天 + 1無時間日 = 365天','時間嵌套：日 → 週 → 月 → 年 → 52年週期','兩個齒輪：13月亮365天 + 卓爾金260天，每52年對齊'],
+    related:[{type:'lesson',id:5},{type:'lesson',id:14},{type:'lesson',id:18}]
+  },
+
+  // === PART 3: 銀河母體 ===
+  { id:10, part:3, icon:'🎨', title:'4個顏色族群', en:'4 Color Clans',
+    summary:'紅啟動、白淨化、藍蛻變、黃成熟',
+    body:`<p class="lesson-lead">20印記不是平等並列，而是分四個顏色家族，每族 5 個印記。</p>
+<div class="clan-detail-grid">
+<div class="clan-detail red"><h4>🔴 紅族 啟動 Initiate</h4><p><strong>方位</strong>：東方</p><p><strong>元素</strong>：火 Fire</p><p><strong>主題</strong>：開啟、發起、生命力</p><p><strong>5 印記</strong>：紅龍、紅蛇、紅月、紅天行者、紅地球</p></div>
+<div class="clan-detail white"><h4>⚪ 白族 淨化 Refine</h4><p><strong>方位</strong>：北方</p><p><strong>元素</strong>：風 Air</p><p><strong>主題</strong>：精煉、純淨、靈性</p><p><strong>5 印記</strong>：白風、白世界橋、白狗、白巫師、白鏡</p></div>
+<div class="clan-detail blue"><h4>🔵 藍族 蛻變 Transform</h4><p><strong>方位</strong>：西方</p><p><strong>元素</strong>：水 Water</p><p><strong>主題</strong>：轉化、改變、深度</p><p><strong>5 印記</strong>：藍夜、藍手、藍猴、藍鷹、藍風暴</p></div>
+<div class="clan-detail yellow"><h4>🟡 黃族 成熟 Ripen</h4><p><strong>方位</strong>：南方</p><p><strong>元素</strong>：土 Earth</p><p><strong>主題</strong>：成熟、收成、智慧</p><p><strong>5 印記</strong>：黃種子、黃星星、黃人、黃戰士、黃太陽</p></div>
+</div>
+<div class="lesson-note">💡 每天輪流經歷紅→白→藍→黃→紅的循環。今日是哪個族群？看你的今日Kin。</div>`,
+    keypoints:['20 印記分 4 族，每族 5 個','紅(東/火)、白(北/風)、藍(西/水)、黃(南/土)','每天輪流循環四個族群'],
+    related:[{type:'concept',id:'structure'}]
+  },
+  { id:11, part:3, icon:'🔥', title:'5 個元素', en:'5 Elements',
+    summary:'火、地、水、風、空——20印記的元素歸屬',
+    body:`<p class="lesson-lead">除了 4 個顏色族群，20 印記還有 5 元素的視角。</p>
+<h4>5 元素分配</h4>
+<ul>
+<li><strong>🔥 火 Fire</strong> = 紅族 = 東方 = 啟動</li>
+<li><strong>💨 風 Air</strong> = 白族 = 北方 = 淨化</li>
+<li><strong>💧 水 Water</strong> = 藍族 = 西方 = 蛻變</li>
+<li><strong>🌍 地 Earth</strong> = 黃族 = 南方 = 成熟</li>
+<li><strong>🌌 空 Ether (中央)</strong> = 第五元素 = 合成</li>
+</ul>
+<p>4 顏色族群 = 4 個「外在」元素，第 5 元素「空」是中央軸——對應卓爾金的中央綠色城堡。</p>
+<h4>跟卓爾金「五個城堡」的關係</h4>
+<p>卓爾金 260 天分成 5 個 52 天的城堡，每個城堡也對應一個元素 (紅/白/藍/黃 + 中央綠色合成核心) ——詳見「第16課 5 個城堡」。</p>`,
+    keypoints:['5 元素：火、風、水、地、空（中央）','4 顏色 = 4 個外在元素，第 5 元素「空」是中央','每元素配 5 印記，與卓爾金 5 城堡呼應'],
+    related:[{type:'lesson',id:10},{type:'lesson',id:16}]
+  },
+  { id:12, part:3, icon:'☀️', title:'20 太陽印記總論', en:'20 Solar Seals',
+    summary:'宇宙的 20 種能量原型',
+    body:`<p class="lesson-lead">20印記是宇宙的 20 種「名詞」，回答「<strong>是什麼</strong>」這個問題。</p>
+<h4>結構特性</h4>
+<ul>
+<li><strong>順序意義</strong>：從紅龍 (誕生) 到黃太陽 (圓滿)，是一條完整的創造旅程</li>
+<li><strong>分類方式</strong>：4 族群 × 5 印記，或 5 元素 × 4 印記</li>
+<li><strong>三屬性</strong>：每個印記有「力量、行動、本質」三個面向</li>
+<li><strong>陰影課題</strong>：每個印記也有對應的陰影能量需要轉化</li>
+</ul>
+<h4>20 印記速覽</h4>
+<p>1 紅龍｜2 白風｜3 藍夜｜4 黃種子｜5 紅蛇｜6 白世界橋｜7 藍手｜8 黃星星｜9 紅月｜10 白狗｜11 藍猴｜12 黃人｜13 紅天行者｜14 白巫師｜15 藍鷹｜16 黃戰士｜17 紅地球｜18 白鏡｜19 藍風暴｜20 黃太陽</p>
+<div class="lesson-note">→ 點擊側邊欄「☀️ 太陽印記」查看任一印記的完整詳情頁</div>`,
+    keypoints:['20印記是宇宙的「名詞」，代表能量本質','順序從誕生(紅龍)到圓滿(黃太陽)','每印記有力量、行動、本質三屬性'],
+    related:[{type:'lesson',id:10},{type:'lesson',id:13}]
+  },
+  { id:13, part:3, icon:'🌀', title:'13 銀河音調總論', en:'13 Galactic Tones',
+    summary:'宇宙創造的 13 個階段',
+    body:`<p class="lesson-lead">13音調是宇宙的 13 種「動詞」，回答「<strong>怎麼做</strong>」這個問題。</p>
+<h4>13音調 = 創造的13階段</h4>
+<p>從 1 磁性（吸引目的）到 13 宇宙（超越出席），13 個音調代表任何創造過程的完整循環：</p>
+<ol>
+<li>磁性：吸引（啟動目的）</li>
+<li>月亮：穩定（面對挑戰）</li>
+<li>電力：啟動（連結服務）</li>
+<li>自我存在：定義（建立形式）</li>
+<li>超頻：賦能（聚焦力量）</li>
+<li>韻律：平衡（建立節奏）</li>
+<li>共振：啟發（神秘之音）</li>
+<li>銀河：和諧（整合活出）</li>
+<li>太陽：實現（脈動向前）</li>
+<li>行星：顯化（完美落地）</li>
+<li>光譜：解放（釋放放下）</li>
+<li>水晶：合作（奉獻集體）</li>
+<li>宇宙：超越（圓滿出席）</li>
+</ol>
+<h4>應用：13天波符</h4>
+<p>從任一磁性印記開始的 13 天，叫做「<strong>波符 Wavespell</strong>」——是學習任何主題的完整循環。詳見「第17課 20 個波符」。</p>`,
+    keypoints:['13音調是宇宙的「動詞」，代表創造階段','從吸引(1)到超越(13)是完整循環','13天 = 一個波符 = 一個學習單位'],
+    related:[{type:'lesson',id:12},{type:'lesson',id:17}]
+  },
+  { id:14, part:3, icon:'🌌', title:'卓爾金曆 Tzolkin 260', en:'Tzolkin 260',
+    summary:'13 × 20 = 260 個獨特 Kin 的銀河母體',
+    body:`<p class="lesson-lead">卓爾金曆是 13 月亮曆背後的能量母體，260 天為一個完整循環。</p>
+<h4>為什麼是 260？</h4>
+<ul>
+<li>13 音調 × 20 印記 = 260 個獨特 Kin</li>
+<li>恰好接近人類懷孕期 (約 9 個月)</li>
+<li>馬雅人視為「<strong>銀河生命的基因密碼</strong>」</li>
+</ul>
+<h4>跟 13 月亮 365 天的關係</h4>
+<p>13月亮曆是<strong>太陽曆</strong> (365天)，卓爾金是<strong>銀河曆</strong> (260天)。兩者同時運作，產生了豐富的「日 + 月 + 年」三重能量組合。</p>
+<p>每 52 年（73 × 260 = 52 × 365 = 18,980 天），兩個齒輪精確對齊一次——這個叫做「<strong>Calendar Round 卡爾普</strong>」。</p>
+<div class="lesson-note">→ 從「📖 核心概念 → 卓爾金曆260」可看完整 13×20 矩陣視覺圖</div>`,
+    keypoints:['260 = 13 × 20，銀河母體曆','與 365 天太陽曆同時運作，每 52 年對齊','是計算所有 Kin、波符、城堡的基礎'],
+    related:[{type:'concept',id:'tzolkin'},{type:'lesson',id:9}]
+  },
+  { id:15, part:3, icon:'🧭', title:'銀河羅盤五元組', en:'Galactic Compass',
+    summary:'每個 Kin 的五個關係：本我、引導、支持、挑戰、隱藏',
+    body:`<p class="lesson-lead">每個 Kin 都有 5 個「家族」Kin，這個關係叫「銀河羅盤」。</p>
+<h4>五元組的含義</h4>
+<ul>
+<li>🌟 <strong>本我 Self</strong>：你今日/本命的 Kin</li>
+<li>👆 <strong>引導 Guide</strong>：高我、靈魂指引（同色家族、同音調）</li>
+<li>🤝 <strong>支持 Analog</strong>：平等夥伴（同音調，互補印記）</li>
+<li>⚔️ <strong>挑戰 Antipode</strong>：對極挑戰、擴展邊界（同音調、印記+10）</li>
+<li>🪞 <strong>隱藏 Occult</strong>：背後的神秘力量（261 - 自己的 Kin）</li>
+</ul>
+<h4>計算公式</h4>
+<table class="lesson-table">
+<tr><th>關係</th><th>計算規則</th></tr>
+<tr><td>引導 Guide</td><td>同音調，印記沿同色家族 +4 位（Tone 1 時 = 自己）</td></tr>
+<tr><td>挑戰 Antipode</td><td>同音調，印記 +10（mod 20）</td></tr>
+<tr><td>支持 Analog</td><td>同音調，印記配對（1↔18, 2↔17... 19↔20）</td></tr>
+<tr><td>隱藏 Occult</td><td>261 − 自己的 Kin</td></tr>
+</table>
+<h4>怎麼用？</h4>
+<p>遇困難 → 看「挑戰」Kin 給你什麼擴展；想找夥伴 → 看「支持」Kin 適合的能量類型；想了解內在驅動 → 看「隱藏」Kin。</p>
+<div class="lesson-note">→ 從「☀️ 今日Kin」可看每天的銀河羅盤；計算器算完本命Kin也會顯示</div>`,
+    keypoints:['每個 Kin 有 5 個關係','引導 = 同色 + 同音調 (高我)','支持 = 印記配對 (夥伴)','挑戰 = 印記 +10 (對極)','隱藏 = 261 - 自己 (背面)'],
+    related:[{type:'tool',id:'calculator'},{type:'tool',id:'today'}]
+  },
+
+  // === PART 4: 進階 ===
+  { id:16, part:4, icon:'🏰', title:'5 個城堡 The 5 Castles', en:'5 Castles',
+    summary:'卓爾金 260 天的五大時期',
+    body:`<p class="lesson-lead">260 天卓爾金分成 5 個 52 天的「城堡」，每個城堡有獨特能量主題。</p>
+<table class="lesson-table">
+<tr><th>#</th><th>城堡</th><th>Kin 範圍</th><th>主題</th></tr>
+<tr><td>1</td><td>🔴 紅色啟動城堡 Red Eastern</td><td>Kin 1-52</td><td>誕生 · 開啟生命力</td></tr>
+<tr><td>2</td><td>⚪ 白色十字穿越城堡 White Northern</td><td>Kin 53-104</td><td>淨化 · 跨越精煉</td></tr>
+<tr><td>3</td><td>🔵 藍色西方燃燒城堡 Blue Western</td><td>Kin 105-156</td><td>蛻變 · 燃燒舊我</td></tr>
+<tr><td>4</td><td>🟡 黃色南方賦予城堡 Yellow Southern</td><td>Kin 157-208</td><td>給予 · 智慧成熟</td></tr>
+<tr><td>5</td><td>🟢 綠色中央魔法城堡 Green Central</td><td>Kin 209-260</td><td>魔法 · 同步合成</td></tr>
+</table>
+<h4>每個城堡 = 4 個波符</h4>
+<p>52 天 ÷ 13 天/波符 = 4 個波符。所以一個城堡裡有 <strong>4 個 13 天的學習循環</strong>。</p>
+<h4>第 5 個「綠色」是哪裡來的？</h4>
+<p>20印記沒有綠色，但卓爾金中央城堡放在「同步」的位置——綠色代表四色融合後的合成能量。是 13月亮曆獨有的<strong>第五元素「中央」</strong>。</p>`,
+    keypoints:['卓爾金 260 = 5 城堡 × 52 天','4 個外在城堡 (紅/白/藍/黃) + 1 個中央綠色城堡','每個城堡 = 4 個波符 = 4 段 13 天'],
+    related:[{type:'lesson',id:14},{type:'lesson',id:17}]
+  },
+  { id:17, part:4, icon:'🌊', title:'20 個波符 Wavespells', en:'20 Wavespells',
+    summary:'每 13 天為一個學習循環',
+    body:`<p class="lesson-lead">波符是 13 月亮曆<strong>最重要的學習單位</strong>——任何主題都在 13 天內走完完整循環。</p>
+<h4>什麼是波符？</h4>
+<p>從任一「磁性印記」(Tone 1) 開始的 13 天，叫做一個 Wavespell。波符會以該印記命名（例：紅龍波符、白風波符）。</p>
+<h4>13 天的學習階梯</h4>
+<table class="lesson-table">
+<tr><th>天</th><th>音調</th><th>主題</th></tr>
+<tr><td>1</td><td>磁性</td><td>啟動目的</td></tr>
+<tr><td>2</td><td>月亮</td><td>看見挑戰</td></tr>
+<tr><td>3</td><td>電力</td><td>服務行動</td></tr>
+<tr><td>4</td><td>自我存在</td><td>定義形式</td></tr>
+<tr><td>5</td><td>超頻</td><td>賦予力量</td></tr>
+<tr><td>6</td><td>韻律</td><td>建立平衡</td></tr>
+<tr><td>7</td><td>共振</td><td>啟發調頻 (神秘之音)</td></tr>
+<tr><td>8</td><td>銀河</td><td>和諧整合</td></tr>
+<tr><td>9</td><td>太陽</td><td>脈動實現</td></tr>
+<tr><td>10</td><td>行星</td><td>完美顯化</td></tr>
+<tr><td>11</td><td>光譜</td><td>釋放解放</td></tr>
+<tr><td>12</td><td>水晶</td><td>奉獻合作</td></tr>
+<tr><td>13</td><td>宇宙</td><td>超越出席</td></tr>
+</table>
+<h4>20 個波符 × 13 天 = 260 天</h4>
+<p>20 印記每個都會作為波符的「磁性領袖」，依序領導 13 天，正好填滿卓爾金 260 天。</p>
+<div class="lesson-note">💡 想實踐 13 月亮曆？最簡單的方式：以波符為單位設定學習主題、創作項目、成長目標。13 天剛好是一個專案的迷你週期。</div>`,
+    keypoints:['波符 = 13 天的學習循環','每波符以 1 個磁性印記領導，依序走 13 音調','20 個波符填滿 260 天的卓爾金','是日常實踐 13月亮曆的最佳單位'],
+    related:[{type:'lesson',id:13},{type:'lesson',id:16},{type:'lesson',id:25}]
+  },
+  { id:18, part:4, icon:'🔄', title:'52 年神聖循環', en:'52-Year Calendar Round',
+    summary:'13月亮曆與卓爾金完美對齊的大週期',
+    body:`<p class="lesson-lead">13月亮 365 天和卓爾金 260 天像兩個齒輪，每 52 年對齊一次——這就是馬雅人最重視的「卡爾普 Calendar Round」。</p>
+<h4>為什麼是 52？</h4>
+<p>52 × 365 = 18,980 天 = 73 × 260 天。這是 365 和 260 的最小公倍數除以 4。</p>
+<p>52 年也接近人的一個生命循環階段（中年）。馬雅人認為一個人活完一個 52 年週期，就完成了一輪靈性學習。</p>
+<h4>4 個 Year Bearer 循環</h4>
+<p>52 年裡，4 個年度承載者印記（紅月/白巫師/藍風暴/黃種子）依序循環 13 次（4 × 13 = 52）。</p>
+<h4>個人生命的 52 年週期</h4>
+<ul>
+<li><strong>0-13 歲</strong>：磁性年代——確立第一階段目的</li>
+<li><strong>13-26 歲</strong>：月亮年代——面對二元挑戰</li>
+<li><strong>26-39 歲</strong>：電力年代——服務與啟動</li>
+<li><strong>39-52 歲</strong>：超頻年代——掌握自身力量</li>
+</ul>`,
+    keypoints:['52 年 = 365 與 260 的對齊週期','4 個 Year Bearer × 13 = 52 年','個人生命的一個完整靈性循環'],
+    related:[{type:'lesson',id:8},{type:'lesson',id:14}]
+  },
+  { id:19, part:4, icon:'⚡', title:'七種電漿 Plasmas', en:'7 Plasmas',
+    summary:'每週七天對應七個維度的能量',
+    body:`<p class="lesson-lead">每週的 7 天對應 7 種「電漿」(plasma)，代表七大維度的宇宙能量。</p>
+<table class="lesson-table">
+<tr><th>#</th><th>電漿</th><th>週日</th><th>意義</th><th>身體脈輪</th></tr>
+<tr><td>1</td><td><strong>Dali 達利</strong></td><td>週日</td><td>目標 / 火焰</td><td>頂輪</td></tr>
+<tr><td>2</td><td><strong>Seli 賽利</strong></td><td>週一</td><td>流動 / 光</td><td>根輪</td></tr>
+<tr><td>3</td><td><strong>Gamma 伽瑪</strong></td><td>週二</td><td>平靜 / 中和</td><td>第三眼</td></tr>
+<tr><td>4</td><td><strong>Kali 卡利</strong></td><td>週三</td><td>催化 / 喚醒</td><td>性輪</td></tr>
+<tr><td>5</td><td><strong>Alpha 阿爾法</strong></td><td>週四</td><td>解放 / 雙極</td><td>喉輪</td></tr>
+<tr><td>6</td><td><strong>Limi 利米</strong></td><td>週五</td><td>淨化 / 清空</td><td>太陽神經叢</td></tr>
+<tr><td>7</td><td><strong>Silio 希利歐</strong></td><td>週六</td><td>釋放 / 發射</td><td>心輪</td></tr>
+</table>
+<h4>應用：日常七天瑜伽</h4>
+<p>將每天的電漿能量導入身體對應部位的呼吸練習，叫做「<strong>Telektonon</strong>」呼吸瑜伽。是 13月亮曆推薦的日常修行法。</p>`,
+    keypoints:['7 天 = 7 種電漿，對應七大維度','Dali, Seli, Gamma, Kali, Alpha, Limi, Silio','每電漿對應身體一個能量中心 (脈輪)'],
+    related:[{type:'lesson',id:6}]
+  },
+  { id:20, part:4, icon:'⏳', title:'13:20 vs 12:60 時間法則', en:'Law of Time',
+    summary:'自然時間 vs 機械時間的根本對立',
+    body:`<p class="lesson-lead">Argüelles 提出：人類的所有問題，都源於我們活在錯誤的時間頻率裡。</p>
+<h4>12:60 機械時間</h4>
+<ul>
+<li>每天 24 小時 (12 × 2)，每小時 60 分鐘</li>
+<li>1582 年教皇 Gregory XIII 確立的格里高利曆</li>
+<li>把時間視為可量化、可買賣的「商品」</li>
+<li>讓人脫離自然韻律，產生焦慮、競爭、剝削</li>
+</ul>
+<h4>13:20 自然時間</h4>
+<ul>
+<li>13 個月亮 × 20 個太陽印記</li>
+<li>對應月亮週期、心跳脈動、植物生長</li>
+<li>把時間視為宇宙能量的展現</li>
+<li>讓人回到當下、回到自然、回到創造性</li>
+</ul>
+<h4>「時間法則 Law of Time」</h4>
+<p>Argüelles 在《時間法則》一書提出：所有歷史的災難——戰爭、環境破壞、心理疾病——都因人類採用了錯誤的時間頻率。回到 13:20 是人類覺醒的關鍵。</p>
+<div class="lesson-note">⚠️ 這是 13月亮曆的哲學立場，不是科學定論。但作為一種覺察工具，它幫助我們重新審視「時間」的意義。</div>`,
+    keypoints:['12:60 = 公曆機械時間（商業）','13:20 = 自然時間（自然+宇宙）','Argüelles 視時間頻率為人類覺醒關鍵'],
+    related:[{type:'lesson',id:2},{type:'lesson',id:3}]
+  },
+
+  // === PART 5: 個人探索 ===
+  { id:21, part:5, icon:'🎂', title:'本命 Kin (銀河生日)', en:'Galactic Birthday',
+    summary:'從西元生日算出你的銀河身份',
+    body:`<p class="lesson-lead">每個人出生的那天都對應一個 Kin，這就是你的「<strong>銀河生日</strong>」/「<strong>本命 Kin</strong>」。</p>
+<h4>怎麼計算？</h4>
+<p>用 Kin 計算器輸入生日 → 得到一個 1-260 之間的 Kin 編號 + 對應的太陽印記 + 銀河音調。</p>
+<h4>本命 Kin 揭示什麼？</h4>
+<ul>
+<li><strong>太陽印記</strong>：你的能量本質、靈魂主題</li>
+<li><strong>銀河音調</strong>：你今生的學習階段</li>
+<li><strong>顏色族群</strong>：你屬於啟動/淨化/蛻變/成熟哪個家族</li>
+<li><strong>銀河羅盤</strong>：你的引導、支持、挑戰、隱藏Kin</li>
+</ul>
+<h4>四個面向的解讀</h4>
+<ol>
+<li><strong>本質</strong>：印記給你的核心能量</li>
+<li><strong>學習</strong>：音調指出今生需要練習的「動詞」</li>
+<li><strong>家族</strong>：顏色族群決定整體基調</li>
+<li><strong>關係</strong>：銀河羅盤揭示你的支持系統與挑戰</li>
+</ol>
+<div class="lesson-note">→ 從側邊欄「🪞 Kin 計算器」算出你的本命 Kin</div>`,
+    keypoints:['本命 Kin = 出生那天的 Kin','揭示靈魂主題、學習階段、家族歸屬','是了解自己最快的入口'],
+    related:[{type:'tool',id:'calculator'},{type:'lesson',id:15},{type:'lesson',id:22}]
+  },
+  { id:22, part:5, icon:'📆', title:'流年 Kin', en:'Annual Kin',
+    summary:'每個生日年的能量主題',
+    body:`<p class="lesson-lead">本命 Kin 是固定的，但每年生日換一個「<strong>流年 Kin</strong>」——代表這一年你要學的功課。</p>
+<h4>怎麼算？</h4>
+<p>每年生日當天的 Kin 就是該年的流年 Kin。例：2026 年生日當天 Kin 87 = 該年是「Kin 87 共振的藍手年」。</p>
+<h4>流年的學習方向</h4>
+<ul>
+<li><strong>音調</strong>告訴你：今年要練習的「動詞」（吸引/挑戰/啟動...）</li>
+<li><strong>印記</strong>告訴你：今年要展現的「名詞」（哪種能量本質）</li>
+<li><strong>族群</strong>告訴你：今年的整體基調（啟動/淨化/蛻變/成熟）</li>
+</ul>
+<h4>52 年大循環</h4>
+<p>每個人一生會經歷一個完整的 52 年循環——4 個 Year Bearer × 13 音調。每 52 歲生日，你會回到本命 Kin 的同色家族（卓爾金羅盤回到原點）。</p>
+<div class="lesson-note">💡 在 Kin 計算器中輸入你今年的生日（不是出生日），就能算出本年的流年 Kin。</div>`,
+    keypoints:['流年 Kin = 每年生日當天的 Kin','揭示該年的學習主題','52 年完成一個完整生命循環'],
+    related:[{type:'lesson',id:21},{type:'lesson',id:18}]
+  },
+
+  // === PART 6: 每日實踐 ===
+  { id:23, part:6, icon:'☀️', title:'今日 Kin 與三層意義', en:'Daily Kin Practice',
+    summary:'每天打開頁面，開啟當日修行',
+    body:`<p class="lesson-lead">今日 Kin 不只是「今天的能量」——它有<strong>三層交織</strong>的意義。</p>
+<h4>第一層：宇宙層</h4>
+<p>今天全球所有人共享的 Kin，是一個「宇宙的天氣」。例：今日 Kin 140 行星黃太陽 = 全球都在「完美顯化光明」的能量場中。</p>
+<h4>第二層：個人層</h4>
+<p>今日 Kin 對你個人的影響——看它與你本命 Kin 的關係：</p>
+<ul>
+<li>同 Kin = 強化日（你的本命能量大爆發）</li>
+<li>引導/支持 Kin = 順流日</li>
+<li>挑戰 Kin = 擴展日（會遇到考驗）</li>
+<li>隱藏 Kin = 神秘日（潛意識浮現）</li>
+</ul>
+<h4>第三層：實踐層</h4>
+<p>今日反思問句（從音調來）+ 今日能量主題 (印記+音調) = 你今天可以怎麼活的指引。</p>
+<h4>每日三步驟</h4>
+<ol>
+<li><strong>早晨打開</strong>：看今日 Kin、讀反思問句</li>
+<li><strong>白天記住</strong>：印記的力量+音調的行動</li>
+<li><strong>晚上回顧</strong>：今天怎麼活出這個能量？</li>
+</ol>`,
+    keypoints:['今日 Kin 有三層意義：宇宙、個人、實踐','與本命 Kin 的關係決定當日基調','早晨讀 + 白天記 + 晚上反思 = 完整實踐'],
+    related:[{type:'tool',id:'today'}]
+  },
+  { id:24, part:6, icon:'🌕', title:'本月主題與本週主題', en:'Monthly & Weekly',
+    summary:'善用 13 個月亮與 4 個顏色週',
+    body:`<p class="lesson-lead">除了今日 Kin，每月和每週也有主題，可以為你的生活定錨。</p>
+<h4>本月主題（你在 13 個月亮的哪個？）</h4>
+<p>例：你現在在「行星月」(4/4 - 5/1)，整月主題是「<strong>完美顯化</strong>」——適合把長期計畫具體落地。</p>
+<h4>本週主題（你在 28 天月相的哪個顏色週？）</h4>
+<ul>
+<li>第 1 週紅週：<strong>啟動</strong>新事物</li>
+<li>第 2 週白週：<strong>精煉</strong>、淨化</li>
+<li>第 3 週藍週：<strong>突破</strong>、轉化</li>
+<li>第 4 週黃週：<strong>成熟</strong>、收成</li>
+</ul>
+<h4>三層時間定位法</h4>
+<p>每天早上問自己：「<em>我在哪一年？哪一月？哪一週？哪一天？</em>」——四層交織給你完整的能量座標。</p>`,
+    keypoints:['月主題：13 月亮各有能量，定整月基調','週主題：4 顏色週循環，定每週方向','時間定位 = 年月週日四層交織'],
+    related:[{type:'lesson',id:5},{type:'lesson',id:6}]
+  },
+  { id:25, part:6, icon:'📓', title:'波符日記', en:'Wavespell Journal',
+    summary:'13天為週期的學習與創作循環',
+    body:`<p class="lesson-lead">把生活照波符節奏切——每13天為一個小循環，是 13 月亮曆<strong>最強大的實踐工具</strong>。</p>
+<h4>什麼是波符日記？</h4>
+<p>追蹤你正在哪個波符的第幾天，按 13 個音調的階梯做反思。</p>
+<h4>13 天的反思架構</h4>
+<table class="lesson-table">
+<tr><th>天</th><th>音調</th><th>反思問題</th></tr>
+<tr><td>1</td><td>磁性</td><td>這 13 天我想吸引什麼目的？</td></tr>
+<tr><td>2</td><td>月亮</td><td>什麼是我要面對的挑戰？</td></tr>
+<tr><td>3</td><td>電力</td><td>我可以怎麼服務？</td></tr>
+<tr><td>4</td><td>自我存在</td><td>什麼形式適合這個目的？</td></tr>
+<tr><td>5</td><td>超頻</td><td>什麼是我中心的力量？</td></tr>
+<tr><td>6</td><td>韻律</td><td>怎麼建立平衡？</td></tr>
+<tr><td>7</td><td>共振</td><td>我從中得到什麼啟發？(神秘之日)</td></tr>
+<tr><td>8</td><td>銀河</td><td>我活出言行一致了嗎？</td></tr>
+<tr><td>9</td><td>太陽</td><td>什麼真實實現了？</td></tr>
+<tr><td>10</td><td>行星</td><td>什麼具體顯化了？</td></tr>
+<tr><td>11</td><td>光譜</td><td>我可以放下什麼？</td></tr>
+<tr><td>12</td><td>水晶</td><td>怎麼跟人合作？</td></tr>
+<tr><td>13</td><td>宇宙</td><td>這 13 天我超越了什麼？</td></tr>
+</table>
+<div class="lesson-note">💡 完成一個波符後，下一個磁性日換新主題。一年走 28 個波符 (~13 月亮 × 2)。</div>`,
+    keypoints:['波符日記 = 13天為單位的學習循環','每天對應一個音調的反思問題','一年走 28 個波符，是長期成長的最佳節奏'],
+    related:[{type:'lesson',id:17}]
+  },
+
+  // === PART 7: 延伸資源 ===
+  { id:26, part:7, icon:'📖', title:'完整詞彙表', en:'Complete Glossary',
+    summary:'13月亮曆所有重要術語',
+    body:`<table class="lesson-table">
+<tr><th>詞彙</th><th>英文</th><th>意義</th></tr>
+<tr><td>13月亮曆</td><td>13 Moon Calendar</td><td>13個月、每月28天 + 1日的曆法</td></tr>
+<tr><td>夢時 / 夢境法</td><td>Dreamspell</td><td>Argüelles 創立的13月亮曆系統</td></tr>
+<tr><td>Kin</td><td>Kin</td><td>銀河生命單位，260種獨特能量印記</td></tr>
+<tr><td>太陽印記</td><td>Solar Seal</td><td>20個能量原型（名詞）</td></tr>
+<tr><td>銀河音調</td><td>Galactic Tone</td><td>13個能量階段（動詞）</td></tr>
+<tr><td>波符</td><td>Wavespell</td><td>13天為一個學習循環</td></tr>
+<tr><td>城堡</td><td>Castle</td><td>52天為一個大循環，共5個</td></tr>
+<tr><td>卓爾金</td><td>Tzolkin</td><td>260天的銀河母體曆法</td></tr>
+<tr><td>無時間日</td><td>Day Out of Time</td><td>7月25日，年度藝術慶典日</td></tr>
+<tr><td>年度承載者</td><td>Year Bearer</td><td>每年7/26的 Kin，代表整年能量</td></tr>
+<tr><td>銀河羅盤</td><td>Galactic Compass</td><td>每個 Kin 的五元組關係</td></tr>
+<tr><td>引導</td><td>Guide</td><td>同色同音調，高我指引</td></tr>
+<tr><td>對極/挑戰</td><td>Antipode</td><td>同音調印記+10，對極挑戰</td></tr>
+<tr><td>類比/支持</td><td>Analog</td><td>同音調配對印記，平等夥伴</td></tr>
+<tr><td>隱藏</td><td>Occult</td><td>261-自己Kin，背面神秘力量</td></tr>
+<tr><td>電漿</td><td>Plasma</td><td>七大維度，對應每週七天</td></tr>
+<tr><td>時間法則</td><td>Law of Time</td><td>13:20 vs 12:60 時間頻率學說</td></tr>
+<tr><td>同步性</td><td>Synchronicity</td><td>有意義的巧合，宇宙傳訊</td></tr>
+<tr><td>銀河同步</td><td>Galactic Sync</td><td>2013/7/26 啟動的新時代</td></tr>
+<tr><td>In Lak'ech</td><td>In Lak'ech</td><td>馬雅問候語：「我是另一個你」</td></tr>
+</table>`,
+    keypoints:['術語表為快速查閱用','建議搭配個別章節深入學習'],
+    related:[]
+  },
+  { id:27, part:7, icon:'👤', title:'José Argüelles 與時間法則', en:'José Argüelles',
+    summary:'13月亮曆創始人的生平與思想',
+    body:`<p class="lesson-lead">了解 13月亮曆，繞不開它的創始人 José Argüelles (1939-2011)。</p>
+<h4>生平</h4>
+<ul>
+<li><strong>1939</strong>：出生於美國明尼蘇達州，父親是墨西哥裔</li>
+<li><strong>1972</strong>：芝加哥大學藝術史博士，論文研究馬雅曼陀羅</li>
+<li><strong>1987</strong>：發起「Harmonic Convergence 和諧匯聚」全球冥想活動</li>
+<li><strong>1990</strong>：與妻子 Lloydine 共同開創 Dreamspell 系統</li>
+<li><strong>2011</strong>：去世於澳洲</li>
+</ul>
+<h4>核心著作</h4>
+<ul>
+<li><em>The Mayan Factor</em> (1987) — 馬雅因素</li>
+<li><em>Earth Ascending</em> (1984) — 地球揚升</li>
+<li><em>Time and the Technosphere</em> (2002) — 時間與技術圈</li>
+<li><em>Dreamspell</em> 套組 (1990) — 13月亮曆原始版本</li>
+</ul>
+<h4>核心主張</h4>
+<p>Argüelles 相信人類正處於關鍵的時間轉換期——從 12:60 機械時間頻率，過渡到 13:20 自然時間頻率。他認為 2012/12/21 是馬雅曆法的「宇宙週期重啟」，2013/7/26 開始進入「銀河同步年」。</p>
+<div class="lesson-note">⚠️ Argüelles 的學說屬於新時代運動 (New Age)，包含許多哲學/靈性主張。應以開放但批判的態度閱讀。</div>`,
+    keypoints:['13月亮曆由 José Argüelles 1990 年代發展','基於馬雅曆法智慧 + 新時代靈性思想','核心理念：時間頻率轉換是人類覺醒關鍵'],
+    related:[{type:'lesson',id:1},{type:'lesson',id:20}]
+  },
+  { id:28, part:7, icon:'📚', title:'推薦書單與資源', en:'Recommended Reading',
+    summary:'深入學習13月亮曆的延伸閱讀',
+    body:`<h4>原始經典</h4>
+<ul>
+<li><em>Dreamspell: The Journey of Timeship Earth 2013</em> — Argüelles 親自設計的原始套組</li>
+<li><em>The Mayan Factor: Path Beyond Technology</em> (1987) — 將馬雅曆法引介給西方</li>
+<li><em>Time and the Technosphere</em> (2002) — 時間法則的核心論述</li>
+</ul>
+<h4>中文書籍</h4>
+<ul>
+<li>《13月亮曆生命密碼書》</li>
+<li>《13月亮曆：找回宇宙的節奏》（多種版本）</li>
+<li>《馬雅星系印記：13月亮曆能量導引》</li>
+</ul>
+<h4>學習工具</h4>
+<ul>
+<li><strong>13moon.com</strong> — 官方資源（英文）</li>
+<li><strong>Tortuga 1320</strong> — 國際社群</li>
+<li><strong>Skytime.org</strong> — Lloydine Argüelles 的延續工作</li>
+</ul>
+<h4>實踐建議路線</h4>
+<ol>
+<li>從「今日 Kin」開始，每天讀 5 分鐘</li>
+<li>第 2 個月開始記錄波符日記</li>
+<li>第 3 個月開始研究自己本命 Kin 的銀河羅盤</li>
+<li>第 6 個月可挑戰：跨入卓爾金 260 天的整體節奏</li>
+</ol>`,
+    keypoints:['從 Argüelles 原典入手，再讀中文延伸','實踐勝過閱讀：今日 Kin → 波符日記 → 銀河羅盤 → 卓爾金','加入社群可加速學習'],
+    related:[]
+  }
+];
+
+const CLAN_NAMES = { red:"紅族", white:"白族", blue:"藍族", yellow:"黃族" };
+const CLAN_COLORS = { red:'#c0392b', white:'#d8d2c4', blue:'#2874a6', yellow:'#d4a017' };
+
+let currentClanFilter = 'all';
+let currentSearch = '';
+
+// === GALACTIC COMPASS LOGIC ===
+const ANALOG_PAIRS = {
+  1: 18, 18: 1, 2: 17, 17: 2, 3: 16, 16: 3, 4: 15, 15: 4,
+  5: 14, 14: 5, 6: 13, 13: 6, 7: 12, 12: 7, 8: 11, 11: 8,
+  9: 10, 10: 9, 19: 20, 20: 19
+};
+const MOON_NAMES = ['', '磁性月', '月亮月', '電力月', '自我存在月', '超頻月', '韻律月', '共振月', '銀河月', '太陽月', '行星月', '光譜月', '水晶月', '宇宙月'];
+const CLAN_THEME = { red:'啟動 Initiate', white:'淨化 Refine', blue:'蛻變 Transform', yellow:'成熟 Ripen' };
+
+function getKinFromDate(date) {
+  const refDate = new Date('2013-07-26T00:00:00');
+  const refKin = 164;
+  const daysDiff = Math.round((date - refDate) / (1000 * 60 * 60 * 24));
+  return ((refKin - 1 + daysDiff) % 260 + 260) % 260 + 1;
+}
+
+function getKinFromToneSeal(tone, seal) {
+  for (let k = 1; k <= 260; k++) {
+    if (((k-1) % 13) + 1 === tone && ((k-1) % 20) + 1 === seal) return k;
+  }
+  return 1;
+}
+
+function getCompass(kin) {
+  const tone = ((kin - 1) % 13) + 1;
+  const seal = ((kin - 1) % 20) + 1;
+  const guideSeal = ((seal - 1 + 4 * (tone - 1)) % 20) + 1;
+  const antipodeSeal = ((seal - 1 + 10) % 20) + 1;
+  const analogSeal = ANALOG_PAIRS[seal];
+  const hiddenKin = 261 - kin;
+  return {
+    self:     { kin, seal, tone },
+    guide:    { kin: getKinFromToneSeal(tone, guideSeal),    seal: guideSeal,    tone },
+    antipode: { kin: getKinFromToneSeal(tone, antipodeSeal), seal: antipodeSeal, tone },
+    analog:   { kin: getKinFromToneSeal(tone, analogSeal),   seal: analogSeal,   tone },
+    hidden:   { kin: hiddenKin, seal: ((hiddenKin - 1) % 20) + 1, tone: ((hiddenKin - 1) % 13) + 1 }
+  };
+}
+
+function renderCompass(kin, containerId) {
+  const compass = getCompass(kin);
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const cells = [
+    { role: 'guide',      label: '引導 Guide',     meaning: '高我 · 帶領方向',     data: compass.guide },
+    { role: 'hidden-kin', label: '隱藏 Occult',    meaning: '潛能 · 隱藏支持',     data: compass.hidden },
+    { role: 'self',       label: '本我 Self',      meaning: '當下 · 你的能量',     data: compass.self },
+    { role: 'antipode',   label: '挑戰 Antipode',  meaning: '擴展 · 對極挑戰',     data: compass.antipode },
+    { role: 'analog',     label: '支持 Analog',    meaning: '夥伴 · 平等支持',     data: compass.analog }
+  ];
+  container.innerHTML = cells.map(c => {
+    const seal = SEALS[c.data.seal - 1];
+    const tone = TONES[c.data.tone - 1];
+    const onclick = c.role !== 'self' ? `onclick="selectItem('seal', ${c.data.seal})"` : '';
+    return `
+      <div class="compass-cell ${c.role}" ${onclick}>
+        <span class="compass-role">${c.label}</span>
+        <span class="compass-glyph">${seal.glyph}</span>
+        <div class="compass-kin">Kin ${c.data.kin}</div>
+        <div class="compass-name">${tone.name}的${seal.name}</div>
+        <div class="compass-meaning">${c.meaning}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function getMoonInfo(date) {
+  const isDayOutOfTime = date.getMonth() === 6 && date.getDate() === 25;
+  if (isDayOutOfTime) return { moon: 0, day: 0, isOutOfTime: true };
+  const year = date.getFullYear();
+  const moonNewYear = new Date(year, 6, 26);
+  const yearStart = (date >= moonNewYear) ? moonNewYear : new Date(year - 1, 6, 26);
+  const daysSinceStart = Math.floor((date - yearStart) / (1000 * 60 * 60 * 24));
+  const moon = Math.floor(daysSinceStart / 28) + 1;
+  const day = (daysSinceStart % 28) + 1;
+  return { moon, day, isOutOfTime: false };
+}
+
+// === LEARNING PATH & PROGRESS ===
+function loadProgress() {
+  try { return JSON.parse(localStorage.getItem('moon13_progress') || '{}'); } catch(e) { return {}; }
+}
+function saveProgress(progress) {
+  localStorage.setItem('moon13_progress', JSON.stringify(progress));
+}
+function isLessonCompleted(id) {
+  const p = loadProgress();
+  return !!p[id];
+}
+function toggleLessonComplete(id) {
+  const p = loadProgress();
+  if (p[id]) delete p[id]; else p[id] = new Date().toISOString();
+  saveProgress(p);
+  updateProgressDisplay();
+  renderLearningPath();
+  if (currentLesson === id) renderLesson(id);
+}
+function getCompletedCount() {
+  return Object.keys(loadProgress()).length;
+}
+function updateProgressDisplay() {
+  const completed = getCompletedCount();
+  const pct = Math.round((completed / LESSONS.length) * 100);
+  document.getElementById('globalProgress').style.width = pct + '%';
+  const mini = document.getElementById('lpProgressMini');
+  const fill = document.getElementById('lpProgressFill');
+  if (mini) mini.textContent = `${completed}/${LESSONS.length}`;
+  if (fill) fill.style.width = pct + '%';
+}
+
+function renderLearningPath() {
+  const partsContainer = document.getElementById('lpParts');
+  if (!partsContainer) return;
+  const progress = loadProgress();
+
+  const html = PARTS.map(part => {
+    const partLessons = LESSONS.filter(l => l.part === part.id);
+    const partCompleted = partLessons.filter(l => progress[l.id]).length;
+    const isCollapsed = localStorage.getItem(`part_${part.id}_collapsed`) === 'true';
+    const lessonsHtml = partLessons.map(l => {
+      const search = (l.title + ' ' + l.en + ' ' + l.summary + ' ' + (l.keypoints || []).join(' ')).toLowerCase();
+      return `
+      <div class="lp-lesson ${currentLesson === l.id ? 'active' : ''} ${progress[l.id] ? 'completed' : ''}"
+           data-lesson-id="${l.id}" data-search="${search.replace(/"/g,'&quot;')}"
+           onclick="event.stopPropagation(); selectItem('lesson', ${l.id})">
+        <span class="lesson-num">${String(l.id).padStart(2,'0')}</span>
+        <span class="name">${l.title}</span>
+        <span class="check">${progress[l.id] ? '✓' : ''}</span>
+      </div>
+    `;}).join('');
+
+    return `
+      <div class="lp-part ${isCollapsed ? 'collapsed' : ''}" data-part-id="${part.id}">
+        <div class="lp-part-header" onclick="togglePart(${part.id})">
+          <span>${part.icon} ${part.title}</span>
+          <span class="lp-part-meta">${partCompleted}/${partLessons.length} <span class="arrow">▼</span></span>
+        </div>
+        <div class="lp-lessons">${lessonsHtml}</div>
+      </div>
+    `;
+  }).join('');
+  partsContainer.innerHTML = html;
+  updateProgressDisplay();
+}
+
+function toggleLearningPath() {
+  const lp = document.getElementById('learningPath');
+  lp.classList.toggle('collapsed');
+  localStorage.setItem('lp_collapsed', lp.classList.contains('collapsed'));
+}
+
+function togglePart(partId) {
+  const part = document.querySelector(`.lp-part[data-part-id="${partId}"]`);
+  if (!part) return;
+  part.classList.toggle('collapsed');
+  localStorage.setItem(`part_${partId}_collapsed`, part.classList.contains('collapsed'));
+}
+
+// === LESSON RENDERING ===
+let currentLesson = null;
+
+function renderLesson(id) {
+  const lesson = LESSONS.find(l => l.id === id);
+  if (!lesson) return;
+  currentLesson = id;
+  const part = PARTS.find(p => p.id === lesson.part);
+  const completed = isLessonCompleted(id);
+  const noteData = loadNotes()[`lesson_${id}`];
+  const noteText = (noteData && noteData.text ? noteData.text : '').replace(/</g,'&lt;');
+
+  // Related links
+  const relatedHtml = (lesson.related || []).map(r => {
+    if (r.type === 'lesson') {
+      const t = LESSONS.find(l => l.id === r.id);
+      if (!t) return '';
+      return `<button class="related-link" onclick="selectItem('lesson', ${r.id})">📘 第${r.id}課 ${t.title}</button>`;
+    } else if (r.type === 'concept') {
+      const labels = { philosophy:'時間就是藝術', structure:'13×28結構', tzolkin:'卓爾金260' };
+      return `<button class="related-link" onclick="selectItem('concept', '${r.id}')">📖 ${labels[r.id] || r.id}</button>`;
+    } else if (r.type === 'tool') {
+      const labels = { calculator:'Kin 計算器', today:'今日 Kin' };
+      return `<button class="related-link" onclick="selectItem('${r.id === 'today' ? 'daily' : 'tool'}', '${r.id}')">🔮 ${labels[r.id] || r.id}</button>`;
+    } else if (r.type === 'seal') {
+      const s = SEALS[r.id - 1];
+      return `<button class="related-link" onclick="selectItem('seal', ${r.id})">${s.glyph} ${s.name}</button>`;
+    } else if (r.type === 'tone') {
+      const t = TONES[r.id - 1];
+      return `<button class="related-link" onclick="selectItem('tone', ${r.id})">🌀 ${t.name}音</button>`;
+    }
+    return '';
+  }).join('');
+
+  // Prev/Next
+  const prevId = id > 1 ? id - 1 : null;
+  const nextId = id < LESSONS.length ? id + 1 : null;
+
+  const section = document.getElementById('lessonSection');
+  section.classList.add('visible');
+  section.innerHTML = `
+    <div class="lesson-header">
+      <div class="lesson-breadcrumb">${part.icon} ${part.title}</div>
+      <div class="lesson-title">
+        <span class="lesson-icon">${lesson.icon}</span>
+        ${lesson.title}
+        <span class="num-badge">第 ${lesson.id} 課</span>
+      </div>
+      <div class="lesson-en">${lesson.en}</div>
+      <div class="lesson-summary">${lesson.summary}</div>
+    </div>
+    <div class="lesson-body">${lesson.body}</div>
+    ${lesson.keypoints && lesson.keypoints.length ? `
+    <div class="lesson-keypoints">
+      <h4>🔑 重點整理 KEY POINTS</h4>
+      <ul>${lesson.keypoints.map(k => `<li>${k}</li>`).join('')}</ul>
+    </div>` : ''}
+    <div class="lesson-notes-area">
+      <h4>📝 我的筆記 MY NOTES</h4>
+      <textarea id="lessonNotesInput" placeholder="寫下你的反思、悟道、疑問⋯⋯">${noteText}</textarea>
+      <button class="save-btn" onclick="saveLessonNote(${id})">儲存筆記</button>
+      <span class="save-status" id="noteStatus"></span>
+    </div>
+    ${relatedHtml ? `
+    <div class="lesson-related">
+      <h4>🔗 相關概念 RELATED</h4>
+      <div class="related-links">${relatedHtml}</div>
+    </div>` : ''}
+    <div class="lesson-nav">
+      <button class="lesson-nav-btn" ${prevId ? `onclick="selectItem('lesson', ${prevId})"` : 'disabled'}>← 上一課</button>
+      <button class="lesson-nav-btn ${completed ? 'completed-state' : 'complete'}" onclick="toggleLessonComplete(${id})">
+        ${completed ? '✓ 已完成' : '標記完成'}
+      </button>
+      <button class="lesson-nav-btn" ${nextId ? `onclick="selectItem('lesson', ${nextId})"` : 'disabled'}>下一課 →</button>
+    </div>
+  `;
+}
+
+// === NOTES ===
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem('moon13_notes') || '{}'); } catch(e) { return {}; }
+}
+function saveNotes(notes) {
+  localStorage.setItem('moon13_notes', JSON.stringify(notes));
+}
+function saveLessonNote(id) {
+  const text = document.getElementById('lessonNotesInput').value.trim();
+  const notes = loadNotes();
+  if (text) {
+    notes[`lesson_${id}`] = { text, updatedAt: new Date().toISOString(), lessonId: id };
+  } else {
+    delete notes[`lesson_${id}`];
+  }
+  saveNotes(notes);
+  const status = document.getElementById('noteStatus');
+  if (status) {
+    status.textContent = '✓ 已儲存';
+    setTimeout(() => { status.textContent = ''; }, 2000);
+  }
+}
+function renderNotesHub() {
+  const notes = loadNotes();
+  const wsNotes = loadWavespellNotes();
+  const totalCount = Object.keys(notes).length + Object.keys(wsNotes).length;
+  // Add export button to header
+  const hub = document.getElementById('notesHub');
+  if (hub && !document.getElementById('notesExportBtn')) {
+    const exportBar = document.createElement('div');
+    exportBar.style.cssText = 'display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;';
+    exportBar.innerHTML = `
+      <button id="notesExportBtn" onclick="exportNotesToMarkdown()" style="background:var(--gold-bright); color:#fff; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-family:inherit; font-weight:600; font-size:0.9em;">📥 匯出全部筆記 (Markdown)</button>
+      <button onclick="window.print()" style="background:var(--bg-soft); color:var(--text-mid); border:1px solid var(--border); padding:8px 16px; border-radius:8px; cursor:pointer; font-family:inherit; font-weight:600; font-size:0.9em;">🖨️ 列印</button>
+    `;
+    const lead = hub.querySelector('.lead');
+    if (lead) lead.after(exportBar);
+  }
+  const list = document.getElementById('notesList');
+  if (!list) return;
+  const entries = Object.values(notes).sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  if (entries.length === 0) {
+    list.innerHTML = `<div class="notes-empty">📝 還沒有筆記。前往任何一課寫下你的第一個反思吧。</div>`;
+    return;
+  }
+  list.innerHTML = entries.map(n => {
+    const lesson = LESSONS.find(l => l.id === n.lessonId);
+    const date = new Date(n.updatedAt);
+    const dateStr = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+    return `
+      <div class="note-card">
+        <div class="note-meta">
+          <span><a onclick="selectItem('lesson', ${n.lessonId})">📘 第${n.lessonId}課 ${lesson ? lesson.title : ''}</a></span>
+          <span>${dateStr}</span>
+        </div>
+        <div class="note-content">${(n.text || '').replace(/</g,'&lt;').replace(/\n/g,'<br>')}</div>
+        <div class="note-actions">
+          <button class="delete-btn" onclick="deleteNote('lesson_${n.lessonId}')">🗑️ 刪除</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+function deleteNote(key) {
+  if (!confirm('確定要刪除這則筆記嗎？')) return;
+  const notes = loadNotes();
+  delete notes[key];
+  saveNotes(notes);
+  renderNotesHub();
+}
+
+// === CROSS-LINKS for seal/tone pages ===
+function findRelatedLessonsForSeal(sealId) {
+  // Lessons that mention this seal generally
+  const links = [];
+  // Always link to: 12 (20 seals overview), 10 (4 clans), 15 (compass)
+  links.push({ type:'lesson', id:12, label:'20 太陽印記總論' });
+  links.push({ type:'lesson', id:10, label:'4 個顏色族群' });
+  links.push({ type:'lesson', id:15, label:'銀河羅盤五元組' });
+  return links;
+}
+function findRelatedLessonsForTone(toneId) {
+  return [
+    { type:'lesson', id:13, label:'13 銀河音調總論' },
+    { type:'lesson', id:17, label:'20 個波符 (13天循環)' },
+    { type:'lesson', id:5, label:'13個月亮詳解' }
+  ];
+}
+function renderCrossLinks(items) {
+  if (!items || !items.length) return '';
+  return `
+    <div class="cross-links">
+      <h4>🔗 進一步學習 LEARN MORE</h4>
+      ${items.map(it => `
+        <div class="cross-link-item" onclick="selectItem('${it.type}', ${typeof it.id === 'number' ? it.id : `'${it.id}'`})">
+          <span class="label">${it.type === 'lesson' ? '課程' : it.type}</span>${it.label}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// === THEME / KEYBOARD / EXPORT ===
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('moon13_theme', next);
+}
+function applyStoredTheme() {
+  const saved = localStorage.getItem('moon13_theme');
+  if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+}
+function showShortcuts() { document.getElementById('shortcutsOverlay').classList.add('visible'); }
+function hideShortcuts() { document.getElementById('shortcutsOverlay').classList.remove('visible'); }
+
+function setupKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    // Don't trigger inside text fields
+    const tag = e.target.tagName;
+    const isTyping = tag === 'INPUT' || tag === 'TEXTAREA';
+
+    if (e.key === '?' && !isTyping) { e.preventDefault(); showShortcuts(); return; }
+    if (e.key === 'Escape') {
+      hideShortcuts();
+      closeSetupModal();
+      const search = document.getElementById('search');
+      if (search && search.value) { search.value = ''; currentSearch = ''; applyFilter(); search.blur(); }
+      return;
+    }
+    if (e.key === '/' && !isTyping) {
+      e.preventDefault();
+      const search = document.getElementById('search');
+      if (search) search.focus();
+      return;
+    }
+    if (isTyping) return;
+
+    if (e.key === 'd' || e.key === 'D') { e.preventDefault(); toggleTheme(); return; }
+    if (e.key === 'h' || e.key === 'H') { e.preventDefault(); selectItem('daily', 'today'); return; }
+    if (e.key === 'q' || e.key === 'Q') { e.preventDefault(); selectItem('tool', 'quiz'); return; }
+    if (currentLesson) {
+      if (e.key === 'j' || e.key === 'J') {
+        if (currentLesson < LESSONS.length) { e.preventDefault(); selectItem('lesson', currentLesson + 1); }
+        return;
+      }
+      if (e.key === 'k' || e.key === 'K') {
+        if (currentLesson > 1) { e.preventDefault(); selectItem('lesson', currentLesson - 1); }
+        return;
+      }
+      if (e.key === 'Enter') { e.preventDefault(); toggleLessonComplete(currentLesson); return; }
+    }
+  });
+}
+
+function exportNotesToMarkdown() {
+  const notes = loadNotes();
+  const wsNotes = loadWavespellNotes();
+  const user = loadUserKin();
+  const lines = [];
+  const today = new Date();
+  const dateStr = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+  lines.push(`# 13月亮曆 · 我的學習筆記`);
+  lines.push(``);
+  lines.push(`> 匯出日期：${dateStr}`);
+  if (user) {
+    const seal = SEALS[user.seal - 1];
+    const tone = TONES[user.tone - 1];
+    lines.push(`> 我的本命：Kin ${user.kin} · ${tone.name}的${seal.name} ${seal.glyph}`);
+  }
+  lines.push(``);
+
+  // Lesson notes
+  const lessonEntries = Object.values(notes).sort((a,b) => a.lessonId - b.lessonId);
+  if (lessonEntries.length) {
+    lines.push(`## 📘 課程筆記`);
+    lines.push(``);
+    lessonEntries.forEach(n => {
+      const lesson = LESSONS.find(l => l.id === n.lessonId);
+      const updated = new Date(n.updatedAt).toLocaleDateString('zh-TW');
+      lines.push(`### 第 ${n.lessonId} 課 · ${lesson ? lesson.title : ''}`);
+      lines.push(`*${updated}*`);
+      lines.push(``);
+      lines.push(n.text);
+      lines.push(``);
+    });
+  }
+
+  // Wavespell notes
+  const wsEntries = Object.values(wsNotes).sort((a,b) => a.wavespellStartKin - b.wavespellStartKin || a.dayInWavespell - b.dayInWavespell);
+  if (wsEntries.length) {
+    lines.push(`## 🌊 波符日記`);
+    lines.push(``);
+    let lastWs = null;
+    wsEntries.forEach(n => {
+      if (n.wavespellStartKin !== lastWs) {
+        const seal = SEALS[(n.wavespellStartKin - 1) % 20];
+        lines.push(`### ${seal.glyph} ${seal.name} 波符 (Kin ${n.wavespellStartKin})`);
+        lines.push(``);
+        lastWs = n.wavespellStartKin;
+      }
+      const tone = TONES[n.dayInWavespell - 1];
+      const updated = new Date(n.updatedAt).toLocaleDateString('zh-TW');
+      lines.push(`**第 ${n.dayInWavespell} 天 · ${tone.name}音** *(${updated})*`);
+      lines.push(``);
+      lines.push(n.text);
+      lines.push(``);
+    });
+  }
+
+  if (!lessonEntries.length && !wsEntries.length) {
+    lines.push(`*目前沒有任何筆記。*`);
+  }
+
+  // Trigger download
+  const md = lines.join('\n');
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `13月亮曆筆記_${dateStr}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 100);
+}
+
+// === CALENDAR ===
+let calendarMonth = null;
+
+function get13MoonYear(date) {
+  // Returns the year (gregorian) when this 13月亮 year started (7/26)
+  const year = date.getFullYear();
+  const newYear = new Date(year, 6, 26);
+  return date >= newYear ? year : year - 1;
+}
+
+function getMoonStartDate(year, moonNum) {
+  // year = gregorian year of 7/26
+  const yearStart = new Date(year, 6, 26);
+  const start = new Date(yearStart);
+  start.setDate(start.getDate() + (moonNum - 1) * 28);
+  return start;
+}
+
+function renderCalendarSection() {
+  const section = document.getElementById('calendarSection');
+  if (!section) return;
+  if (!calendarMonth) {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const moonInfo = getMoonInfo(today);
+    if (moonInfo.isOutOfTime) {
+      calendarMonth = { year: today.getFullYear() - 1, moonNum: 13 };
+    } else {
+      calendarMonth = { year: get13MoonYear(today), moonNum: moonInfo.moon };
+    }
+  }
+  const moonStart = getMoonStartDate(calendarMonth.year, calendarMonth.moonNum);
+  const moonEnd = new Date(moonStart); moonEnd.setDate(moonEnd.getDate() + 27);
+  const today = new Date(); today.setHours(0,0,0,0);
+  const user = loadUserKin();
+
+  const cells = [];
+  for (let d = 0; d < 28; d++) {
+    const date = new Date(moonStart);
+    date.setDate(date.getDate() + d);
+    const kin = getKinFromDate(date);
+    const seal = SEALS[(kin - 1) % 20];
+    const tone = TONES[(kin - 1) % 13];
+    const dayInMonth = d + 1;
+    const weekColor = ['red','white','blue','yellow'][Math.floor(d / 7)];
+    const isToday = date.getTime() === today.getTime();
+    const isUserKin = user && kin === user.kin;
+    cells.push({ dayInMonth, date, kin, seal, tone, weekColor, isToday, isUserKin });
+  }
+
+  const fmt = d => `${d.getMonth()+1}/${d.getDate()}`;
+
+  section.innerHTML = `
+    <h2>📅 月曆視圖</h2>
+    <p class="lead">當前 13月亮 月份視覺化，每天的能量一目了然。今天用金邊高亮，本命Kin用★標記。</p>
+    <div class="cal-nav">
+      <button onclick="navigateMoon(-1)">← 上個月</button>
+      <div class="cal-title">
+        ${MOON_NAMES[calendarMonth.moonNum]} · Moon ${calendarMonth.moonNum}
+        <span class="sub">${fmt(moonStart)} - ${fmt(moonEnd)} (${calendarMonth.year} 年度)</span>
+      </div>
+      <button onclick="navigateMoon(1)">下個月 →</button>
+    </div>
+    <div class="cal-week-headers">
+      <div class="cal-week-header red">第1週 紅啟動</div>
+      <div class="cal-week-header white">第2週 白淨化</div>
+      <div class="cal-week-header blue">第3週 藍蛻變</div>
+      <div class="cal-week-header yellow">第4週 黃成熟</div>
+    </div>
+    <div class="calendar-grid">
+      ${cells.map(c => `
+        <div class="cal-cell ${c.weekColor} ${c.isToday ? 'today' : ''} ${c.isUserKin ? 'is-user-kin' : ''}"
+             onclick="selectItem('seal', ${c.seal.id})"
+             title="${fmt(c.date)} · Kin ${c.kin} · ${c.tone.name}的${c.seal.name}">
+          <div class="cal-day-num">第${c.dayInMonth}天</div>
+          <div class="cal-date">${fmt(c.date)}</div>
+          <div class="cal-glyph">${c.seal.glyph}</div>
+          <div class="cal-kin">Kin ${c.kin}</div>
+        </div>
+      `).join('')}
+    </div>
+    <p style="margin-top:18px; font-size:0.88em; color:var(--text-dim); text-align:center;">
+      💫 點擊任一天可查看該日對應的太陽印記詳情
+    </p>
+  `;
+}
+
+function navigateMoon(delta) {
+  calendarMonth.moonNum += delta;
+  if (calendarMonth.moonNum > 13) { calendarMonth.moonNum = 1; calendarMonth.year++; }
+  else if (calendarMonth.moonNum < 1) { calendarMonth.moonNum = 13; calendarMonth.year--; }
+  renderCalendarSection();
+}
+
+// === WAVESPELL ===
+function getWavespellInfo(date) {
+  // Wavespell starts on Tone 1 (magnetic). Each wavespell = 13 days.
+  // Find the most recent magnetic Kin before/on this date.
+  const kin = getKinFromDate(date);
+  const tone = ((kin - 1) % 13) + 1;
+  const dayInWavespell = tone; // Tone 1 = day 1, Tone 13 = day 13
+  const wavespellStartKin = ((kin - 1) - (tone - 1) + 260) % 260 + 1;
+  // Wavespell name = magnetic Kin's seal
+  const startSeal = SEALS[(wavespellStartKin - 1) % 20];
+  return { dayInWavespell, wavespellStartKin, startSeal, currentKin: kin };
+}
+
+function loadWavespellNotes() {
+  try { return JSON.parse(localStorage.getItem('moon13_wavespell_notes') || '{}'); } catch(e) { return {}; }
+}
+function saveWavespellNotes(notes) { localStorage.setItem('moon13_wavespell_notes', JSON.stringify(notes)); }
+function saveWavespellEntry(wavespellStartKin, dayInWavespell) {
+  const text = document.getElementById('wsJournalInput').value.trim();
+  const notes = loadWavespellNotes();
+  const key = `ws_${wavespellStartKin}_d${dayInWavespell}`;
+  if (text) notes[key] = { text, updatedAt: new Date().toISOString(), wavespellStartKin, dayInWavespell };
+  else delete notes[key];
+  saveWavespellNotes(notes);
+  const status = document.getElementById('wsSaveStatus');
+  if (status) { status.textContent = '✓ 已儲存'; setTimeout(() => status.textContent = '', 2000); }
+}
+
+const WAVESPELL_PROMPTS = [
+  '這 13 天我想吸引什麼目的？',
+  '什麼是我要面對的挑戰？',
+  '我可以怎麼服務？',
+  '什麼形式適合這個目的？',
+  '什麼是我中心的力量？',
+  '怎麼建立平衡？',
+  '我從中得到什麼啟發？（神秘之日）',
+  '我活出言行一致了嗎？',
+  '什麼真實實現了？',
+  '什麼具體顯化了？',
+  '我可以放下什麼？',
+  '怎麼跟人合作？',
+  '這 13 天我超越了什麼？'
+];
+
+function renderWavespellSection() {
+  const section = document.getElementById('wavespellSection');
+  if (!section) return;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const ws = getWavespellInfo(today);
+  const startSeal = ws.startSeal;
+  const currentTone = TONES[ws.dayInWavespell - 1];
+  const notes = loadWavespellNotes();
+  const todayKey = `ws_${ws.wavespellStartKin}_d${ws.dayInWavespell}`;
+  const todayNote = notes[todayKey];
+
+  // Build 13-day visual
+  const days = [];
+  for (let d = 1; d <= 13; d++) {
+    const dayKin = ((ws.wavespellStartKin - 1 + d - 1) % 260) + 1;
+    const tone = TONES[d - 1];
+    const isPast = d < ws.dayInWavespell;
+    const isToday = d === ws.dayInWavespell;
+    days.push({ d, dayKin, tone, isPast, isToday });
+  }
+
+  // Past wavespell journal entries for this wavespell
+  const wsEntries = Object.entries(notes)
+    .filter(([k, n]) => n.wavespellStartKin === ws.wavespellStartKin)
+    .sort((a,b) => a[1].dayInWavespell - b[1].dayInWavespell);
+
+  section.innerHTML = `
+    <h2>🌊 波符追蹤</h2>
+    <p class="lead">波符是 13 天為一個學習循環。今天在哪一天？對應什麼反思？</p>
+
+    <div class="wavespell-hero">
+      <div class="ws-label">CURRENT WAVESPELL · 當前波符</div>
+      <div class="ws-name">${startSeal.glyph} ${startSeal.name} 波符</div>
+      <div class="ws-meta">第 ${ws.dayInWavespell} / 13 天 · 目前 ${currentTone.name}音 · Kin ${ws.currentKin}</div>
+      <div class="wavespell-progress">
+        ${days.map(day => `
+          <div class="ws-day ${day.isPast ? 'past' : ''} ${day.isToday ? 'today' : ''}" title="第${day.d}天 ${day.tone.name}音 Kin ${day.dayKin}">
+            <div class="ws-tone-num">${day.d}</div>
+            <div class="ws-tone-name">${day.tone.name}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <div class="wavespell-today">
+      <h3>🌟 今日反思（第 ${ws.dayInWavespell} 天 · ${currentTone.name}音）</h3>
+      <div class="prompt-q">${WAVESPELL_PROMPTS[ws.dayInWavespell - 1]}</div>
+      <p style="color:var(--text-mid); font-size:0.92em;">
+        以「<strong>${currentTone.power}</strong>」的方式回應今天。
+        <em>${currentTone.desc}</em>
+      </p>
+    </div>
+
+    <div class="wavespell-journal">
+      <h3 style="color:var(--purple-deep); font-size:1.05em; margin-bottom:10px; font-weight:700;">📓 今日波符日記</h3>
+      <textarea id="wsJournalInput" placeholder="寫下你對這個音調主題的反思⋯⋯">${todayNote ? todayNote.text.replace(/</g,'&lt;') : ''}</textarea>
+      <button class="ws-save-btn" onclick="saveWavespellEntry(${ws.wavespellStartKin}, ${ws.dayInWavespell})">儲存今日記錄</button>
+      <span id="wsSaveStatus" style="margin-left:10px; color:#1e7a3e; font-size:0.88em;"></span>
+    </div>
+
+    ${wsEntries.length > 0 ? `
+    <div style="margin-top:24px;">
+      <h3 style="color:var(--purple-deep); font-size:1.05em; margin-bottom:10px; font-weight:700;">📖 本波符已記錄的天數</h3>
+      ${wsEntries.map(([k, n]) => `
+        <div style="background:var(--bg-soft); border-left:3px solid var(--gold-bright); padding:12px 16px; border-radius:6px; margin-bottom:8px;">
+          <div style="color:var(--gold); font-size:0.82em; font-weight:700; margin-bottom:6px;">第 ${n.dayInWavespell} 天 · ${TONES[n.dayInWavespell-1].name}音</div>
+          <div style="color:var(--text); font-size:0.92em; white-space:pre-wrap;">${n.text.replace(/</g,'&lt;')}</div>
+        </div>
+      `).join('')}
+    </div>` : ''}
+  `;
+}
+
+// === QUIZ SYSTEM ===
+function loadQuizStats() {
+  try { return JSON.parse(localStorage.getItem('moon13_quiz') || '{}'); } catch(e) { return {}; }
+}
+function saveQuizStats(s) { localStorage.setItem('moon13_quiz', JSON.stringify(s)); }
+function recordQuizAnswer(itemId, correct) {
+  const stats = loadQuizStats();
+  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
+  stats.totalCorrect = (stats.totalCorrect || 0) + (correct ? 1 : 0);
+  stats.perItem = stats.perItem || {};
+  if (!stats.perItem[itemId]) stats.perItem[itemId] = { correct: 0, wrong: 0 };
+  if (correct) stats.perItem[itemId].correct++; else stats.perItem[itemId].wrong++;
+  saveQuizStats(stats);
+}
+
+function pickRandom(arr, n) {
+  return [...arr].sort(() => Math.random() - 0.5).slice(0, n);
+}
+
+function genQ_sealGlyph() {
+  const seal = SEALS[Math.floor(Math.random() * 20)];
+  const wrong = pickRandom(SEALS.filter(s => s.id !== seal.id), 3);
+  const options = pickRandom([...wrong, seal], 4);
+  return {
+    type: 'sealGlyph', itemId: `seal_${seal.id}`,
+    glyph: seal.glyph,
+    question: '這個圖騰是哪個太陽印記？',
+    options: options.map(o => ({ id: o.id, label: o.name })),
+    answer: seal.id,
+    explanation: `${seal.glyph} 是「${seal.name}」(${seal.en})，力量：${seal.power}`
+  };
+}
+function genQ_sealClan() {
+  const seal = SEALS[Math.floor(Math.random() * 20)];
+  const clans = ['red', 'white', 'blue', 'yellow'];
+  return {
+    type: 'sealClan', itemId: `seal_${seal.id}`,
+    question: `「${seal.glyph} ${seal.name}」屬於哪個顏色族群？`,
+    options: clans.map(c => ({ id: c, label: CLAN_NAMES[c] })),
+    answer: seal.clan,
+    explanation: `${seal.name} 屬於「${CLAN_NAMES[seal.clan]}」`
+  };
+}
+function genQ_sealPower() {
+  const seal = SEALS[Math.floor(Math.random() * 20)];
+  const wrong = pickRandom(SEALS.filter(s => s.id !== seal.id), 3);
+  const options = pickRandom([...wrong, seal], 4);
+  const powerWord = seal.power.split(' ')[0];
+  return {
+    type: 'sealPower', itemId: `seal_${seal.id}`,
+    question: `哪個印記的力量是「${powerWord}」？`,
+    options: options.map(o => ({ id: o.id, label: `${o.glyph} ${o.name}` })),
+    answer: seal.id,
+    explanation: `「${powerWord}」是 ${seal.glyph} ${seal.name} 的力量`
+  };
+}
+function genQ_toneOrder() {
+  const tone = TONES[Math.floor(Math.random() * 13)];
+  const wrong = pickRandom(TONES.filter(t => t.id !== tone.id), 3);
+  const options = pickRandom([...wrong, tone], 4);
+  return {
+    type: 'toneOrder', itemId: `tone_${tone.id}`,
+    question: `第 ${tone.id} 個銀河音調是？`,
+    options: options.map(o => ({ id: o.id, label: o.name })),
+    answer: tone.id,
+    explanation: `第 ${tone.id} 音是「${tone.name}」(${tone.en})，力量：${tone.power}`
+  };
+}
+function genQ_tonePower() {
+  const tone = TONES[Math.floor(Math.random() * 13)];
+  const wrong = pickRandom(TONES.filter(t => t.id !== tone.id), 3);
+  const options = pickRandom([...wrong, tone], 4);
+  const powerWord = tone.power.split(' ')[0];
+  return {
+    type: 'tonePower', itemId: `tone_${tone.id}`,
+    question: `哪個音調的力量是「${powerWord}」？`,
+    options: options.map(o => ({ id: o.id, label: `第${o.id} ${o.name}` })),
+    answer: tone.id,
+    explanation: `「${powerWord}」是 ${tone.name}音 的力量`
+  };
+}
+function genQ_compass() {
+  const kin = Math.floor(Math.random() * 260) + 1;
+  const c = getCompass(kin);
+  const fields = ['guide', 'antipode', 'analog', 'hidden'];
+  const labels = { guide:'引導 Guide', antipode:'挑戰 Antipode', analog:'支持 Analog', hidden:'隱藏 Occult' };
+  const target = fields[Math.floor(Math.random() * 4)];
+  const correctKin = c[target].kin;
+  const wrongKins = new Set();
+  while (wrongKins.size < 3) {
+    const k = Math.floor(Math.random() * 260) + 1;
+    if (k !== correctKin && k !== kin) wrongKins.add(k);
+  }
+  const allKins = pickRandom([...wrongKins, correctKin], 4);
+  const seal = SEALS[(kin - 1) % 20];
+  const tone = TONES[(kin - 1) % 13];
+  return {
+    type: 'compass', itemId: `compass_${target}`,
+    question: `Kin ${kin} (${tone.name}的${seal.name}) 的「${labels[target]}」Kin 是？`,
+    options: allKins.map(k => {
+      const s = SEALS[(k - 1) % 20];
+      const t = TONES[(k - 1) % 13];
+      return { id: k, label: `Kin ${k} ${t.name}的${s.name}` };
+    }),
+    answer: correctKin,
+    explanation: `Kin ${kin} 的羅盤：引導 K${c.guide.kin}・支持 K${c.analog.kin}・挑戰 K${c.antipode.kin}・隱藏 K${c.hidden.kin}`
+  };
+}
+
+const QUIZ_GENERATORS = {
+  random: [genQ_sealGlyph, genQ_sealClan, genQ_sealPower, genQ_toneOrder, genQ_tonePower, genQ_compass],
+  seals: [genQ_sealGlyph, genQ_sealClan, genQ_sealPower],
+  tones: [genQ_toneOrder, genQ_tonePower],
+  compass: [genQ_compass]
+};
+
+let quizState = null;
+
+function startQuiz(mode) {
+  quizState = { mode, questions: [], currentIdx: 0, score: 0, total: 5 };
+  const gens = QUIZ_GENERATORS[mode] || QUIZ_GENERATORS.random;
+  // Weak mode: prioritize past wrong items but still mix random
+  if (mode === 'weak') {
+    const stats = loadQuizStats();
+    const weakItems = Object.entries(stats.perItem || {})
+      .filter(([_, s]) => s.wrong > 0)
+      .sort((a,b) => b[1].wrong - a[1].wrong);
+    // For weak mode, generate questions but still rotate through types
+    for (let i = 0; i < quizState.total; i++) {
+      const gen = QUIZ_GENERATORS.random[i % QUIZ_GENERATORS.random.length];
+      quizState.questions.push(gen());
+    }
+  } else {
+    for (let i = 0; i < quizState.total; i++) {
+      const gen = gens[Math.floor(Math.random() * gens.length)];
+      quizState.questions.push(gen());
+    }
+  }
+  renderQuizGame();
+}
+
+function answerQuiz(optIdx) {
+  const q = quizState.questions[quizState.currentIdx];
+  const chosen = q.options[optIdx];
+  const correct = chosen.id === q.answer;
+  if (correct) quizState.score++;
+  recordQuizAnswer(q.itemId, correct);
+  const opts = document.querySelectorAll('#quizOptions .quiz-option');
+  opts.forEach((opt, i) => {
+    opt.disabled = true;
+    if (q.options[i].id === q.answer) opt.classList.add('correct');
+    else if (i === optIdx) opt.classList.add('wrong');
+  });
+  const feedback = document.getElementById('quizFeedback');
+  feedback.classList.add('visible');
+  feedback.classList.add(correct ? 'correct' : 'wrong');
+  feedback.innerHTML = (correct ? '✓ 答對！' : '✗ 答錯。') + ' ' + q.explanation;
+  document.getElementById('quizActions').style.display = 'flex';
+}
+
+function nextQuestion() {
+  quizState.currentIdx++;
+  if (quizState.currentIdx >= quizState.total) renderQuizSummary();
+  else renderQuizGame();
+}
+
+function endQuiz() { renderQuizSummary(); }
+
+function renderQuizGame() {
+  const host = document.getElementById('quizGameHost');
+  if (!quizState || quizState.currentIdx >= quizState.total) { renderQuizSummary(); return; }
+  const q = quizState.questions[quizState.currentIdx];
+  host.innerHTML = `
+    <div class="quiz-game">
+      <div class="quiz-progress">
+        <div class="q-num">第 ${quizState.currentIdx + 1} / ${quizState.total} 題</div>
+        <div class="q-stats">目前 ${quizState.score} 分</div>
+      </div>
+      ${q.glyph ? `<div class="quiz-glyph">${q.glyph}</div>` : ''}
+      <div class="quiz-question">${q.question}</div>
+      <div class="quiz-options" id="quizOptions">
+        ${q.options.map((o, i) => `
+          <button class="quiz-option" onclick="answerQuiz(${i})">
+            <span class="opt-prefix">${'ABCD'[i]}</span>
+            ${o.label}
+          </button>
+        `).join('')}
+      </div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="quiz-actions" id="quizActions" style="display:none;">
+        <button class="btn-end" onclick="endQuiz()">結束測驗</button>
+        <button class="btn-next" onclick="nextQuestion()">${quizState.currentIdx + 1 < quizState.total ? '下一題 →' : '查看結果'}</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuizSummary() {
+  const host = document.getElementById('quizGameHost');
+  const accuracy = quizState.currentIdx ? Math.round(quizState.score / quizState.currentIdx * 100) : 0;
+  let comment = '';
+  if (accuracy >= 90) comment = '🌟 神乎其技！你已經接近精通了';
+  else if (accuracy >= 70) comment = '✨ 很棒！繼續維持';
+  else if (accuracy >= 50) comment = '👍 不錯，再加把勁';
+  else comment = '💪 多練幾次就會記住的！';
+  host.innerHTML = `
+    <div class="quiz-summary">
+      <div class="score-big">${quizState.score} / ${quizState.currentIdx}</div>
+      <div class="score-label">準確率 ${accuracy}% — ${comment}</div>
+      <div class="quiz-actions">
+        <button class="btn-end" onclick="document.getElementById('quizGameHost').innerHTML=''; renderQuizSection();">關閉</button>
+        <button class="btn-next" onclick="startQuiz('${quizState.mode}')">再來一輪</button>
+      </div>
+    </div>
+  `;
+  renderQuizSection();
+}
+
+function renderQuizSection() {
+  const section = document.getElementById('quizSection');
+  if (!section) return;
+  const stats = loadQuizStats();
+  const totalAnswered = stats.totalAnswered || 0;
+  const totalCorrect = stats.totalCorrect || 0;
+  const accuracy = totalAnswered ? Math.round(totalCorrect / totalAnswered * 100) : 0;
+  const weakItems = Object.entries(stats.perItem || {})
+    .filter(([_, s]) => s.wrong > s.correct)
+    .sort((a,b) => b[1].wrong - a[1].wrong);
+  const weakCount = weakItems.length;
+
+  // Preserve game host content
+  const existingGameHost = document.getElementById('quizGameHost');
+  const existingGameHTML = existingGameHost ? existingGameHost.innerHTML : '';
+
+  section.innerHTML = `
+    <h2>🎯 互動測驗</h2>
+    <p class="lead">主動回憶是學習的核心。每次測驗 5 題，答錯的會在「弱點複習」中重點訓練。</p>
+    <div class="quiz-stats-grid">
+      <div class="quiz-stat-card"><div class="stat-num">${totalAnswered}</div><div class="stat-label">總題數</div></div>
+      <div class="quiz-stat-card"><div class="stat-num">${totalCorrect}</div><div class="stat-label">答對</div></div>
+      <div class="quiz-stat-card"><div class="stat-num">${accuracy}%</div><div class="stat-label">準確率</div></div>
+      <div class="quiz-stat-card"><div class="stat-num">${weakCount}</div><div class="stat-label">弱點數</div></div>
+    </div>
+    <h3 style="color:var(--purple-deep); margin-top:20px; margin-bottom:12px; font-weight:700;">選擇測驗類型</h3>
+    <div class="quiz-modes">
+      <button class="quiz-mode-btn" onclick="startQuiz('random')">
+        <div class="mode-title">🎲 綜合隨機</div><div class="mode-desc">所有題型混合，全面訓練</div>
+      </button>
+      <button class="quiz-mode-btn" onclick="startQuiz('seals')">
+        <div class="mode-title">☀️ 印記專練</div><div class="mode-desc">圖騰辨識、屬性、族群</div>
+      </button>
+      <button class="quiz-mode-btn" onclick="startQuiz('tones')">
+        <div class="mode-title">🌀 音調專練</div><div class="mode-desc">13 音調順序與名稱</div>
+      </button>
+      <button class="quiz-mode-btn" onclick="startQuiz('compass')">
+        <div class="mode-title">🧭 銀河羅盤</div><div class="mode-desc">引導/挑戰/支持/隱藏 Kin</div>
+      </button>
+    </div>
+    ${weakCount > 0 ? `
+    <button class="quiz-mode-btn" style="width:100%; background:var(--gold-soft); border-color:var(--gold-bright); margin-top:8px;" onclick="startQuiz('weak')">
+      <div class="mode-title">💪 弱點複習 (${weakCount} 個)</div>
+      <div class="mode-desc">針對錯過的題目重點訓練</div>
+    </button>` : ''}
+    <div id="quizGameHost" style="margin-top:20px;">${existingGameHTML}</div>
+  `;
+}
+
+// === USER KIN (PERSONAL) ===
+function loadUserKin() {
+  try { return JSON.parse(localStorage.getItem('moon13_user') || 'null'); } catch(e) { return null; }
+}
+function saveUserKinData(data) {
+  localStorage.setItem('moon13_user', JSON.stringify(data));
+}
+
+function openSetupModal() {
+  const user = loadUserKin();
+  const input = document.getElementById('setupBirthday');
+  if (input && user && user.birthDate) input.value = user.birthDate;
+  document.getElementById('setupModal').classList.add('visible');
+}
+function closeSetupModal() {
+  document.getElementById('setupModal').classList.remove('visible');
+}
+function saveUserKin() {
+  const birthDate = document.getElementById('setupBirthday').value;
+  if (!birthDate) { alert('請輸入生日'); return; }
+  const date = new Date(birthDate + 'T00:00:00');
+  const kin = getKinFromDate(date);
+  const seal = ((kin - 1) % 20) + 1;
+  const tone = ((kin - 1) % 13) + 1;
+  saveUserKinData({ birthDate, kin, seal, tone });
+  closeSetupModal();
+  renderPersonalPanel();
+  renderDailyKin();
+  // Re-render seal/tone sidebar to show marker
+  refreshSidebarMarkers();
+}
+function clearUserKin() {
+  if (!confirm('確定要清除你的本命 Kin 設定嗎？')) return;
+  localStorage.removeItem('moon13_user');
+  closeSetupModal();
+  renderPersonalPanel();
+  renderDailyKin();
+  refreshSidebarMarkers();
+}
+
+function renderPersonalPanel() {
+  const host = document.getElementById('personalPanelHost');
+  if (!host) return;
+  const user = loadUserKin();
+  if (!user) {
+    host.innerHTML = `
+      <div class="personal-empty">
+        <p>👋 還沒設定你的<strong>本命 Kin</strong>？整個系統可以圍繞「你」展開——印記標出你的本命、今日對你的影響⋯⋯</p>
+        <button class="setup-btn" onclick="openSetupModal()">✨ 設定我的本命 Kin</button>
+      </div>
+    `;
+    return;
+  }
+  const seal = SEALS[user.seal - 1];
+  const tone = TONES[user.tone - 1];
+  host.innerHTML = `
+    <div class="personal-card">
+      <div class="pc-label">YOUR GALACTIC SIGNATURE · 我的銀河身份</div>
+      <div class="personal-content">
+        <div class="personal-glyph">${seal.glyph}</div>
+        <div class="personal-info">
+          <div class="personal-kin-num">Kin ${user.kin}</div>
+          <div class="personal-name">${tone.name}的${seal.name}</div>
+          <div class="personal-en">${tone.en} ${seal.en} · ${CLAN_NAMES[seal.clan]}</div>
+        </div>
+        <button class="personal-edit-btn" onclick="openSetupModal()">⚙️ 修改</button>
+      </div>
+    </div>
+  `;
+}
+
+function renderTodayRelationship() {
+  const host = document.getElementById('todayRelationshipHost');
+  if (!host) return;
+  const user = loadUserKin();
+  if (!user) { host.innerHTML = ''; return; }
+
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayKin = getKinFromDate(today);
+  const userCompass = getCompass(user.kin);
+
+  let relType, relIcon, relLabel, relText;
+  if (todayKin === user.kin) {
+    relType = 'same'; relIcon = '✨'; relLabel = '強化日';
+    relText = `今日 Kin 等於你的本命 Kin——你的能量被宇宙加倍放大。是高能、創造、表達真我的一天。`;
+  } else if (todayKin === userCompass.guide.kin) {
+    relType = 'guide'; relIcon = '👆'; relLabel = '引導日';
+    relText = `今日 Kin 是你的「引導 Kin」——你的高我頻率打開，跟隨內在指引行動。`;
+  } else if (todayKin === userCompass.antipode.kin) {
+    relType = 'antipode'; relIcon = '⚔️'; relLabel = '挑戰日';
+    relText = `今日 Kin 是你的「挑戰 Kin」——可能會遇到考驗或對立面，是擴展邊界的機會。`;
+  } else if (todayKin === userCompass.analog.kin) {
+    relType = 'analog'; relIcon = '🤝'; relLabel = '支持日';
+    relText = `今日 Kin 是你的「支持 Kin」——順流的一天，容易遇到夥伴、合作、共鳴。`;
+  } else if (todayKin === userCompass.hidden.kin) {
+    relType = 'hiddenkin'; relIcon = '🪞'; relLabel = '隱藏日';
+    relText = `今日 Kin 是你的「隱藏 Kin」——潛意識浮現的一天，留意夢境、直覺、巧合。`;
+  } else {
+    // Same color family check
+    const todaySeal = SEALS[(todayKin - 1) % 20];
+    const userSeal = SEALS[user.seal - 1];
+    const sameClan = todaySeal.clan === userSeal.clan;
+    relType = 'other'; relIcon = sameClan ? '🌊' : '🌐';
+    relLabel = sameClan ? '同色族流動日' : '一般流動日';
+    relText = sameClan
+      ? `今日 Kin 與你的本命同屬${CLAN_NAMES[userSeal.clan]}——能量相近、氣場相通。`
+      : `今日 Kin 與你的本命不同色族——是體驗其他能量的機會。`;
+  }
+  host.innerHTML = `
+    <div class="today-relationship ${relType}">
+      <span class="icon">${relIcon}</span>
+      <div class="rel-text">
+        <span class="label">今日對你 · ${relLabel}</span><br>
+        ${relText}
+      </div>
+    </div>
+  `;
+}
+
+function refreshSidebarMarkers() {
+  const user = loadUserKin();
+  // Remove all existing markers
+  document.querySelectorAll('.user-kin-marker').forEach(el => el.remove());
+  if (!user) return;
+  // Mark user's seal in sidebar
+  const sealItem = document.querySelector(`.sidebar-item[data-type="seal"][data-id="${user.seal}"] .name`);
+  if (sealItem) {
+    const marker = document.createElement('span');
+    marker.className = 'user-kin-marker';
+    marker.textContent = '本命';
+    sealItem.appendChild(marker);
+  }
+  // Mark user's tone in sidebar
+  const toneItem = document.querySelector(`.sidebar-item[data-type="tone"][data-id="${user.tone}"] .name`);
+  if (toneItem) {
+    const marker = document.createElement('span');
+    marker.className = 'user-kin-marker';
+    marker.textContent = '本命';
+    toneItem.appendChild(marker);
+  }
+}
+
+function renderDailyKin() {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const kin = getKinFromDate(today);
+  const seal = SEALS[(kin - 1) % 20];
+  const tone = TONES[(kin - 1) % 13];
+  const moonInfo = getMoonInfo(today);
+  const moonText = moonInfo.isOutOfTime
+    ? '🎭 無時間日 Day Out of Time'
+    : `${MOON_NAMES[moonInfo.moon]}第${moonInfo.day}天 · Moon ${moonInfo.moon}, Day ${moonInfo.day}`;
+  document.getElementById('dailyDate').textContent =
+    `📅 ${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日 · ${moonText}`;
+  document.getElementById('dailyGlyph').textContent = seal.glyph;
+  document.getElementById('dailyKinNum').textContent = `Kin ${kin}`;
+  document.getElementById('dailyKinName').textContent = `${tone.name}的${seal.name}`;
+  document.getElementById('dailyKinEn').textContent = `${tone.en} ${seal.en}`;
+  document.getElementById('dailyToneName').textContent = `${tone.id} ${tone.name}音`;
+  document.getElementById('dailyToneAttr').textContent = tone.power;
+  document.getElementById('dailySealName').textContent = seal.name;
+  document.getElementById('dailySealAttr').textContent = seal.power;
+  document.getElementById('dailyClanName').textContent = CLAN_NAMES[seal.clan];
+  document.getElementById('dailyClanAttr').textContent = CLAN_THEME[seal.clan];
+  const promptMatch = tone.desc.match(/「(.+?)」/);
+  const promptQuestion = promptMatch ? promptMatch[1] : tone.desc.split('。')[0];
+  document.getElementById('dailyPrompt').textContent = promptQuestion;
+  document.getElementById('dailyAction').innerHTML =
+    `今日能量主題：以「<strong style="color:var(--purple-deep);">${tone.power}</strong>」的方式，活出「<strong style="color:var(--purple-deep);">${seal.essence}</strong>」的本質。<br>${seal.medicine}。`;
+  renderCompass(kin, 'dailyCompass');
+  // Personalized panels
+  renderPersonalPanel();
+  renderTodayRelationship();
+}
+
+const sealsListEl = document.getElementById('sealsList');
+SEALS.forEach(s => {
+  const div = document.createElement('div');
+  div.className = `sidebar-item seal-item clan-${s.clan}`;
+  div.dataset.type = 'seal';
+  div.dataset.id = s.id;
+  div.dataset.clan = s.clan;
+  div.dataset.search = (s.name + ' ' + s.en + ' ' + s.power + ' ' + s.action + ' ' + s.essence + ' ' + s.positive.join(' ')).toLowerCase();
+  div.innerHTML = `<span class="num">${String(s.id).padStart(2, '0')}</span><span class="name"><span class="clan-dot ${s.clan}"></span>${s.name}</span><span class="en">${s.en}</span>`;
+  div.onclick = () => selectItem('seal', s.id);
+  sealsListEl.appendChild(div);
+});
+
+const tonesListEl = document.getElementById('tonesList');
+TONES.forEach(t => {
+  const div = document.createElement('div');
+  div.className = 'sidebar-item tone-item';
+  div.dataset.type = 'tone';
+  div.dataset.id = t.id;
+  div.dataset.search = (t.name + ' ' + t.en + ' ' + t.power + ' ' + t.action + ' ' + t.essence).toLowerCase();
+  div.innerHTML = `<span class="num">${String(t.id).padStart(2, '0')}</span><span class="name">${t.name}</span><span class="en">${t.en}</span>`;
+  div.onclick = () => selectItem('tone', t.id);
+  tonesListEl.appendChild(div);
+});
+
+function selectItem(type, id) {
+  document.getElementById('dailyKinSection').classList.remove('visible');
+  document.getElementById('detailCard').classList.remove('visible');
+  document.getElementById('calcSection').classList.remove('visible');
+  document.getElementById('lessonSection').classList.remove('visible');
+  document.getElementById('notesHub').classList.remove('visible');
+  document.getElementById('quizSection').classList.remove('visible');
+  document.getElementById('calendarSection').classList.remove('visible');
+  document.getElementById('wavespellSection').classList.remove('visible');
+  document.querySelectorAll('.concept-section').forEach(el => el.classList.remove('visible'));
+  // Hide personal panel except on daily view
+  const panel = document.getElementById('personalPanelHost');
+  if (panel) panel.style.display = (type === 'daily') ? '' : 'none';
+  document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.lp-lesson').forEach(el => el.classList.remove('active'));
+  if (type === 'lesson') {
+    const lpItem = document.querySelector(`.lp-lesson[data-lesson-id="${id}"]`);
+    if (lpItem) lpItem.classList.add('active');
+    currentLesson = id;
+  } else {
+    currentLesson = null;
+    const target = document.querySelector(`.sidebar-item[data-type="${type}"][data-id="${id}"]`);
+    if (target) target.classList.add('active');
+  }
+
+  if (type === 'daily') {
+    document.getElementById('dailyKinSection').classList.add('visible');
+    renderDailyKin();
+  }
+  else if (type === 'lesson') {
+    renderLesson(id);
+  }
+  else if (type === 'tool' && id === 'notes') {
+    document.getElementById('notesHub').classList.add('visible');
+    renderNotesHub();
+  }
+  else if (type === 'tool' && id === 'quiz') {
+    document.getElementById('quizSection').classList.add('visible');
+    renderQuizSection();
+  }
+  else if (type === 'tool' && id === 'calendar') {
+    document.getElementById('calendarSection').classList.add('visible');
+    renderCalendarSection();
+  }
+  else if (type === 'tool' && id === 'wavespell') {
+    document.getElementById('wavespellSection').classList.add('visible');
+    renderWavespellSection();
+  }
+  else if (type === 'seal') renderSeal(id);
+  else if (type === 'tone') renderTone(id);
+  else if (type === 'tool' && id === 'calculator') {
+    document.getElementById('calcSection').classList.add('visible');
+    if (!document.getElementById('kinOutput').style.display || document.getElementById('kinOutput').style.display === 'none') calculateKin();
+  } else if (type === 'concept') {
+    const map = { philosophy:'conceptPhilosophy', structure:'conceptStructure', tzolkin:'conceptTzolkin' };
+    const el = document.getElementById(map[id]);
+    if (el) { el.classList.add('visible'); if (id === 'tzolkin') renderTzolkin(); }
+  }
+  window.scrollTo({ top: document.querySelector('.toolbar').offsetHeight, behavior: 'smooth' });
+}
+
+function renderSeal(id) {
+  const s = SEALS[id - 1];
+  const card = document.getElementById('detailCard');
+  card.classList.add('visible');
+  card.style.borderTopColor = CLAN_COLORS[s.clan];
+  card.innerHTML = `
+    <div class="detail-inner">
+      <div class="glyph-panel">
+        <div class="card-no">No.${String(s.id).padStart(2, '0')}</div>
+        <div class="glyph-big">${s.glyph}</div>
+        <div class="panel-label-1">第 ${s.id} 印記</div>
+        <div class="panel-label-2">${CLAN_NAMES[s.clan].toUpperCase()}</div>
+        <div class="glyph-clan ${s.clan}"></div>
+      </div>
+      <div class="detail-info">
+        <h2>${s.name}<span class="en">${s.en}</span></h2>
+        <p class="lead">${s.desc.split('。')[0]}。</p>
+        <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${s.power}</div></div>
+        <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${s.action}</div></div>
+        <div class="attr-row"><div class="attr-label">本質 <span class="en">Essence</span></div><div class="attr-value">${s.essence}</div></div>
+        <div class="attr-row"><div class="attr-label">族群 <span class="en">Clan</span></div><div class="attr-value"><span class="clan-dot ${s.clan}"></span>${CLAN_NAMES[s.clan]}</div></div>
+        <div class="attr-row"><div class="attr-label">方位 <span class="en">Direction</span></div><div class="attr-value">${s.direction}</div></div>
+        <div class="attr-row"><div class="attr-label">元素 <span class="en">Element</span></div><div class="attr-value">${s.element} · ${s.element_alt}</div></div>
+        <div class="kw-section">
+          <div class="kw-row"><span class="kw-tag positive">正向 Positive</span><span class="kw-text">${s.positive.join(' · ')}</span></div>
+          <div class="kw-row"><span class="kw-tag shadow">陰影 Shadow</span><span class="kw-text">${s.shadow.join(' · ')}</span></div>
+          <div class="kw-row"><span class="kw-tag medicine">藥引 Medicine</span><span class="kw-text">${s.medicine}</span></div>
+        </div>
+        <div class="desc-block">
+          <div class="label">🌟 深度解讀 Deep Reading</div>
+          <p>${s.desc}</p>
+        </div>
+        ${renderCrossLinks(findRelatedLessonsForSeal(id))}
+      </div>
+    </div>
+  `;
+}
+
+function renderTone(id) {
+  const t = TONES[id - 1];
+  const color = TONE_COLORS[id - 1];
+  const card = document.getElementById('detailCard');
+  card.classList.add('visible');
+  card.style.borderTopColor = color;
+  card.innerHTML = `
+    <div class="detail-inner">
+      <div class="glyph-panel" style="background: linear-gradient(180deg, ${color}15, var(--bg-page));">
+        <div class="card-no">Tone ${String(t.id).padStart(2, '0')}</div>
+        <div class="glyph-big" style="color:${color}; font-family: Georgia, serif; font-weight: 800;">${t.id}</div>
+        <div class="panel-label-1">第 ${t.id} 音調</div>
+        <div class="panel-label-2" style="color:${color};">${t.en.toUpperCase()}</div>
+        <div class="glyph-clan" style="background:${color};"></div>
+      </div>
+      <div class="detail-info">
+        <h2>${t.name}音<span class="en">${t.en} Tone</span></h2>
+        <p class="lead">${t.desc.split('。')[0]}。</p>
+        <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${t.power}</div></div>
+        <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${t.action}</div></div>
+        <div class="attr-row"><div class="attr-label">本質 <span class="en">Essence</span></div><div class="attr-value">${t.essence}</div></div>
+        <div class="attr-row"><div class="attr-label">咒語 <span class="en">Mantra</span></div><div class="attr-value" style="color:${color}; font-weight:700;">${t.keyword}</div></div>
+        <div class="desc-block" style="border-left-color:${color};">
+          <div class="label" style="color:${color};">🌀 音調解讀 Tone Reading</div>
+          <p>${t.desc}</p>
+        </div>
+        ${renderCrossLinks(findRelatedLessonsForTone(id))}
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('search').addEventListener('input', (e) => {
+  currentSearch = e.target.value.toLowerCase().trim();
+  applyFilter();
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentClanFilter = btn.dataset.filter;
+    applyFilter();
+  };
+});
+
+function applyFilter() {
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    const matchSearch = !currentSearch || (el.dataset.search && el.dataset.search.includes(currentSearch));
+    const matchClan = currentClanFilter === 'all' || !el.dataset.clan || el.dataset.clan === currentClanFilter;
+    if (matchSearch && matchClan) el.classList.remove('hidden');
+    else el.classList.add('hidden');
+  });
+  // Also filter lessons in learning path
+  document.querySelectorAll('.lp-lesson').forEach(el => {
+    const matchSearch = !currentSearch || (el.dataset.search && el.dataset.search.includes(currentSearch));
+    if (matchSearch) el.classList.remove('hidden');
+    else el.classList.add('hidden');
+  });
+  // If searching, auto-expand learning path
+  if (currentSearch) {
+    document.getElementById('learningPath').classList.remove('collapsed');
+    document.querySelectorAll('.lp-part').forEach(p => p.classList.remove('collapsed'));
+  }
+}
+
+function calculateKin() {
+  const dateStr = document.getElementById('birthday').value;
+  if (!dateStr) return;
+  const targetDate = new Date(dateStr + 'T00:00:00');
+  const refDate = new Date('2013-07-26T00:00:00');
+  const refKin = 164;
+  const daysDiff = Math.round((targetDate - refDate) / (1000 * 60 * 60 * 24));
+  let kin = ((refKin - 1 + daysDiff) % 260 + 260) % 260 + 1;
+  const sealIdx = ((kin - 1) % 20);
+  const seal = SEALS[sealIdx];
+  const toneIdx = ((kin - 1) % 13);
+  const tone = TONES[toneIdx];
+  document.getElementById('kinOutput').style.display = 'block';
+  document.getElementById('kinNum').textContent = `Kin ${kin}`;
+  document.getElementById('kinName').textContent = `${tone.name}的${seal.name} ${seal.glyph}`;
+  document.getElementById('kinEn').textContent = `${tone.en} ${seal.en}`;
+  document.getElementById('resultSeal').textContent = `${seal.glyph} ${seal.name}`;
+  document.getElementById('resultSealKw').textContent = `${seal.power} · ${seal.action} · ${seal.essence}`;
+  document.getElementById('resultTone').textContent = `${tone.id} ${tone.name}音`;
+  document.getElementById('resultToneKw').textContent = `${tone.power} · ${tone.action} · ${tone.essence}`;
+  document.getElementById('resultMeaning').innerHTML =
+    `你的銀河身份是「<strong style="color:var(--purple-deep);">${tone.name}的${seal.name}</strong>」。<br><br>` +
+    `以「<strong>${tone.power}</strong>」的方式，活出「<strong>${seal.essence}</strong>」的本質——${tone.keyword}，並透過「${seal.action}」的行動展現生命主題。<br><br>` +
+    `<em style="color:var(--text-mid);">${seal.desc}</em>`;
+  window._currentKin = { sealId: seal.id, toneId: tone.id };
+  renderCompass(kin, 'calcCompass');
+}
+
+function jumpToSeal() { if (window._currentKin) selectItem('seal', window._currentKin.sealId); }
+function jumpToTone() { if (window._currentKin) selectItem('tone', window._currentKin.toneId); }
+
+function renderTzolkin() {
+  const tz = document.getElementById('tzolkin');
+  if (tz.children.length > 0) return;
+  let html = '<div class="tz-cell tz-header">音/印</div>';
+  for (let s = 1; s <= 20; s++) html += `<div class="tz-cell tz-header">${s}</div>`;
+  for (let t = 1; t <= 13; t++) {
+    html += `<div class="tz-cell tz-row-label">${t}</div>`;
+    for (let s = 1; s <= 20; s++) {
+      let kin = 0;
+      for (let k = 1; k <= 260; k++) {
+        if (((k-1) % 13) + 1 === t && ((k-1) % 20) + 1 === s) { kin = k; break; }
+      }
+      const clan = SEALS[s-1].clan;
+      const bg = CLAN_COLORS[clan];
+      const color = (clan === 'white' || clan === 'yellow') ? '#2c1f00' : '#fff';
+      html += `<div class="tz-cell" style="background:${bg}; color:${color};" title="Kin ${kin} · ${TONES[t-1].name}的${SEALS[s-1].name}">${kin}</div>`;
+    }
+  }
+  tz.innerHTML = html;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  // Bind click handlers to static sidebar items (concepts, today, calculator, notes)
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    if (el.onclick) return; // already has handler (dynamic seal/tone items)
+    const type = el.dataset.type;
+    const id = el.dataset.id;
+    if (type && id != null) {
+      el.onclick = () => selectItem(type, id);
+    }
+  });
+  // Initialize learning path
+  renderLearningPath();
+  // Restore collapsed state
+  if (localStorage.getItem('lp_collapsed') !== 'false') {
+    document.getElementById('learningPath').classList.add('collapsed');
+  } else {
+    document.getElementById('learningPath').classList.remove('collapsed');
+  }
+  // Mark user's seal/tone in sidebar
+  refreshSidebarMarkers();
+  // Modal close on overlay click
+  document.getElementById('setupModal').addEventListener('click', (e) => {
+    if (e.target.id === 'setupModal') closeSetupModal();
+  });
+  document.getElementById('shortcutsOverlay').addEventListener('click', (e) => {
+    if (e.target.id === 'shortcutsOverlay') hideShortcuts();
+  });
+  // Theme & keyboard
+  applyStoredTheme();
+  setupKeyboardShortcuts();
+  // Default landing page
+  selectItem('daily', 'today');
+});
+</script>
+</body>
+</html>
