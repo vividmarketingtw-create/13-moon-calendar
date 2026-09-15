@@ -5169,7 +5169,9 @@ function selectItem(type, id) {
   updateTabbar(type, id);
   // Sync URL hash for bookmarking / sharing / back-button
   _syncUrlHash(type, id);
-  window.scrollTo({ top: document.querySelector('.toolbar').offsetHeight, behavior: 'smooth' });
+  const _hdr = document.querySelector('.header');
+  const _top = (_hdr && _hdr.offsetHeight) ? _hdr.offsetHeight : 0;
+  if (window.scrollY > _top) window.scrollTo({ top: _top, behavior: 'smooth' });
 }
 
 function renderSeal(id) {
