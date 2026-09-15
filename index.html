@@ -2,7 +2,31 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>13月亮曆全圖解 · Complete 13 Moon Calendar Reference</title>
+<meta name="description" content="13月亮曆 Dreamspell 完整中文參考：20 太陽印記 × 13 銀河音調 × 260 卓爾金曆，含 28 堂深度課程、Kin 計算器、銀河羅盤與每日反思。回到時間就是藝術的自然韻律。">
+<meta name="theme-color" content="#2c1f5c">
+<meta name="author" content="13月亮曆全圖解">
+<link rel="canonical" href="https://vividmarketingtw-create.github.io/13-moon-calendar/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="13月亮曆全圖解 · Complete 13 Moon Calendar Reference">
+<meta property="og:description" content="20 印記 × 13 音調 × 260 卓爾金曆 · 28 堂深度課程 · Kin 計算器 · 每日反思。回到時間就是藝術。">
+<meta property="og:url" content="https://vividmarketingtw-create.github.io/13-moon-calendar/">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://vividmarketingtw-create.github.io/13-moon-calendar/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="13月亮曆全圖解：20 印記 × 13 音調 × 260 卓爾金曆">
+<meta property="og:site_name" content="13月亮曆全圖解">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="13月亮曆全圖解 · Complete 13 Moon Calendar Reference">
+<meta name="twitter:description" content="20 印記 × 13 音調 × 260 卓爾金曆 · 28 堂深度課程 · Kin 計算器 · 每日反思。">
+<meta name="twitter:image" content="https://vividmarketingtw-create.github.io/13-moon-calendar/og-image.jpg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <style>
 :root {
   color-scheme: light;
@@ -134,6 +158,59 @@ body {
 .filter-btn.clan-blue.active   { background: var(--blue); border-color: var(--blue); color: #fff; }
 .filter-btn.clan-yellow.active { background: var(--yellow); border-color: var(--yellow); color: #2c1f00; }
 
+/* Compact toolbar (auto-applied on scroll) */
+.toolbar { transition: padding 0.2s ease, box-shadow 0.2s; }
+.toolbar.compact { padding: 8px 24px; box-shadow: 0 4px 12px rgba(60,40,20,0.08); }
+.toolbar.compact .search-box { padding: 6px 12px; border-width: 1px; }
+.toolbar.compact .search-box input { font-size: 0.88em; }
+.toolbar.compact .filter-btn { padding: 5px 12px; font-size: 0.82em; }
+
+/* Hamburger menu button (mobile only) */
+.hamburger-btn {
+  display: none;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.2em;
+  align-items: center; justify-content: center;
+  color: var(--purple-deep);
+  flex-shrink: 0;
+}
+.hamburger-btn:hover { border-color: var(--gold-bright); }
+@media (max-width: 900px) {
+  .hamburger-btn { display: inline-flex; }
+}
+
+/* Mobile drawer for sidebar */
+.drawer-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(20,14,50,0.45);
+  backdrop-filter: blur(2px);
+  z-index: 199;
+  display: none;
+}
+.drawer-backdrop.open { display: block; }
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0;
+    width: 86%;
+    max-width: 360px;
+    max-height: 100vh !important;
+    height: 100vh;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.18);
+    border-right: 1px solid var(--border);
+    padding-top: 18px;
+  }
+  .sidebar.open { transform: translateX(0); }
+}
+
 .layout {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -144,7 +221,7 @@ body {
 }
 @media (max-width: 900px) {
   .layout { grid-template-columns: 1fr; }
-  .sidebar { max-height: 360px; overflow-y: auto; position: relative !important; top: 0 !important; }
+  .sidebar { overflow-y: auto; }
 }
 
 .sidebar {
@@ -203,7 +280,7 @@ body {
 .sidebar-item .num { color: var(--text-mute); font-variant-numeric: tabular-nums; font-size: 0.85em; font-weight: 600; }
 .sidebar-item.active .num { color: var(--gold); }
 .sidebar-item .name { color: inherit; }
-.sidebar-item .en { color: var(--text-mute); font-size: 0.8em; font-style: italic; font-weight: 400; }
+.sidebar-item .en { color: var(--text-dim); font-size: 0.82em; font-style: italic; font-weight: 500; }
 .sidebar-item.active .en { color: var(--purple); }
 .clan-dot {
   width: 9px; height: 9px;
@@ -1320,6 +1397,35 @@ body {
 .modal .btn-clear { background: transparent; color: var(--red); border: 1px solid var(--red); }
 .modal .btn-clear:hover { background: var(--red-soft); }
 
+/* === Onboarding modal (first-visit) === */
+.onboarding-modal { max-width: 640px; padding: 36px 32px; }
+.onboarding-modal h2 { font-size: 1.7em; margin-bottom: 8px; text-align: center; }
+.onboarding-modal .ob-sub { color: var(--text-mid); text-align: center; font-size: 0.95em; margin-bottom: 24px; }
+.onboarding-paths { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 12px; }
+@media (max-width: 600px) { .onboarding-paths { grid-template-columns: 1fr; } }
+.ob-path {
+  background: var(--bg-soft);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  font-family: inherit;
+  color: var(--text);
+}
+.ob-path:hover {
+  border-color: var(--gold-bright);
+  background: var(--gold-soft);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(184,134,11,0.18);
+}
+.ob-path .ob-icon { font-size: 2em; margin-bottom: 8px; display: block; }
+.ob-path h4 { color: var(--purple-deep); font-size: 1.05em; font-weight: 700; margin-bottom: 6px; }
+.ob-path p { color: var(--text-mid); font-size: 0.85em; line-height: 1.55; margin: 0; }
+.ob-skip { display: block; margin: 22px auto 0; background: transparent; border: none; color: var(--text-dim); cursor: pointer; font-family: inherit; font-size: 0.88em; text-decoration: underline; }
+.ob-skip:hover { color: var(--purple-deep); }
+
 /* === CALENDAR === */
 .cal-nav {
   display: flex; justify-content: space-between; align-items: center;
@@ -1819,6 +1925,41 @@ body {
 .shortcut-desc { color: var(--text); font-size: 0.92em; }
 
 /* Print mode */
+
+/* ===== 2026-09 優化 ===== */
+.header-actions { position: absolute; top: 20px; right: 24px; display: flex; gap: 8px; z-index: 2; }
+.header-actions .theme-toggle { position: static; }
+@media (max-width: 900px) {
+  .header { padding: 20px 20px 18px; }
+  .header-actions { top: 12px; right: 12px; }
+  .header-actions .shortcuts-btn { display: none; }
+  .header-actions .btn-label { display: none; }
+  .header h1 { font-size: 1.6em; padding-right: 56px; }
+  .header .subtitle { font-size: 0.85em; }
+}
+@media (hover: none) { .header-actions .shortcuts-btn { display: none; } }
+
+details.howto { padding: 0; }
+details.howto > summary { list-style: none; cursor: pointer; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; }
+details.howto > summary::-webkit-details-marker { display: none; }
+details.howto > summary::after { content: '展開 ▾'; font-size: 0.82em; color: var(--text-dim); }
+details.howto[open] > summary::after { content: '收合 ▴'; }
+details.howto > summary h3 { margin: 0; }
+details.howto > p { padding: 0 22px 18px; }
+
+.share-kin-row { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 22px 0 8px; }
+.share-kin-btn { padding: 10px 18px; border-radius: 10px; border: 1.5px solid var(--gold-bright); background: #fff; color: var(--purple-deep); font-weight: 600; cursor: pointer; font-size: 0.95em; }
+.share-kin-btn.primary { background: var(--purple-deep); color: #fcecb4; border-color: var(--purple-deep); }
+.share-kin-btn:hover { filter: brightness(1.05); transform: translateY(-1px); }
+.personal-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.kin-card-modal { max-width: 460px; text-align: center; }
+.kin-card-modal img { width: 100%; max-height: 62vh; object-fit: contain; border-radius: 12px; margin: 12px 0 6px; box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+.kin-card-tip { font-size: 0.85em; color: var(--text-dim); }
+.kin-card-modal a.btn-primary { text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 0.95em; }
+
+:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 2px; border-radius: 6px; }
+[role="button"] { cursor: pointer; }
+
 @media print {
   .global-progress-bar, .header, .toolbar, .sidebar, .footer,
   .lesson-nav, .lesson-related, .lesson-notes-area, .modal-overlay,
@@ -1852,6 +1993,25 @@ body {
 }
 .search-hint-item:hover { background: var(--gold-soft); }
 .search-hint-item .hint-cat { color: var(--gold); font-size: 0.85em; font-weight: 700; margin-right: 6px; }
+
+/* === Share / Copy-Link button === */
+.share-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--purple-deep);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.85em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.share-btn:hover { border-color: var(--gold-bright); background: var(--gold-soft); }
+.share-btn.copied { background: var(--green-soft); border-color: var(--green); color: #1e7a3e; }
 </style>
 </head>
 <body>
@@ -1892,9 +2052,51 @@ body {
   </div>
 </div>
 
+<!-- Kin share card -->
+<div class="modal-overlay" id="kinCardModal">
+  <div class="modal kin-card-modal">
+    <h2>🖼️ 我的 Kin 分享圖卡</h2>
+    <img id="kinCardImg" alt="Kin 分享圖卡">
+    <p class="kin-card-tip">手機可以長按圖片儲存，或按下方按鈕分享。</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeKinCard()">關閉</button>
+      <a class="btn-primary" id="kinCardDownload" href="#">⬇️ 下載圖片</a>
+      <button class="btn-primary" id="kinCardShareBtn" onclick="nativeShareKinCard()" hidden>📤 分享</button>
+    </div>
+  </div>
+</div>
+
+<!-- Onboarding Modal (first-visit) -->
+<div class="modal-overlay" id="onboardingModal">
+  <div class="modal onboarding-modal">
+    <h2>✦ 歡迎來到 13 月亮曆 ✦</h2>
+    <div class="ob-sub">想用什麼方式開始你的旅程？</div>
+    <div class="onboarding-paths">
+      <button class="ob-path" onclick="onboardingChoose('learn')">
+        <span class="ob-icon">🌱</span>
+        <h4>第一次接觸</h4>
+        <p>從「時間就是藝術」開始，依 28 堂課循序漸進。</p>
+      </button>
+      <button class="ob-path" onclick="onboardingChoose('mykin')">
+        <span class="ob-icon">✨</span>
+        <h4>找出我的本命 Kin</h4>
+        <p>輸入生日，立刻看見你的印記、音調、銀河羅盤。</p>
+      </button>
+      <button class="ob-path" onclick="onboardingChoose('today')">
+        <span class="ob-icon">📅</span>
+        <h4>看今天的能量</h4>
+        <p>直接進入今日 Kin、今日反思、銀河羅盤。</p>
+      </button>
+    </div>
+    <button class="ob-skip" onclick="onboardingChoose('today')">略過引導 · 直接開始</button>
+  </div>
+</div>
+
 <div class="header">
-  <button class="theme-toggle" onclick="toggleTheme()" title="切換深淺主題">🌓 主題</button>
-  <button class="theme-toggle" onclick="showShortcuts()" title="鍵盤快捷鍵 (按 ?)" style="right: 100px;">⌨️ 快捷鍵</button>
+  <div class="header-actions">
+    <button class="theme-toggle shortcuts-btn" onclick="showShortcuts()" title="鍵盤快捷鍵 (按 ?)">⌨️ 快捷鍵</button>
+    <button class="theme-toggle" onclick="toggleTheme()" title="切換深淺主題" aria-label="切換深淺主題">🌓 <span class="btn-label">主題</span></button>
+  </div>
   <div class="header-inner">
     <h1><span class="deco">✦</span> 13月亮曆 全圖解 <span class="deco">✦</span></h1>
     <div class="subtitle">
@@ -1905,7 +2107,8 @@ body {
   </div>
 </div>
 
-<div class="toolbar">
+<div class="toolbar" id="mainToolbar">
+  <button class="hamburger-btn" id="hamburgerBtn" aria-label="開啟導覽選單" title="導覽選單">☰</button>
   <div class="search-box">
     🔍 <input type="text" id="search" placeholder="搜尋印記、音調、關鍵字 (e.g. 紅龍 / Dragon / 滋養 / 創造)">
   </div>
@@ -1917,6 +2120,7 @@ body {
     <button class="filter-btn clan-yellow" data-filter="yellow">🟡 黃族</button>
   </div>
 </div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
 
 <div class="layout">
 
@@ -1983,10 +2187,10 @@ body {
   </aside>
 
   <main class="main">
-    <div class="howto">
-      <h3>使用說明 | How to use</h3>
+    <details class="howto" id="howto">
+      <summary><h3>💡 使用說明 | How to use</h3></summary>
       <p>左側選單可瀏覽 20 個太陽印記、13 個銀河音調、核心概念與 Kin 計算器。每個印記包含：圖騰、顏色族群、力量·行動·本質三屬性、正向關鍵字、陰影課題、藥引（醫藥）、深度描述。上方搜尋框可即時過濾，按色族按鈕可篩選四個族群。</p>
-    </div>
+    </details>
 
     <div id="personalPanelHost"></div>
 
@@ -2095,6 +2299,10 @@ body {
           </p>
         </div>
 
+        <div class="share-kin-row">
+          <button class="share-kin-btn primary" onclick="shareKinCard()">🖼️ 產生分享圖卡</button>
+          <button class="share-kin-btn" onclick="copyKinLink(this)">🔗 複製我的 Kin 連結</button>
+        </div>
         <div class="jump-buttons">
           <button class="jump-btn" onclick="jumpToSeal()">→ 查看完整印記詳情</button>
           <button class="jump-btn" onclick="jumpToTone()">→ 查看完整音調詳情</button>
@@ -2845,11 +3053,34 @@ const ANALOG_PAIRS = {
 const MOON_NAMES = ['', '磁性月', '月亮月', '電力月', '自我存在月', '超頻月', '韻律月', '共振月', '銀河月', '太陽月', '行星月', '光譜月', '水晶月', '宇宙月'];
 const CLAN_THEME = { red:'啟動 Initiate', white:'淨化 Refine', blue:'蛻變 Transform', yellow:'成熟 Ripen' };
 
+// === Dreamspell 日期核心 ===
+// 2/29 為「0.0 Hunab Ku」：不佔 Kin、不算進 13 月亮的日子（沿用 2/28 的 Kin）
+function _isLeapYear(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+function _leapDaysUpTo(y, m, d) {
+  // 從西元 1 年到 (y,m,d) 為止（含當天）出現過幾個 2/29
+  const p = y - 1;
+  let n = Math.floor(p / 4) - Math.floor(p / 100) + Math.floor(p / 400);
+  if (_isLeapYear(y) && (m > 2 || (m === 2 && d === 29))) n += 1;
+  return n;
+}
+function isHunabKu(date) { return date.getMonth() === 1 && date.getDate() === 29; }
+// 扣掉所有 2/29 後的連續日序
+function dreamDayIndex(date) {
+  const y = date.getFullYear(), m = date.getMonth() + 1, d = date.getDate();
+  const utcDays = Math.floor(Date.UTC(y, m - 1, d) / 86400000);
+  return utcDays - _leapDaysUpTo(y, m, d);
+}
+const DREAMSPELL_REF_INDEX = dreamDayIndex(new Date(1987, 6, 26)); // 1987/7/26 = Kin 34
 function getKinFromDate(date) {
-  const refDate = new Date('2013-07-26T00:00:00');
-  const refKin = 164;
-  const daysDiff = Math.round((date - refDate) / (1000 * 60 * 60 * 24));
-  return ((refKin - 1 + daysDiff) % 260 + 260) % 260 + 1;
+  const diff = dreamDayIndex(date) - DREAMSPELL_REF_INDEX;
+  return ((34 - 1 + diff) % 260 + 260) % 260 + 1;
+}
+// 從某天往後數 n 個「曆法日」（自動跳過 2/29）
+function addDreamDays(date, n) {
+  const r = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  let left = n;
+  while (left > 0) { r.setDate(r.getDate() + 1); if (!isHunabKu(r)) left--; }
+  return r;
 }
 
 function getKinFromToneSeal(tone, seal) {
@@ -2862,7 +3093,9 @@ function getKinFromToneSeal(tone, seal) {
 function getCompass(kin) {
   const tone = ((kin - 1) % 13) + 1;
   const seal = ((kin - 1) % 20) + 1;
-  const guideSeal = ((seal - 1 + 4 * (tone - 1)) % 20) + 1;
+  // 引導：1/6/11 同印記；2/7/12 +12；3/8/13 +4；4/9 +16；5/10 +8（同色族）
+  const GUIDE_OFFSET = [0, 12, 4, 16, 8];
+  const guideSeal = ((seal - 1 + GUIDE_OFFSET[(tone - 1) % 5]) % 20) + 1;
   const antipodeSeal = ((seal - 1 + 10) % 20) + 1;
   const analogSeal = ANALOG_PAIRS[seal];
   const hiddenKin = 261 - kin;
@@ -2905,10 +3138,11 @@ function renderCompass(kin, containerId) {
 function getMoonInfo(date) {
   const isDayOutOfTime = date.getMonth() === 6 && date.getDate() === 25;
   if (isDayOutOfTime) return { moon: 0, day: 0, isOutOfTime: true };
+  if (isHunabKu(date)) return { moon: 8, day: 22, isOutOfTime: false, isHunabKu: true };
   const year = date.getFullYear();
   const moonNewYear = new Date(year, 6, 26);
   const yearStart = (date >= moonNewYear) ? moonNewYear : new Date(year - 1, 6, 26);
-  const daysSinceStart = Math.floor((date - yearStart) / (1000 * 60 * 60 * 24));
+  const daysSinceStart = dreamDayIndex(date) - dreamDayIndex(yearStart);
   const moon = Math.floor(daysSinceStart / 28) + 1;
   const day = (daysSinceStart % 28) + 1;
   return { moon, day, isOutOfTime: false };
@@ -3198,6 +3432,7 @@ function setupKeyboardShortcuts() {
     if (e.key === 'Escape') {
       hideShortcuts();
       closeSetupModal();
+      if (typeof closeKinCard === 'function') closeKinCard();
       const search = document.getElementById('search');
       if (search && search.value) { search.value = ''; currentSearch = ''; applyFilter(); search.blur(); }
       return;
@@ -3312,9 +3547,7 @@ function get13MoonYear(date) {
 function getMoonStartDate(year, moonNum) {
   // year = gregorian year of 7/26
   const yearStart = new Date(year, 6, 26);
-  const start = new Date(yearStart);
-  start.setDate(start.getDate() + (moonNum - 1) * 28);
-  return start;
+  return addDreamDays(yearStart, (moonNum - 1) * 28);
 }
 
 function renderCalendarSection() {
@@ -3330,14 +3563,13 @@ function renderCalendarSection() {
     }
   }
   const moonStart = getMoonStartDate(calendarMonth.year, calendarMonth.moonNum);
-  const moonEnd = new Date(moonStart); moonEnd.setDate(moonEnd.getDate() + 27);
+  const moonEnd = addDreamDays(moonStart, 27);
   const today = new Date(); today.setHours(0,0,0,0);
   const user = loadUserKin();
 
   const cells = [];
   for (let d = 0; d < 28; d++) {
-    const date = new Date(moonStart);
-    date.setDate(date.getDate() + d);
+    const date = addDreamDays(moonStart, d);
     const kin = getKinFromDate(date);
     const seal = SEALS[(kin - 1) % 20];
     const tone = TONES[(kin - 1) % 13];
@@ -3778,7 +4010,17 @@ function renderQuizSection() {
 
 // === USER KIN (PERSONAL) ===
 function loadUserKin() {
-  try { return JSON.parse(localStorage.getItem('moon13_user') || 'null'); } catch(e) { return null; }
+  try {
+    const u = JSON.parse(localStorage.getItem('moon13_user') || 'null');
+    if (u && u.birthDate) {
+      const kin = getKinFromDate(new Date(u.birthDate + 'T00:00:00'));
+      if (kin !== u.kin) {
+        u.kin = kin; u.seal = ((kin - 1) % 20) + 1; u.tone = ((kin - 1) % 13) + 1;
+        try { localStorage.setItem('moon13_user', JSON.stringify(u)); } catch (e2) {}
+      }
+    }
+    return u;
+  } catch(e) { return null; }
 }
 function saveUserKinData(data) {
   localStorage.setItem('moon13_user', JSON.stringify(data));
@@ -3841,7 +4083,10 @@ function renderPersonalPanel() {
           <div class="personal-name">${tone.name}的${seal.name}</div>
           <div class="personal-en">${tone.en} ${seal.en} · ${CLAN_NAMES[seal.clan]}</div>
         </div>
-        <button class="personal-edit-btn" onclick="openSetupModal()">⚙️ 修改</button>
+        <div class="personal-actions">
+          <button class="personal-edit-btn" onclick="shareKinCard(${user.kin})">🖼️ 分享</button>
+          <button class="personal-edit-btn" onclick="openSetupModal()">⚙️ 修改</button>
+        </div>
       </div>
     </div>
   `;
@@ -3927,6 +4172,7 @@ function renderDailyKin() {
   const moonInfo = getMoonInfo(today);
   const moonText = moonInfo.isOutOfTime
     ? '🎭 無時間日 Day Out of Time'
+    : moonInfo.isHunabKu ? '✴️ 0.0 Hunab Ku（2/29 不計入曆法，沿用前一天的 Kin）'
     : `${MOON_NAMES[moonInfo.moon]}第${moonInfo.day}天 · Moon ${moonInfo.moon}, Day ${moonInfo.day}`;
   document.getElementById('dailyDate').textContent =
     `📅 ${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日 · ${moonText}`;
@@ -3976,6 +4222,278 @@ TONES.forEach(t => {
   tonesListEl.appendChild(div);
 });
 
+// === URL Hash Routing ===
+// Allows bookmarking, sharing links, browser back/forward navigation.
+// URL format: #/<type>/<id>  e.g. #/seal/1, #/lesson/14, #/concept/tzolkin, #/tool/calculator
+let _suppressHistoryPush = false;
+
+function _buildHash(type, id) {
+  if (type === 'daily' && id === 'today') return '';
+  return `#/${type}/${id}`;
+}
+
+function _parseHash() {
+  const raw = location.hash.replace(/^#\/?/, '');
+  if (!raw) return ['daily', 'today'];
+  const parts = raw.split('/');
+  const type = parts[0];
+  let id = parts.slice(1).join('/') || '';
+  if (/^-?\d+$/.test(id)) id = parseInt(id, 10);
+  // Validate type
+  const validTypes = ['daily','lesson','seal','tone','concept','tool','kin'];
+  if (!validTypes.includes(type)) return ['daily', 'today'];
+  return [type, id];
+}
+
+function _syncUrlHash(type, id) {
+  if (_suppressHistoryPush) return;
+  const desired = _buildHash(type, id);
+  const current = location.hash;
+  if (current === desired) return;
+  if (desired) {
+    history.pushState({ type, id }, '', desired);
+  } else {
+    history.pushState({ type: 'daily', id: 'today' }, '', location.pathname + location.search);
+  }
+  // Update OG/title for shareability
+  _updatePageMeta(type, id);
+}
+
+function _updatePageMeta(type, id) {
+  let title = '13月亮曆全圖解 · Complete 13 Moon Calendar Reference';
+  try {
+    if (type === 'seal' && typeof id === 'number' && SEALS[id-1]) {
+      const s = SEALS[id-1];
+      title = `${s.glyph} ${s.name} ${s.en} · 第${id}印記 · 13月亮曆`;
+    } else if (type === 'tone' && typeof id === 'number' && TONES[id-1]) {
+      const t = TONES[id-1];
+      title = `${t.name}音 ${t.en} · 第${id}音調 · 13月亮曆`;
+    } else if (type === 'lesson' && typeof id === 'number') {
+      const l = LESSONS.find(x => x.id === id);
+      if (l) title = `第${id}課 ${l.title} · 13月亮曆全圖解`;
+    } else if (type === 'concept') {
+      const map = { philosophy:'時間就是藝術', structure:'13×28 曆法結構', tzolkin:'卓爾金曆 Tzolkin 260' };
+      if (map[id]) title = `${map[id]} · 13月亮曆全圖解`;
+    } else if (type === 'kin' && typeof id === 'number' && id >= 1 && id <= 260) {
+      const s = SEALS[(id-1) % 20], t = TONES[(id-1) % 13];
+      title = `Kin ${id} ${t.name}的${s.name} · 13月亮曆全圖解`;
+    } else if (type === 'tool') {
+      const map = { calculator:'Kin 計算器', notes:'學習筆記', quiz:'測驗', calendar:'年度日曆', wavespell:'波符', compatibility:'Kin 相容性' };
+      if (map[id]) title = `${map[id]} · 13月亮曆全圖解`;
+    }
+  } catch (e) {}
+  document.title = title;
+}
+
+window.addEventListener('popstate', () => {
+  // Browser back/forward — re-render without pushing new history
+  _suppressHistoryPush = true;
+  const [type, id] = _parseHash();
+  selectItem(type, id);
+  _updatePageMeta(type, id);
+  _suppressHistoryPush = false;
+});
+
+// === Sticky toolbar shrink-on-scroll ===
+function setupCompactToolbar() {
+  const tb = document.getElementById('mainToolbar');
+  if (!tb) return;
+  let last = 0;
+  const onScroll = () => {
+    const y = window.scrollY || window.pageYOffset || 0;
+    if (y > 120 && !tb.classList.contains('compact')) tb.classList.add('compact');
+    else if (y <= 60 && tb.classList.contains('compact')) tb.classList.remove('compact');
+    last = y;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// === Mobile drawer (sidebar) ===
+function setupMobileDrawer() {
+  const sb = document.querySelector('.sidebar');
+  const btn = document.getElementById('hamburgerBtn');
+  const bd = document.getElementById('drawerBackdrop');
+  if (!sb || !btn || !bd) return;
+  const open = () => { sb.classList.add('open'); bd.classList.add('open'); };
+  const close = () => { sb.classList.remove('open'); bd.classList.remove('open'); };
+  btn.addEventListener('click', () => {
+    sb.classList.contains('open') ? close() : open();
+  });
+  bd.addEventListener('click', close);
+  // Close drawer when a sidebar item is clicked (mobile-only behavior is fine on desktop)
+  sb.addEventListener('click', (e) => {
+    if (window.innerWidth <= 900 && e.target.closest('.sidebar-item, .lp-lesson, .concept-section')) {
+      close();
+    }
+  });
+  // Close on resize back to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) close();
+  });
+  // ESC closes drawer
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sb.classList.contains('open')) close();
+  });
+}
+
+// === Onboarding (first-visit) ===
+function showOnboarding() {
+  document.getElementById('onboardingModal').classList.add('visible');
+}
+function onboardingChoose(choice) {
+  document.getElementById('onboardingModal').classList.remove('visible');
+  try { localStorage.setItem('ob_seen', '1'); } catch (e) {}
+  if (choice === 'learn') {
+    selectItem('concept', 'philosophy');
+  } else if (choice === 'mykin') {
+    openSetupModal();
+  } else {
+    selectItem('daily', 'today');
+  }
+}
+
+// Copy current page URL (with hash) to clipboard for sharing
+function copyShareLink(btn) {
+  const url = location.href;
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  };
+  const done = () => {
+    if (!btn) return;
+    const original = btn.innerHTML;
+    btn.innerHTML = '✓ 已複製';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = original; btn.classList.remove('copied'); }, 1800);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(() => { fallback(); done(); });
+  } else {
+    fallback(); done();
+  }
+}
+
+
+// === 分享我的 Kin（連結 + 圖卡）===
+function _kinShareUrl(kin) {
+  return location.origin + location.pathname + '#/kin/' + kin;
+}
+function copyKinLink(btn) {
+  const kin = window._currentKin && window._currentKin.kin;
+  if (!kin) return;
+  const url = _kinShareUrl(kin);
+  const done = () => { if (!btn) return; const o = btn.innerHTML; btn.innerHTML = '✓ 已複製連結'; setTimeout(() => btn.innerHTML = o, 1800); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(done).catch(() => { prompt('複製這個連結：', url); });
+  } else { prompt('複製這個連結：', url); }
+}
+function _wrapText(ctx, text, maxW) {
+  const lines = []; let line = '';
+  for (const ch of text) {
+    if (ctx.measureText(line + ch).width > maxW && line) { lines.push(line); line = ch; }
+    else line += ch;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function drawKinCard(kin) {
+  const seal = SEALS[(kin - 1) % 20], tone = TONES[(kin - 1) % 13];
+  const W = 1080, H = 1350;
+  const c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d');
+  const g = x.createLinearGradient(0, 0, W, H);
+  g.addColorStop(0, '#2c1f5c'); g.addColorStop(1, '#4a3a8a');
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  // stars
+  let seed = kin * 9301;
+  const rnd = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  for (let i = 0; i < 90; i++) {
+    x.fillStyle = `rgba(252,236,180,${0.2 + rnd() * 0.6})`;
+    x.beginPath(); x.arc(rnd() * W, rnd() * H, rnd() * 2.4 + 0.4, 0, Math.PI * 2); x.fill();
+  }
+  x.strokeStyle = 'rgba(212,160,23,0.7)'; x.lineWidth = 3;
+  x.strokeRect(40, 40, W - 80, H - 80);
+  const font = '"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif';
+  x.textAlign = 'center';
+  x.fillStyle = '#e8cf8a'; x.font = `600 34px ${font}`;
+  x.fillText('✦ 我的銀河身份 · GALACTIC SIGNATURE ✦', W / 2, 150);
+  x.font = `220px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`;
+  x.fillText(seal.glyph, W / 2, 440);
+  x.fillStyle = '#d4a017'; x.font = `700 150px ${font}`;
+  x.fillText(`Kin ${kin}`, W / 2, 640);
+  x.fillStyle = '#ffffff'; x.font = `700 84px ${font}`;
+  x.fillText(`${tone.name}的${seal.name}`, W / 2, 770);
+  x.fillStyle = '#cfc4ee'; x.font = `italic 40px ${font}`;
+  x.fillText(`${tone.en} ${seal.en}`, W / 2, 835);
+  const fit = (txt, weight, size, maxW) => { let fs = size; do { x.font = `${weight} ${fs}px ${font}`; fs -= 2; } while (x.measureText(txt).width > maxW && fs > 18); };
+  x.fillStyle = '#fcecb4';
+  const attrs = `${tone.power} · ${seal.power} · ${seal.essence}`;
+  fit(attrs, 500, 38, W - 180);
+  x.fillText(attrs, W / 2, 935);
+  x.fillStyle = '#e6e0f5'; x.font = `400 34px ${font}`;
+  const zh = t => t.split(' ')[0];
+  const line = `以「${zh(tone.power)}」的方式，活出「${zh(seal.essence)}」的本質`;
+  _wrapText(x, line, W - 220).forEach((l, i) => x.fillText(l, W / 2, 1025 + i * 50));
+  x.fillStyle = 'rgba(255,255,255,0.75)'; x.font = `500 30px ${font}`;
+  x.fillText('查你的本命 Kin → 13月亮曆全圖解', W / 2, 1220);
+  x.fillStyle = 'rgba(232,207,138,0.85)'; x.font = `400 24px ${font}`;
+  x.fillText('vividmarketingtw-create.github.io/13-moon-calendar', W / 2, 1262);
+  return c;
+}
+function shareKinCard(kinArg) {
+  const kin = kinArg || (window._currentKin && window._currentKin.kin);
+  if (!kin) return;
+  const canvas = drawKinCard(kin);
+  const host = document.getElementById('kinCardModal');
+  const img = document.getElementById('kinCardImg');
+  const dataUrl = canvas.toDataURL('image/png');
+  img.src = dataUrl;
+  host.dataset.kin = kin;
+  host.classList.add('visible');
+  const shareBtn = document.getElementById('kinCardShareBtn');
+  canvas.toBlob(blob => {
+    const file = new File([blob], `kin-${kin}.png`, { type: 'image/png' });
+    host._file = file;
+    shareBtn.hidden = !(navigator.canShare && navigator.canShare({ files: [file] }));
+  });
+  const dl = document.getElementById('kinCardDownload');
+  dl.href = dataUrl; dl.download = `13月亮曆-Kin${kin}.png`;
+}
+function nativeShareKinCard() {
+  const host = document.getElementById('kinCardModal');
+  const kin = host.dataset.kin;
+  if (host._file && navigator.share) {
+    navigator.share({ files: [host._file], title: `我的銀河身份 Kin ${kin}`, text: _kinShareUrl(kin) }).catch(() => {});
+  }
+}
+function closeKinCard() { document.getElementById('kinCardModal').classList.remove('visible'); }
+
+// === 鍵盤可操作（無障礙）===
+const A11Y_CLICKABLE = '.sidebar-item, .lp-lesson, .lp-part-header, .lp-header, .cal-cell, .compass-cell[onclick], [onclick]:not(button):not(a):not(input):not(textarea):not(select):not(label):not(.modal-overlay):not(.shortcuts-overlay)';
+function enhanceA11y(root) {
+  (root || document).querySelectorAll(A11Y_CLICKABLE).forEach(el => {
+    if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  });
+}
+function setupA11y() {
+  enhanceA11y();
+  document.addEventListener('keydown', e => {
+    const el = e.target;
+    if ((e.key === 'Enter' || e.key === ' ') && el && el.getAttribute && el.getAttribute('role') === 'button' && el.tagName !== 'BUTTON') {
+      e.preventDefault(); e.stopImmediatePropagation(); el.click();
+    }
+  }, true);
+  const main = document.querySelector('.main');
+  const sb = document.querySelector('.sidebar');
+  const mo = new MutationObserver(() => { enhanceA11y(main); enhanceA11y(sb); });
+  if (main) mo.observe(main, { childList: true, subtree: true });
+  if (sb) mo.observe(sb, { childList: true, subtree: true });
+}
+
 function selectItem(type, id) {
   document.getElementById('dailyKinSection').classList.remove('visible');
   document.getElementById('detailCard').classList.remove('visible');
@@ -4024,6 +4542,11 @@ function selectItem(type, id) {
     document.getElementById('wavespellSection').classList.add('visible');
     renderWavespellSection();
   }
+  else if (type === 'kin') {
+    const k = parseInt(id, 10);
+    document.getElementById('calcSection').classList.add('visible');
+    if (k >= 1 && k <= 260) renderKinResult(k); else calculateKin();
+  }
   else if (type === 'seal') renderSeal(id);
   else if (type === 'tone') renderTone(id);
   else if (type === 'tool' && id === 'calculator') {
@@ -4034,6 +4557,8 @@ function selectItem(type, id) {
     const el = document.getElementById(map[id]);
     if (el) { el.classList.add('visible'); if (id === 'tzolkin') renderTzolkin(); }
   }
+  // Sync URL hash for bookmarking / sharing / back-button
+  _syncUrlHash(type, id);
   window.scrollTo({ top: document.querySelector('.toolbar').offsetHeight, behavior: 'smooth' });
 }
 
@@ -4052,7 +4577,7 @@ function renderSeal(id) {
         <div class="glyph-clan ${s.clan}"></div>
       </div>
       <div class="detail-info">
-        <h2>${s.name}<span class="en">${s.en}</span></h2>
+        <h2>${s.name}<span class="en">${s.en}</span><button class="share-btn" onclick="copyShareLink(this)" title="複製此印記的連結">🔗 分享</button></h2>
         <p class="lead">${s.desc.split('。')[0]}。</p>
         <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${s.power}</div></div>
         <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${s.action}</div></div>
@@ -4091,7 +4616,7 @@ function renderTone(id) {
         <div class="glyph-clan" style="background:${color};"></div>
       </div>
       <div class="detail-info">
-        <h2>${t.name}音<span class="en">${t.en} Tone</span></h2>
+        <h2>${t.name}音<span class="en">${t.en} Tone</span><button class="share-btn" onclick="copyShareLink(this)" title="複製此音調的連結">🔗 分享</button></h2>
         <p class="lead">${t.desc.split('。')[0]}。</p>
         <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${t.power}</div></div>
         <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${t.action}</div></div>
@@ -4145,10 +4670,11 @@ function calculateKin() {
   const dateStr = document.getElementById('birthday').value;
   if (!dateStr) return;
   const targetDate = new Date(dateStr + 'T00:00:00');
-  const refDate = new Date('2013-07-26T00:00:00');
-  const refKin = 164;
-  const daysDiff = Math.round((targetDate - refDate) / (1000 * 60 * 60 * 24));
-  let kin = ((refKin - 1 + daysDiff) % 260 + 260) % 260 + 1;
+  const kin = getKinFromDate(targetDate);
+  renderKinResult(kin);
+}
+
+function renderKinResult(kin) {
   const sealIdx = ((kin - 1) % 20);
   const seal = SEALS[sealIdx];
   const toneIdx = ((kin - 1) % 13);
@@ -4165,7 +4691,7 @@ function calculateKin() {
     `你的銀河身份是「<strong style="color:var(--purple-deep);">${tone.name}的${seal.name}</strong>」。<br><br>` +
     `以「<strong>${tone.power}</strong>」的方式，活出「<strong>${seal.essence}</strong>」的本質——${tone.keyword}，並透過「${seal.action}」的行動展現生命主題。<br><br>` +
     `<em style="color:var(--text-mid);">${seal.desc}</em>`;
-  window._currentKin = { sealId: seal.id, toneId: tone.id };
+  window._currentKin = { sealId: seal.id, toneId: tone.id, kin };
   renderCompass(kin, 'calcCompass');
 }
 
@@ -4223,8 +4749,41 @@ window.addEventListener('DOMContentLoaded', () => {
   // Theme & keyboard
   applyStoredTheme();
   setupKeyboardShortcuts();
-  // Default landing page
-  selectItem('daily', 'today');
+  // Initial route from URL hash (or default to today's Kin)
+  const [initType, initId] = _parseHash();
+  _suppressHistoryPush = true;
+  selectItem(initType, initId);
+  // Replace any malformed initial hash with normalized version
+  const desired = _buildHash(initType, initId);
+  if (desired && location.hash !== desired) {
+    history.replaceState({ type: initType, id: initId }, '', desired);
+  }
+  _updatePageMeta(initType, initId);
+  _suppressHistoryPush = false;
+  // Setup overlay click-to-close for onboarding
+  document.getElementById('onboardingModal').addEventListener('click', (e) => {
+    if (e.target.id === 'onboardingModal') {
+      e.target.classList.remove('visible');
+      try { localStorage.setItem('ob_seen', '1'); } catch (er) {}
+    }
+  });
+  // Show onboarding only if first visit AND no specific deep-link
+  let seen = false;
+  try { seen = localStorage.getItem('ob_seen') === '1'; } catch (e) {}
+  if (!seen && !location.hash) {
+    setTimeout(showOnboarding, 350);
+  }
+  // Sticky toolbar shrink-on-scroll
+  setupCompactToolbar();
+  // Mobile drawer wiring
+  setupMobileDrawer();
+  // Keyboard accessibility
+  setupA11y();
+  // Share card modal: click outside to close
+  document.getElementById('kinCardModal').addEventListener('click', (e) => {
+    if (e.target.id === 'kinCardModal') closeKinCard();
+  });
+
 });
 </script>
 </body>
