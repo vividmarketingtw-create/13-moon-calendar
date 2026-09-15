@@ -27,6 +27,9 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@700;900&display=swap">
 <style>
 :root {
   color-scheme: light;
@@ -1960,6 +1963,199 @@ details.howto > p { padding: 0 22px 18px; }
 :focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 2px; border-radius: 6px; }
 [role="button"] { cursor: pointer; }
 
+/* ===== App 改版（方向 A）===== */
+:root {
+  --a-hero: #2c1f5c; --a-hero-sub: #cfc4ee; --a-hero-gold: #e2c77a;
+  --a-card: #fffdf8; --a-line: #e6dcc6; --a-soft: #faf6ed; --a-chip: #f3ecdb;
+  --a-ink: #1f1838; --a-ink-mid: #4a3f6a; --a-ink-dim: #6f6590; --a-ink-mute: #8b80a6;
+  --a-accent: #2c1f5c; --a-btn: #2c1f5c; --a-btn-ink: #fcecb4; --a-label: #a07a12; --a-link: #8a6508;
+  --a-empty: #ebe4d3;
+  --c-red: #b8432f; --c-white: #cfc6b4; --c-white-disc: #ece5d5; --c-white-ink: #6b5f48; --c-blue: #2b6f9e; --c-yellow: #c9961a; --c-yellow-bright: #e2b33a;
+  --serif: "Noto Serif TC", "Songti TC", "PMingLiU", serif;
+}
+[data-theme="dark"] {
+  --a-hero: #120d29; --a-card: #231c3f; --a-line: #3a3258; --a-soft: #1d1736; --a-chip: #2e2650;
+  --a-ink: #ece7f7; --a-ink-mid: #c3bbdb; --a-ink-dim: #a39ac0; --a-ink-mute: #857ca3;
+  --a-accent: #e2c77a; --a-btn: #e2b33a; --a-btn-ink: #1a1530; --a-label: #e2c77a; --a-link: #e2c77a;
+  --a-empty: #342c55; --c-white-disc: #d9d1bf;
+}
+.app-view { display: none; }
+.app-view.visible { display: block; }
+.app-wrap { max-width: 1080px; margin: 0 auto; color: var(--a-ink); }
+.a-serif { font-family: var(--serif); }
+.a-card { background: var(--a-card); border: 1px solid var(--a-line); border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.a-label { font-size: 12px; letter-spacing: 0.2em; color: var(--a-label); font-weight: 700; }
+.a-h { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--a-ink); }
+.a-row-between { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.a-meta { font-size: 13px; color: var(--a-ink-dim); }
+.a-body { font-size: 15px; line-height: 1.85; color: var(--a-ink-mid); text-wrap: pretty; }
+.a-link { font-size: 13px; color: var(--a-link); background: none; border: none; cursor: pointer; padding: 6px 0; font-family: inherit; }
+.a-btn { min-height: 46px; padding: 0 20px; border-radius: 14px; background: var(--a-btn); color: var(--a-btn-ink); border: none; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.a-btn.ghost { background: var(--a-card); color: var(--a-accent); border: 1px solid var(--a-line); }
+.a-btn:hover { filter: brightness(1.08); }
+.a-input { min-height: 48px; border-radius: 14px; background: var(--a-soft); border: 1.5px solid var(--a-line); padding: 0 14px; font-size: 15px; color: var(--a-ink); font-family: inherit; }
+[data-theme="dark"] .a-input { color-scheme: dark; }
+.a-pill { padding: 7px 12px; border-radius: 999px; background: var(--a-card); border: 1px solid var(--a-line); font-size: 13px; color: var(--a-ink); }
+.a-tag { padding: 5px 10px; border-radius: 999px; background: var(--a-chip); font-size: 13px; color: var(--a-ink); }
+
+/* glyph disc */
+.g-disc { border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); color: #fff; flex-shrink: 0; font-weight: 700; }
+.g-disc.red { background: var(--c-red); }
+.g-disc.white { background: var(--c-white-disc); color: var(--c-white-ink); border: 1px solid #d9ccb0; }
+.g-disc.blue { background: var(--c-blue); }
+.g-disc.yellow { background: var(--c-yellow); }
+.clan-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.clan-dot.red { background: var(--c-red); } .clan-dot.white { background: var(--c-white); } .clan-dot.blue { background: var(--c-blue); } .clan-dot.yellow { background: var(--c-yellow-bright); }
+
+/* Today */
+.t-top { display: flex; justify-content: space-between; align-items: center; padding: 4px 4px 10px; gap: 12px; }
+.t-date { font-family: var(--serif); font-size: 26px; font-weight: 700; letter-spacing: 0.02em; color: var(--a-ink); }
+.t-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--c-white-disc); border: 1.5px solid #d9ccb0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--c-white-ink); cursor: pointer; flex-shrink: 0; }
+.t-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; margin: 4px 0 16px; align-items: center; }
+.t-week-nav { display: flex; align-items: center; gap: 6px; }
+.t-week-arrow { width: 36px; height: 44px; border: none; background: none; color: var(--a-ink-dim); cursor: pointer; font-size: 18px; flex-shrink: 0; border-radius: 10px; }
+.t-week-arrow:hover { background: var(--a-chip); }
+.t-day { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; border-radius: 14px; border: none; background: none; cursor: pointer; font-family: inherit; min-height: 64px; }
+.t-day .wd { font-size: 11px; color: var(--a-ink-mute); }
+.t-day .dn { font-size: 15px; font-weight: 500; color: var(--a-ink-mid); }
+.t-day.is-today .dn { color: var(--a-label); font-weight: 700; }
+.t-day.sel { background: var(--a-hero); }
+.t-day.sel .wd { color: var(--a-hero-sub); } .t-day.sel .dn { color: #fff; font-weight: 700; }
+.t-grid { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 1100px) {
+  .t-grid { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; }
+  .t-col { display: flex; flex-direction: column; gap: 16px; }
+}
+.t-col { display: flex; flex-direction: column; gap: 16px; }
+.t-hero { background: var(--a-hero); border-radius: 28px; padding: 28px 24px 24px; color: #fff; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; overflow: hidden; text-align: center; }
+.t-hero .ring { position: absolute; border-radius: 50%; border: 1px solid rgba(226,179,58,0.2); pointer-events: none; left: 50%; transform: translateX(-50%); }
+.t-hero .kin { font-size: 14px; letter-spacing: 0.2em; color: var(--a-hero-gold); font-weight: 700; margin-top: 6px; }
+.t-hero .name { font-family: var(--serif); font-size: 38px; font-weight: 900; letter-spacing: 0.04em; line-height: 1.2; }
+.t-hero .en { font-size: 14px; color: var(--a-hero-sub); font-style: italic; }
+.t-hero .chips { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; justify-content: center; }
+.t-hero .chip { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,0.1); font-size: 13px; color: #fff; border: none; cursor: pointer; font-family: inherit; }
+.t-hero .chip:hover { background: rgba(255,255,255,0.18); }
+.t-hero-glyph { width: 132px; height: 132px; border-radius: 50%; border: 1.5px solid rgba(226,179,58,0.6); display: flex; align-items: center; justify-content: center; margin: 10px 0 4px; position: relative; }
+.t-hero-glyph .g-disc { width: 96px; height: 96px; font-size: 44px; }
+.t-hero-glyph .emoji { position: absolute; right: -4px; bottom: -2px; font-size: 26px; }
+.t-special { font-size: 13px; color: var(--a-hero-gold); margin-bottom: 4px; }
+.t-foryou-who { display: flex; align-items: center; gap: 10px; }
+.t-foryou-who .g-disc { width: 32px; height: 32px; font-size: 14px; }
+.t-foryou-h { font-family: var(--serif); font-size: 22px; font-weight: 700; line-height: 1.4; color: var(--a-ink); }
+.t-rel { display: inline-block; padding: 2px 10px; border-radius: 999px; background: var(--a-chip); font-size: 12px; color: var(--a-ink); margin-left: 6px; }
+.t-question { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--a-ink); }
+.t-journal { border: 1.5px solid var(--a-line); border-radius: 14px; background: var(--a-soft); padding: 14px; min-height: 84px; font-size: 15px; color: var(--a-ink); font-family: inherit; resize: vertical; width: 100%; line-height: 1.7; }
+.t-journal::placeholder { color: var(--a-ink-mute); }
+.t-moon { display: flex; flex-direction: column; gap: 6px; }
+.t-moon-bar { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 4px; width: 196px; }
+.t-moon-bar span { height: 8px; border-radius: 3px; background: var(--a-empty); }
+.t-moon-bar span.red { background: var(--c-red); } .t-moon-bar span.white { background: var(--c-white); } .t-moon-bar span.blue { background: var(--c-blue); } .t-moon-bar span.yellow { background: var(--c-yellow); }
+.t-moon-bar span.cur { box-shadow: 0 0 0 2px var(--a-accent); }
+.t-compass { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.t-cc { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 4px; border-radius: 16px; background: var(--a-soft); border: none; cursor: pointer; font-family: inherit; color: var(--a-ink); text-align: center; }
+.t-cc:hover { background: var(--a-chip); }
+.t-cc .role { font-size: 11px; color: var(--a-ink-mute); }
+.t-cc .g-disc { width: 44px; height: 44px; font-size: 18px; }
+.t-cc .k { font-size: 12px; font-weight: 700; }
+.t-cc .n { font-size: 11px; color: var(--a-ink-mid); }
+.t-cc.center { background: var(--a-hero); color: #fff; cursor: default; }
+.t-cc.center .role { color: var(--a-hero-gold); } .t-cc.center .n { color: var(--a-hero-sub); }
+.t-ws-bar { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 4px; }
+.t-ws-bar span { height: 10px; border-radius: 5px; background: var(--a-empty); }
+.t-ws-bar span.past { background: #cbbde8; } .t-ws-bar span.cur { background: var(--a-accent); }
+.t-more { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* Report */
+.r-wrap { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; color: var(--a-ink); }
+.r-id { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 12px 10px; text-align: center; }
+.r-id .outer { width: 148px; height: 148px; border-radius: 50%; border: 1px solid var(--a-line); display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+.r-id .g-disc { width: 112px; height: 112px; font-size: 50px; }
+.r-id .kin { font-size: 13px; letter-spacing: 0.24em; color: var(--a-label); font-weight: 700; }
+.r-id .name { font-family: var(--serif); font-size: 40px; font-weight: 900; letter-spacing: 0.04em; line-height: 1.2; }
+.r-id .en { font-size: 14px; color: var(--a-ink-dim); font-style: italic; }
+.r-pills { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; justify-content: center; }
+.r-dark { background: var(--a-hero); color: #fff; border-radius: 24px; padding: 26px 22px; display: flex; flex-direction: column; gap: 12px; }
+.r-dark .a-label { color: var(--a-hero-gold); }
+.r-dark .big { font-family: var(--serif); font-size: 28px; font-weight: 700; line-height: 1.45; }
+.r-dark p { font-size: 15px; line-height: 1.85; color: #ddd5f2; }
+.r-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 420px) { .r-two { grid-template-columns: minmax(0, 1fr); } }
+.r-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.r-tone { flex-direction: row; align-items: center; gap: 16px; }
+.r-tone .box { width: 72px; height: 72px; flex-shrink: 0; border-radius: 18px; background: var(--a-chip); display: flex; align-items: center; justify-content: center; color: var(--a-accent); }
+.r-crow { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-top: 1px solid var(--a-line); background: none; border-left: none; border-right: none; border-bottom: none; width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: var(--a-ink); }
+.r-crow .g-disc { width: 48px; height: 48px; font-size: 19px; }
+.r-crow .role { font-size: 12px; color: var(--a-label); font-weight: 700; }
+.r-crow .k { font-size: 12px; color: var(--a-ink-mute); margin-left: 8px; }
+.r-crow .n { font-size: 16px; font-weight: 700; }
+.r-crow .d { font-size: 13px; color: var(--a-ink-mid); }
+.r-years { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.r-year { display: flex; flex-direction: column; gap: 4px; padding: 12px 10px; border-radius: 16px; background: var(--a-soft); border: 1px solid var(--a-line); }
+.r-year .y { font-size: 11px; color: var(--a-ink-mute); } .r-year .k { font-size: 13px; font-weight: 700; } .r-year .n { font-size: 12px; color: var(--a-ink-mid); }
+.r-year.cur { background: var(--a-hero); border-color: var(--a-hero); color: #fff; }
+.r-year.cur .y { color: var(--a-hero-gold); } .r-year.cur .n { color: var(--a-hero-sub); }
+.r-life { display: grid; grid-template-columns: repeat(26, minmax(0, 1fr)); gap: 3px; }
+.r-life span { height: 12px; border-radius: 3px; }
+.r-life-legend { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); font-size: 11px; color: var(--a-ink-mute); }
+.r-match { background: var(--a-chip); border-radius: 22px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.r-match-form { display: flex; gap: 8px; flex-wrap: wrap; }
+.r-match-form .a-input { flex: 1; min-width: 180px; background: var(--a-card); }
+.r-match-res { display: flex; flex-direction: column; gap: 10px; }
+.r-match-res .who { display: flex; align-items: center; gap: 12px; }
+.r-match-res .who .g-disc { width: 44px; height: 44px; font-size: 18px; }
+.r-match-res ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.r-match-res li { background: var(--a-card); border-radius: 14px; padding: 12px 14px; font-size: 14px; line-height: 1.7; color: var(--a-ink-mid); }
+.r-match-res li strong { color: var(--a-ink); }
+.r-share { display: flex; gap: 10px; }
+.r-share .a-btn { flex: 1; min-height: 52px; font-size: 16px; }
+
+/* Hubs */
+.h-wrap { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; color: var(--a-ink); }
+.h-title { font-family: var(--serif); font-size: 28px; font-weight: 700; padding: 4px 4px 0; }
+.h-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 700px) { .h-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.h-tile { background: var(--a-card); border: 1px solid var(--a-line); border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 6px; text-align: left; cursor: pointer; font-family: inherit; color: var(--a-ink); min-height: 96px; }
+.h-tile:hover { border-color: var(--c-yellow); }
+.h-tile svg { color: var(--a-accent); }
+.h-tile .t { font-size: 16px; font-weight: 700; }
+.h-tile .d { font-size: 12px; color: var(--a-ink-dim); line-height: 1.5; }
+.h-seals { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+@media (min-width: 700px) { .h-seals { grid-template-columns: repeat(10, minmax(0, 1fr)); } }
+.h-seal { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 2px; border-radius: 14px; background: none; border: none; cursor: pointer; font-family: inherit; color: var(--a-ink); }
+.h-seal:hover { background: var(--a-chip); }
+.h-seal .g-disc { width: 42px; height: 42px; font-size: 17px; }
+.h-seal .n { font-size: 12px; }
+.h-tones { display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 4px; }
+@media (max-width: 600px) { .h-tones { grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: 8px; } }
+.h-tone { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; border-radius: 12px; background: none; border: none; cursor: pointer; color: var(--a-accent); font-family: inherit; }
+.h-tone:hover { background: var(--a-chip); }
+.h-tone .n { font-size: 11px; color: var(--a-ink); white-space: nowrap; }
+.h-tone .bars { height: 36px; display: flex; align-items: flex-end; }
+.l-part { display: flex; flex-direction: column; gap: 4px; }
+.l-lesson { display: flex; align-items: center; gap: 12px; padding: 12px 4px; border-top: 1px solid var(--a-line); background: none; border-left: none; border-right: none; border-bottom: none; width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: var(--a-ink); font-size: 15px; }
+.l-lesson .num { font-size: 12px; color: var(--a-ink-mute); width: 22px; }
+.l-lesson .ck { margin-left: auto; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--a-line); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+.l-lesson .ck.done { background: var(--c-blue); border-color: var(--c-blue); }
+.l-prog { height: 8px; border-radius: 4px; background: var(--a-empty); overflow: hidden; }
+.l-prog span { display: block; height: 100%; background: var(--c-yellow); }
+
+/* Tab bar (mobile) */
+.tabbar { display: none; }
+@media (max-width: 900px) {
+  .header { display: none; }
+  .toolbar { padding: 10px 16px !important; gap: 10px; flex-wrap: nowrap; }
+  .toolbar .filter-group { display: none; }
+  .search-box { min-width: 0; padding: 8px 12px; }
+  .main { padding: 16px 16px 110px; }
+  .tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); position: fixed; left: 0; right: 0; bottom: 0; z-index: 150; background: var(--a-card); border-top: 1px solid var(--a-line); padding: 6px 6px calc(8px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -4px 16px rgba(40,30,20,0.05); }
+  .tabbar button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-height: 54px; background: none; border: none; color: var(--a-ink-mute); font-size: 11px; font-family: inherit; cursor: pointer; }
+  .tabbar button.active { color: var(--a-accent); font-weight: 700; }
+  .t-date { font-size: 24px; }
+  .t-hero .name { font-size: 34px; }
+  .r-id .name { font-size: 34px; }
+}
+@media print { .tabbar { display: none !important; } }
+
 @media print {
   .global-progress-bar, .header, .toolbar, .sidebar, .footer,
   .lesson-nav, .lesson-related, .lesson-notes-area, .modal-overlay,
@@ -2164,6 +2360,9 @@ details.howto > p { padding: 0 22px 18px; }
 
     <div class="sidebar-section">
       <div class="sidebar-header"><span class="title">🔮 工具</span></div>
+      <div class="sidebar-item" data-type="tool" data-id="report">
+        <span class="num">✨</span><span class="name">我的銀河報告</span><span class="en">My Report</span>
+      </div>
       <div class="sidebar-item" data-type="daily" data-id="today">
         <span class="num">🌅</span><span class="name">今日 Kin</span><span class="en">Today</span>
       </div>
@@ -2187,53 +2386,10 @@ details.howto > p { padding: 0 22px 18px; }
   </aside>
 
   <main class="main">
-    <details class="howto" id="howto">
-      <summary><h3>💡 使用說明 | How to use</h3></summary>
-      <p>左側選單可瀏覽 20 個太陽印記、13 個銀河音調、核心概念與 Kin 計算器。每個印記包含：圖騰、顏色族群、力量·行動·本質三屬性、正向關鍵字、陰影課題、藥引（醫藥）、深度描述。上方搜尋框可即時過濾，按色族按鈕可篩選四個族群。</p>
-    </details>
-
-    <div id="personalPanelHost"></div>
-
-    <div class="daily-kin-section" id="dailyKinSection">
-      <div class="daily-kin-hero">
-        <div class="daily-date" id="dailyDate">—</div>
-        <div class="daily-glyph" id="dailyGlyph">—</div>
-        <div class="daily-kin-num" id="dailyKinNum">Kin —</div>
-        <div class="daily-kin-name" id="dailyKinName">—</div>
-        <div class="daily-kin-en" id="dailyKinEn">—</div>
-      </div>
-      <div class="daily-attrs">
-        <div class="daily-attr">
-          <div class="label">音調 Tone</div>
-          <div class="val" id="dailyToneName">—</div>
-          <div class="sub" id="dailyToneAttr">—</div>
-        </div>
-        <div class="daily-attr">
-          <div class="label">印記 Seal</div>
-          <div class="val" id="dailySealName">—</div>
-          <div class="sub" id="dailySealAttr">—</div>
-        </div>
-        <div class="daily-attr">
-          <div class="label">族群 Clan</div>
-          <div class="val" id="dailyClanName">—</div>
-          <div class="sub" id="dailyClanAttr">—</div>
-        </div>
-      </div>
-      <div class="daily-prompt">
-        <h3>🌟 今日反思 Today's Reflection</h3>
-        <p class="prompt-question" id="dailyPrompt">—</p>
-        <p class="prompt-action" id="dailyAction">—</p>
-      </div>
-      <div id="todayRelationshipHost"></div>
-      <div class="compass-section">
-        <h3>🧭 今日銀河羅盤 · Galactic Compass</h3>
-        <div class="compass-grid" id="dailyCompass"></div>
-        <p style="margin-top:18px; font-size:0.85em; color:var(--text-dim); text-align:center;">
-          💫 點擊任一相鄰 Kin 可查看該印記詳情
-        </p>
-      </div>
-    </div>
-
+    <div class="app-view" id="dailyKinSection"><div id="todayApp"></div></div>
+    <div class="app-view" id="reportSection"></div>
+    <div class="app-view" id="learnHub"></div>
+    <div class="app-view" id="toolsHub"></div>
     <div class="detail-card" id="detailCard"></div>
 
     <!-- Lesson Section -->
@@ -2379,6 +2535,14 @@ details.howto > p { padding: 0 22px 18px; }
 
   </main>
 </div>
+<nav class="tabbar" aria-label="主選單">
+  <button data-tab="today" onclick="tabGo('today')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>今天</button>
+  <button data-tab="me" onclick="tabGo('me')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>我的</button>
+  <button data-tab="calendar" onclick="tabGo('calendar')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>月曆</button>
+  <button data-tab="learn" onclick="tabGo('learn')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5C4.7 20 4 19.3 4 18.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5z"/></svg>學習</button>
+  <button data-tab="tools" onclick="tabGo('tools')"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg>工具</button>
+</nav>
+
 
 <div class="footer">
   <span class="accent">✦</span> 願時間成為藝術，願你回歸自然韻律 <span class="accent">✦</span><br>
@@ -3347,11 +3511,17 @@ function renderNotesHub() {
   const list = document.getElementById('notesList');
   if (!list) return;
   const entries = Object.values(notes).sort((a,b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+  const journal = Object.entries(loadJournal()).sort((a, b) => b[0].localeCompare(a[0]));
+  const journalHtml = journal.length ? `<h3 style="margin:8px 0 12px; color:var(--purple-deep)">每日心得</h3>` + journal.map(([k, v]) => `
+      <div class="note-card">
+        <div class="note-meta"><span><a onclick="todayPick('${k}'); selectItem('daily','today')">${k.replace(/-/g,'/')} · Kin ${v.kin} ${kinName(v.kin)}</a></span></div>
+        <div class="note-content">${esc(v.text).replace(/\n/g,'<br>')}</div>
+      </div>`).join('') + (entries.length ? `<h3 style="margin:20px 0 12px; color:var(--purple-deep)">課程筆記</h3>` : '') : '';
   if (entries.length === 0) {
-    list.innerHTML = `<div class="notes-empty">📝 還沒有筆記。前往任何一課寫下你的第一個反思吧。</div>`;
+    list.innerHTML = journalHtml || `<div class="notes-empty">📝 還沒有筆記。在「今天」寫下一句心得，或到任何一課寫下反思吧。</div>`;
     return;
   }
-  list.innerHTML = entries.map(n => {
+  list.innerHTML = journalHtml + entries.map(n => {
     const lesson = LESSONS.find(l => l.id === n.lessonId);
     const date = new Date(n.updatedAt);
     const dateStr = `${date.getFullYear()}/${date.getMonth()+1}/${date.getDate()} ${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
@@ -4046,7 +4216,7 @@ function saveUserKin() {
   closeSetupModal();
   renderPersonalPanel();
   renderDailyKin();
-  // Re-render seal/tone sidebar to show marker
+  if (document.getElementById('reportSection').classList.contains('visible')) renderReport();
   refreshSidebarMarkers();
 }
 function clearUserKin() {
@@ -4055,6 +4225,7 @@ function clearUserKin() {
   closeSetupModal();
   renderPersonalPanel();
   renderDailyKin();
+  if (document.getElementById('reportSection').classList.contains('visible')) renderReport();
   refreshSidebarMarkers();
 }
 
@@ -4163,39 +4334,7 @@ function refreshSidebarMarkers() {
   }
 }
 
-function renderDailyKin() {
-  const today = new Date();
-  today.setHours(0,0,0,0);
-  const kin = getKinFromDate(today);
-  const seal = SEALS[(kin - 1) % 20];
-  const tone = TONES[(kin - 1) % 13];
-  const moonInfo = getMoonInfo(today);
-  const moonText = moonInfo.isOutOfTime
-    ? '🎭 無時間日 Day Out of Time'
-    : moonInfo.isHunabKu ? '✴️ 0.0 Hunab Ku（2/29 不計入曆法，沿用前一天的 Kin）'
-    : `${MOON_NAMES[moonInfo.moon]}第${moonInfo.day}天 · Moon ${moonInfo.moon}, Day ${moonInfo.day}`;
-  document.getElementById('dailyDate').textContent =
-    `📅 ${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日 · ${moonText}`;
-  document.getElementById('dailyGlyph').textContent = seal.glyph;
-  document.getElementById('dailyKinNum').textContent = `Kin ${kin}`;
-  document.getElementById('dailyKinName').textContent = `${tone.name}的${seal.name}`;
-  document.getElementById('dailyKinEn').textContent = `${tone.en} ${seal.en}`;
-  document.getElementById('dailyToneName').textContent = `${tone.id} ${tone.name}音`;
-  document.getElementById('dailyToneAttr').textContent = tone.power;
-  document.getElementById('dailySealName').textContent = seal.name;
-  document.getElementById('dailySealAttr').textContent = seal.power;
-  document.getElementById('dailyClanName').textContent = CLAN_NAMES[seal.clan];
-  document.getElementById('dailyClanAttr').textContent = CLAN_THEME[seal.clan];
-  const promptMatch = tone.desc.match(/「(.+?)」/);
-  const promptQuestion = promptMatch ? promptMatch[1] : tone.desc.split('。')[0];
-  document.getElementById('dailyPrompt').textContent = promptQuestion;
-  document.getElementById('dailyAction').innerHTML =
-    `今日能量主題：以「<strong style="color:var(--purple-deep);">${tone.power}</strong>」的方式，活出「<strong style="color:var(--purple-deep);">${seal.essence}</strong>」的本質。<br>${seal.medicine}。`;
-  renderCompass(kin, 'dailyCompass');
-  // Personalized panels
-  renderPersonalPanel();
-  renderTodayRelationship();
-}
+function renderDailyKin() { renderToday(); }
 
 const sealsListEl = document.getElementById('sealsList');
 SEALS.forEach(s => {
@@ -4278,7 +4417,7 @@ function _updatePageMeta(type, id) {
       const s = SEALS[(id-1) % 20], t = TONES[(id-1) % 13];
       title = `Kin ${id} ${t.name}的${s.name} · 13月亮曆全圖解`;
     } else if (type === 'tool') {
-      const map = { calculator:'Kin 計算器', notes:'學習筆記', quiz:'測驗', calendar:'年度日曆', wavespell:'波符', compatibility:'Kin 相容性' };
+      const map = { calculator:'Kin 計算器', notes:'學習筆記', quiz:'測驗', calendar:'年度日曆', wavespell:'波符', compatibility:'Kin 相容性', report:'我的銀河報告', learn:'學習', hub:'工具' };
       if (map[id]) title = `${map[id]} · 13月亮曆全圖解`;
     }
   } catch (e) {}
@@ -4494,6 +4633,463 @@ function setupA11y() {
   if (sb) mo.observe(sb, { childList: true, subtree: true });
 }
 
+// ===== App 改版（方向 A）：今天／我的報告／學習／工具 =====
+const GLYPH_CHAR = ['', '龍','風','夜','種','蛇','橋','手','星','月','狗','猴','人','天','巫','鷹','戰','地','鏡','暴','日'];
+const WEEKDAYS = ['日','一','二','三','四','五','六'];
+const CASTLES = [
+  { name: '紅色城堡', theme: '啟動', color: 'var(--c-red)' },
+  { name: '白色城堡', theme: '淨化', color: 'var(--c-white)' },
+  { name: '藍色城堡', theme: '蛻變', color: 'var(--c-blue)' },
+  { name: '黃色城堡', theme: '成熟', color: 'var(--c-yellow)' }
+];
+const zhPart = t => String(t || '').split(' ')[0];
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+const kinSeal = k => SEALS[(k - 1) % 20];
+const kinTone = k => TONES[(k - 1) % 13];
+const kinName = k => `${kinTone(k).name}的${kinSeal(k).name}`;
+const dateKey = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const todayDate = () => { const d = new Date(); d.setHours(0,0,0,0); return d; };
+function glyphDisc(sealId, size) {
+  const s = SEALS[sealId - 1];
+  const st = size ? ` style="width:${size}px;height:${size}px;font-size:${Math.round(size*0.42)}px"` : '';
+  return `<span class="g-disc ${s.clan}"${st} aria-hidden="true">${GLYPH_CHAR[sealId]}</span>`;
+}
+function toneBars(t, w) {
+  // 馬雅數字：一條橫槓 = 5，一個點 = 1
+  const bars = Math.floor(t / 5), dots = t % 5;
+  const W = w || 44, bh = 6, gap = 4, r = 3.6;
+  const H = (dots ? r * 2 + gap : 0) + bars * (bh + gap);
+  let svg = `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-label="音調 ${t}" role="img">`;
+  if (dots) {
+    const step = W / (dots + 1);
+    for (let i = 1; i <= dots; i++) svg += `<circle cx="${step*i}" cy="${r}" r="${r}" fill="currentColor"/>`;
+  }
+  for (let b = 0; b < bars; b++) {
+    const y = (dots ? r * 2 + gap : 0) + b * (bh + gap);
+    svg += `<rect x="2" y="${y}" width="${W-4}" height="${bh}" rx="3" fill="currentColor"/>`;
+  }
+  return svg + '</svg>';
+}
+function yearKinName(date) {
+  const y = get13MoonYear(date);
+  const k = getKinFromDate(new Date(y, 6, 26));
+  return `${kinTone(k).name}${kinSeal(k).name}年`;
+}
+function toneQuestion(tone) {
+  const m = tone.desc.match(/「(.+?)」/);
+  return m ? m[1] : tone.desc.split('。')[0];
+}
+
+// ---------- 今天 ----------
+let todaySel = null;
+function loadJournal() { try { return JSON.parse(localStorage.getItem('moon13_journal') || '{}'); } catch (e) { return {}; } }
+function saveJournalEntry() {
+  const ta = document.getElementById('tJournal');
+  if (!ta) return;
+  const j = loadJournal();
+  const key = dateKey(todaySel);
+  const v = ta.value.trim();
+  if (v) j[key] = { text: v, kin: getKinFromDate(todaySel), savedAt: Date.now() }; else delete j[key];
+  try { localStorage.setItem('moon13_journal', JSON.stringify(j)); } catch (e) {}
+  renderToday();
+  const btn = document.getElementById('tJournalBtn');
+  if (btn) { btn.textContent = v ? '已存下 ✓' : '已清除'; setTimeout(() => { const b = document.getElementById('tJournalBtn'); if (b) b.textContent = '存下來'; }, 1800); }
+}
+function todayGo(delta) {
+  const d = new Date(todaySel); d.setDate(d.getDate() + delta);
+  todaySel = d; renderToday();
+}
+function todayPick(key) { todaySel = new Date(key + 'T00:00:00'); renderToday(); }
+function todayReset() { todaySel = todayDate(); renderToday(); }
+
+function relationForDay(dayKin, user) {
+  const c = getCompass(user.kin);
+  const ts = kinSeal(dayKin), tt = kinTone(dayKin), us = SEALS[user.seal - 1];
+  if (dayKin === user.kin) return { label: '本命日', h: '今天適合：大方做自己', b: '今天的 Kin 跟你的本命一樣，你的能量被放大。想開始的事、想說的話，今天都很適合。' };
+  if (dayKin === c.guide.kin) return { label: '引導日', h: '今天適合：跟著直覺走', b: '今天是你的引導日，內在的聲音特別清楚。有想法冒出來，先記下來，試著照做看看。' };
+  if (dayKin === c.analog.kin) return { label: '支持日', h: '今天適合：找夥伴一起做', b: '今天是你的支持日，事情比較順，也容易遇到合拍的人。適合合作、約人，或請別人幫個忙。' };
+  if (dayKin === c.antipode.kin) return { label: '挑戰日', h: '今天適合：換個角度看事情', b: '今天是你的挑戰日，可能會遇到跟你想法不同的人事物。把它當成成長的機會，先聽完再回應。' };
+  if (dayKin === c.hidden.kin) return { label: '隱藏日', h: '今天適合：留意小訊號', b: '今天是你的隱藏日，平常沒注意到的潛能會浮出來。夢境、巧合、突然的靈感，都值得記一下。' };
+  const med = (ts.medicine || '').split('、')[0] || zhPart(ts.essence);
+  const pos = (ts.positive || []).slice(0, 2).join('、');
+  const same = ts.clan === us.clan;
+  return {
+    label: same ? '同色族日' : '',
+    h: `今天適合：${med}`,
+    b: `${ts.name}帶來「${pos}」的能量，${tt.name}音問你：「${toneQuestion(tt)}」${same ? `今天和你同屬${CLAN_NAMES[us.clan]}，頻率很接近，做起來會特別自然。` : `對${us.name}的你來說，用你「${zhPart(us.essence)}」的方式去接住它就好。`}`
+  };
+}
+
+function renderToday() {
+  const host = document.getElementById('todayApp');
+  if (!host) return;
+  if (!todaySel) todaySel = todayDate();
+  const sel = todaySel, today = todayDate();
+  const isToday = sel.getTime() === today.getTime();
+  const kin = getKinFromDate(sel), seal = kinSeal(kin), tone = kinTone(kin);
+  const moon = getMoonInfo(sel);
+  const user = loadUserKin();
+  const moonText = moon.isOutOfTime ? '無時間日 Day Out of Time' : moon.isHunabKu ? '0.0 Hunab Ku（2/29 不計入曆法）' : `${MOON_NAMES[moon.moon]} 第 ${moon.day} 天`;
+
+  // week strip
+  let week = '';
+  for (let i = -3; i <= 3; i++) {
+    const d = new Date(sel); d.setDate(d.getDate() + i);
+    const k = getKinFromDate(d);
+    const cls = ['t-day', i === 0 ? 'sel' : '', d.getTime() === today.getTime() ? 'is-today' : ''].join(' ');
+    week += `<button class="${cls}" onclick="todayPick('${dateKey(d)}')" aria-label="${d.getMonth()+1}月${d.getDate()}日 Kin ${k} ${kinName(k)}"${i===0?' aria-current="date"':''}>
+      <span class="wd">${d.getTime() === today.getTime() ? '今天' : WEEKDAYS[d.getDay()]}</span><span class="dn">${d.getDate()}</span><span class="clan-dot ${kinSeal(k).clan}"></span></button>`;
+  }
+
+  // for you
+  let forYou;
+  if (user) {
+    const r = relationForDay(kin, user);
+    const us = SEALS[user.seal - 1];
+    forYou = `<div class="a-card">
+      <div class="t-foryou-who">${glyphDisc(user.seal, 32)}<span class="a-meta">給 Kin ${user.kin} ${kinName(user.kin)}${r.label ? `<span class="t-rel">${r.label}</span>` : ''}</span></div>
+      <div class="t-foryou-h">${esc(r.h)}</div>
+      <div class="a-body">${esc(r.b)}</div>
+    </div>`;
+  } else {
+    forYou = `<div class="a-card">
+      <div class="a-label">今天對你</div>
+      <div class="t-foryou-h">輸入生日，看看今天對你有什麼影響</div>
+      <div class="r-match-form"><input type="date" class="a-input" id="tQuickBirthday" min="1900-01-01" max="2100-12-31" aria-label="你的生日"><button class="a-btn" onclick="quickSetBirthday('tQuickBirthday')">看我的</button></div>
+    </div>`;
+  }
+
+  // reflection + moon progress
+  const j = loadJournal();
+  const entry = j[dateKey(sel)];
+  let moonBar = '';
+  if (!moon.isOutOfTime && !moon.isHunabKu) {
+    const moonStart = getMoonStartDate(get13MoonYear(sel), moon.moon);
+    let filled = 0, cells = '';
+    for (let d = 0; d < 28; d++) {
+      const dd = addDreamDays(moonStart, d);
+      const has = !!j[dateKey(dd)];
+      if (has) filled++;
+      const color = ['red','white','blue','yellow'][Math.floor(d / 7)];
+      cells += `<span class="${has ? color : ''} ${d + 1 === moon.day ? 'cur' : ''}" title="第${d+1}天${has ? ' · 已記錄' : ''}"></span>`;
+    }
+    moonBar = `<div class="t-moon"><div class="a-meta" style="font-size:12px">${MOON_NAMES[moon.moon]}紀錄 ${filled} / 28 天</div><div class="t-moon-bar">${cells}</div></div>`;
+  }
+  const reflection = `<div class="a-card">
+    <div class="a-label">${isToday ? '今日一問' : `${sel.getMonth()+1}/${sel.getDate()} 的一問`}</div>
+    <div class="t-question">${esc(toneQuestion(tone))}</div>
+    <textarea class="t-journal" id="tJournal" placeholder="寫下一句心得⋯" aria-label="心得">${esc(entry ? entry.text : '')}</textarea>
+    <div class="a-row-between" style="align-items:center; flex-wrap:wrap">${moonBar || '<span></span>'}<button class="a-btn" id="tJournalBtn" onclick="saveJournalEntry()">存下來</button></div>
+  </div>`;
+
+  // compass
+  const c = getCompass(kin);
+  const cc = (role, d, center) => `<button class="t-cc ${center ? 'center' : ''}" ${center ? 'tabindex="-1"' : `onclick="selectItem('seal', ${d.seal})"`} aria-label="${role} Kin ${d.kin} ${kinName(d.kin)}">
+      <span class="role">${role}</span>${glyphDisc(d.seal)}<span class="k">Kin ${d.kin}</span><span class="n">${kinName(d.kin)}</span></button>`;
+  const compass = `<div class="a-card">
+    <div class="a-row-between"><div class="a-h">${isToday ? '今日' : ''}銀河羅盤</div><button class="a-link" onclick="selectItem('lesson', 15)">這是什麼？</button></div>
+    <div class="t-compass"><div></div>${cc('引導', c.guide)}<div></div>${cc('支持', c.analog)}${cc(isToday ? '今天' : '這天', c.self, true)}${cc('挑戰', c.antipode)}<div></div>${cc('隱藏', c.hidden)}<div></div></div>
+  </div>`;
+
+  // wavespell
+  const ws = getWavespellInfo(sel);
+  let wsBar = '';
+  for (let d = 1; d <= 13; d++) wsBar += `<span class="${d < ws.dayInWavespell ? 'past' : d === ws.dayInWavespell ? 'cur' : ''}"></span>`;
+  const wsDay = ws.dayInWavespell;
+  const wsText = wsDay === 1 ? `新的 13 天開始了。這段旅程的主題是「${zhPart(ws.startSeal.essence)}」，適合設定一個目標。`
+    : wsDay === 7 ? `走到一半了。這 13 天的主題是「${zhPart(ws.startSeal.essence)}」，今天是整段旅程的中心點。`
+    : wsDay === 13 ? `這段波符的最後一天，回頭看看這 13 天關於「${zhPart(ws.startSeal.essence)}」，你有什麼收穫。`
+    : `這 13 天的主題是「${zhPart(ws.startSeal.essence)}」，今天用「${zhPart(tone.power)}」的方式往前走。`;
+  const wavespell = `<div class="a-card">
+    <div class="a-row-between"><div class="a-h">${ws.startSeal.name}波符</div><div class="a-meta">第 ${wsDay} / 13 天</div></div>
+    <div class="t-ws-bar">${wsBar}</div>
+    <div class="a-body" style="font-size:14px">${wsText}</div>
+    <div class="t-more"><button class="a-btn ghost" onclick="selectItem('tool','wavespell')">寫波符日記</button><button class="a-btn ghost" onclick="selectItem('tool','calendar')">看這個月</button></div>
+  </div>`;
+
+  const special = moon.isOutOfTime ? '<div class="t-special">無時間日 · 一年一度的休息與慶祝</div>' : moon.isHunabKu ? '<div class="t-special">0.0 Hunab Ku · 沿用前一天的 Kin</div>' : '';
+  host.innerHTML = `<div class="app-wrap">
+    <div class="t-top">
+      <div>
+        <div class="t-date">${sel.getMonth()+1}月${sel.getDate()}日 週${WEEKDAYS[sel.getDay()]}</div>
+        <div class="a-meta">${sel.getFullYear()} · ${moonText} · ${yearKinName(sel)}${isToday ? '' : ` · <button class="a-link" onclick="todayReset()">回到今天</button>`}</div>
+      </div>
+      <button class="t-avatar" onclick="${user ? "selectItem('tool','report')" : 'openSetupModal()'}" aria-label="${user ? '我的銀河報告' : '設定生日'}">${user ? user.kin : '我'}</button>
+    </div>
+    <div class="t-week-nav">
+      <button class="t-week-arrow" onclick="todayGo(-7)" aria-label="前一週">‹</button>
+      <div class="t-week" style="flex:1">${week}</div>
+      <button class="t-week-arrow" onclick="todayGo(7)" aria-label="後一週">›</button>
+    </div>
+    <div class="t-grid">
+      <div class="t-col">
+        <div class="t-hero">
+          <span class="ring" style="width:360px;height:360px;top:-40px"></span>
+          <span class="ring" style="width:250px;height:250px;top:15px"></span>
+          <div class="a-label" style="color:var(--a-hero-gold); letter-spacing:0.3em">${isToday ? '今天的能量' : '這天的能量'}</div>
+          ${special}
+          <div class="t-hero-glyph">${glyphDisc(seal.id)}</div>
+          <div class="kin">KIN ${kin}</div>
+          <div class="name">${kinName(kin)}</div>
+          <div class="en">${tone.en} ${seal.en}</div>
+          <div class="chips">
+            <button class="chip" onclick="selectItem('tone', ${tone.id})" style="color:var(--a-hero-gold)">${toneBars(tone.id, 24)}<span style="color:#fff">${tone.id} ${tone.name} · ${zhPart(tone.power)}</span></button>
+            <button class="chip" onclick="selectItem('seal', ${seal.id})"><span class="clan-dot ${seal.clan}"></span>${CLAN_NAMES[seal.clan]} · ${zhPart(CLAN_THEME[seal.clan])}</button>
+          </div>
+        </div>
+        ${forYou}
+      </div>
+      <div class="t-col">${reflection}${compass}${wavespell}</div>
+    </div>
+  </div>`;
+}
+
+function quickSetBirthday(inputId) {
+  const v = document.getElementById(inputId).value;
+  if (!v) { document.getElementById(inputId).focus(); return; }
+  const kin = getKinFromDate(new Date(v + 'T00:00:00'));
+  saveUserKinData({ birthDate: v, kin, seal: ((kin - 1) % 20) + 1, tone: ((kin - 1) % 13) + 1 });
+  refreshSidebarMarkers();
+  selectItem('tool', 'report');
+}
+
+// ---------- 我的報告 ----------
+function birthdayIn(year, bd) {
+  const [y, m, d] = bd.split('-').map(Number);
+  if (m === 2 && d === 29 && !_isLeapYear(year)) return new Date(year, 1, 28);
+  return new Date(year, m - 1, d);
+}
+function renderReport() {
+  const host = document.getElementById('reportSection');
+  if (!host) return;
+  const user = loadUserKin();
+  if (!user) {
+    host.innerHTML = `<div class="r-wrap"><div class="a-card" style="text-align:center; align-items:center; padding:36px 22px">
+      <div class="a-label">我的銀河報告</div>
+      <div class="t-foryou-h">輸入生日，產生你的銀河報告</div>
+      <div class="a-body">本命 Kin、天賦、銀河羅盤、今年的流年，一次看完。</div>
+      <div class="r-match-form" style="width:100%; max-width:420px"><input type="date" class="a-input" id="rQuickBirthday" min="1900-01-01" max="2100-12-31" aria-label="你的生日"><button class="a-btn" onclick="quickSetBirthday('rQuickBirthday')">產生報告</button></div>
+    </div></div>`;
+    return;
+  }
+  const kin = user.kin, seal = SEALS[user.seal - 1], tone = TONES[user.tone - 1];
+  const [by, bm, bdd] = user.birthDate.split('-').map(Number);
+  const c = getCompass(kin);
+  const med = (seal.medicine || '').split('、');
+  const bigLine = med.length >= 2 ? `${med[0]}，<br>${med[1]}。` : `${esc(seal.medicine)}。`;
+  const descShort = (seal.desc || '').split('。').filter(Boolean).slice(1, 3).join('。') + '。';
+  const crow = (role, d, desc) => `<button class="r-crow" onclick="selectItem('seal', ${d.seal})">${glyphDisc(d.seal)}
+      <span style="display:flex; flex-direction:column; gap:2px; flex:1"><span><span class="role">${role}</span><span class="k">Kin ${d.kin}</span></span><span class="n">${kinName(d.kin)}</span><span class="d">${desc}</span></span></button>`;
+
+  // 流年
+  const today = todayDate();
+  let curYear = today.getFullYear();
+  if (birthdayIn(curYear, user.birthDate) > today) curYear--;
+  const yearCard = (y, cur) => {
+    const k = getKinFromDate(birthdayIn(y, user.birthDate));
+    return `<div class="r-year ${cur ? 'cur' : ''}"><span class="y">${y}${cur ? ' · 今年' : ''}</span><span class="k">Kin ${k}</span><span class="n">${kinName(k)}</span></div>`;
+  };
+  const flowKin = getKinFromDate(birthdayIn(curYear, user.birthDate));
+  const fs = kinSeal(flowKin);
+  const age = Math.max(0, curYear - by);
+  const lifeYear = (age % 52) + 1;
+  const castle = CASTLES[Math.floor((lifeYear - 1) / 13)];
+  const castleYear = ((lifeYear - 1) % 13) + 1;
+  let life = '';
+  for (let i = 1; i <= 52; i++) {
+    const col = CASTLES[Math.floor((i - 1) / 13)].color;
+    const st = i < lifeYear ? `background:${col}` : i === lifeYear ? 'background:var(--a-accent);box-shadow:0 0 0 2px var(--c-yellow-bright)' : `background:${col};opacity:0.22`;
+    life += `<span style="${st}" title="第 ${i} 年"></span>`;
+  }
+
+  host.innerHTML = `<div class="r-wrap">
+    <div class="a-row-between" style="align-items:center">
+      <div class="h-title" style="padding:0">我的銀河報告</div>
+      <button class="a-btn ghost" onclick="openSetupModal()" style="min-height:40px">修改生日</button>
+    </div>
+    <div class="r-id">
+      <div class="outer">${glyphDisc(seal.id)}</div>
+      <div class="kin">KIN ${kin}</div>
+      <div class="name">${kinName(kin)}</div>
+      <div class="en">${tone.en} ${seal.en} · ${seal.glyph}</div>
+      <div class="a-meta">${by} 年 ${bm} 月 ${bdd} 日出生</div>
+      <div class="r-pills"><span class="a-pill">力量 · ${zhPart(seal.power)}</span><span class="a-pill">行動 · ${zhPart(seal.action)}</span><span class="a-pill">本質 · ${zhPart(seal.essence)}</span></div>
+    </div>
+    <div class="r-dark">
+      <div class="a-label">一句話讀懂你</div>
+      <div class="big">${bigLine}</div>
+      <p>${esc(descShort)}</p>
+    </div>
+    <div class="r-two">
+      <div class="a-card"><div class="a-h" style="font-size:18px">你的天賦</div><div class="r-tags">${(seal.positive || []).map(p => `<span class="a-tag">${esc(p)}</span>`).join('')}</div></div>
+      <div class="a-card"><div class="a-h" style="font-size:18px">練習平衡</div><div class="a-meta" style="font-size:12px">這些地方多留意，就會更自在</div><div class="r-tags">${(seal.shadow || []).map(p => `<span class="a-tag">${esc(p)}</span>`).join('')}</div></div>
+    </div>
+    <button class="a-card r-tone" onclick="selectItem('tone', ${tone.id})" style="text-align:left; cursor:pointer; font-family:inherit">
+      <span class="box">${toneBars(tone.id, 44)}</span>
+      <span style="display:flex; flex-direction:column; gap:4px">
+        <span class="a-label" style="letter-spacing:0.05em">音調 ${tone.id} · ${tone.name}</span>
+        <span class="a-h">${esc(toneQuestion(tone))}</span>
+        <span class="a-body" style="font-size:14px; line-height:1.7">${esc(tone.desc.replace(/「.+?」/, '').replace(/^[^。]*。/, '').trim() || tone.desc)}</span>
+      </span>
+    </button>
+    <div class="a-card" style="gap:0; padding-bottom:8px">
+      <div class="a-h" style="margin-bottom:4px">你的銀河羅盤</div>
+      <div class="a-meta" style="margin-bottom:10px">身邊這四種能量，會用不同方式陪你走。</div>
+      ${crow('引導', c.guide, '帶你前進的方向，是你的高我')}
+      ${crow('支持', c.analog, '天生合拍的夥伴能量')}
+      ${crow('挑戰', c.antipode, '讓你成長、擴展的對面力量')}
+      ${crow('隱藏', c.hidden, '藏在背後、關鍵時刻出現的潛能')}
+    </div>
+    <div class="a-card">
+      <div class="a-row-between"><div class="a-h">你的流年</div><div class="a-meta" style="font-size:12px">每年生日換一次</div></div>
+      <div class="r-years">${yearCard(curYear - 1)}${yearCard(curYear, true)}${yearCard(curYear + 1)}</div>
+      <div class="a-body">今年的主題是<strong style="color:var(--a-ink)">「${zhPart(fs.essence)}、${zhPart(fs.action)}」</strong>。${esc((fs.medicine || '').split('、')[0])}，會是這一年很好的方向。</div>
+      <div style="display:flex; flex-direction:column; gap:8px; padding-top:12px; border-top:1px solid var(--a-line)">
+        <div class="a-row-between" style="font-size:13px"><strong>52 年生命循環</strong><span class="a-meta">第 ${lifeYear} 年 · ${castle.name}第 ${castleYear} 年</span></div>
+        <div class="r-life">${life}</div>
+        <div class="r-life-legend">${CASTLES.map(x => `<span>${x.name.slice(0,1)} · ${x.theme}</span>`).join('')}</div>
+      </div>
+    </div>
+    <div class="r-match" id="rMatch">
+      <div class="a-h">你和他是什麼關係？</div>
+      <div class="a-body" style="font-size:14px">輸入另一個人的生日，看你們之間是支持、挑戰、引導還是隱藏關係。</div>
+      <div class="r-match-form"><input type="date" class="a-input" id="rMatchDate" min="1900-01-01" max="2100-12-31" aria-label="對方的生日"><button class="a-btn" onclick="renderMatch()">合盤</button></div>
+      <div id="rMatchRes"></div>
+    </div>
+    <div class="r-share">
+      <button class="a-btn" onclick="shareKinCard(${kin})">分享我的圖卡</button>
+      <button class="a-btn ghost" onclick="window._currentKin={kin:${kin}}; copyKinLink(this)">複製連結</button>
+    </div>
+  </div>`;
+}
+
+function kinRelations(a, b) {
+  const out = [];
+  const ca = getCompass(a), cb = getCompass(b);
+  const sa = (a - 1) % 20 + 1, sb = (b - 1) % 20 + 1, ta = (a - 1) % 13 + 1, tb = (b - 1) % 13 + 1;
+  if (a === b) out.push(['同一個 Kin', '你們的本命完全一樣，很容易懂彼此，也會在對方身上看到自己。']);
+  if (b === ca.guide.kin) out.push(['他是你的引導', '他常常能帶你看見方向，跟他聊聊，常會有新的想法。']);
+  if (a === cb.guide.kin) out.push(['你是他的引導', '你的存在能帶給他方向感，你的一句話對他很有份量。']);
+  if (b === ca.analog.kin) out.push(['你們互為支持', '天生合拍的夥伴，一起做事特別順，是很好的合作組合。']);
+  if (b === ca.antipode.kin) out.push(['你們互為挑戰', '你們看事情的角度剛好相反，願意互相理解的話，會一起成長很多。']);
+  if (b === ca.hidden.kin) out.push(['你們互為隱藏', '彼此能喚醒對方沒發現的潛能，是很深的連結。']);
+  if (!out.length || a !== b) {
+    if (sa === sb && a !== b) out.push(['同一個印記', `你們都是${SEALS[sa-1].name}，核心的本質很接近。`]);
+    else if (ANALOG_PAIRS[sa] === sb && b !== ca.analog.kin) out.push(['印記互相支持', '印記是夥伴關係，彼此的能量很好配合。']);
+    else if ((sa - 1 + 10) % 20 + 1 === sb && b !== ca.antipode.kin) out.push(['印記互相挑戰', '印記剛好在對面，能幫對方看見另一面。']);
+    else if (sa + sb === 21 && b !== ca.hidden.kin) out.push(['印記互為隱藏', '印記是隱藏關係，常能補上彼此缺的那一塊。']);
+  }
+  if (ta === tb && a !== b) out.push(['同樣的音調', `都是${TONES[ta-1].name}音，做事的節奏很像。`]);
+  if (SEALS[sa-1].clan === SEALS[sb-1].clan && sa !== sb) out.push(['同色族', `都屬${CLAN_NAMES[SEALS[sa-1].clan]}，頻率接近、容易有共鳴。`]);
+  const wa = Math.floor((a - 1) / 13), wb = Math.floor((b - 1) / 13);
+  if (wa === wb && a !== b) out.push(['在同一個波符', '出生在同一段 13 天的旅程裡，人生主題有相通的地方。']);
+  if (!out.length) out.push(['不同能量的組合', '你們各自帶著不一樣的能量，剛好可以互相學習、互補。']);
+  return out;
+}
+function renderMatch() {
+  const v = document.getElementById('rMatchDate').value;
+  const user = loadUserKin();
+  const res = document.getElementById('rMatchRes');
+  if (!v || !user) { document.getElementById('rMatchDate').focus(); return; }
+  const b = getKinFromDate(new Date(v + 'T00:00:00'));
+  const rels = kinRelations(user.kin, b);
+  res.innerHTML = `<div class="r-match-res">
+    <div class="who">${glyphDisc((b-1)%20+1)}<div><div class="a-meta">對方是</div><div style="font-weight:700; font-size:16px">Kin ${b} ${kinName(b)}</div></div></div>
+    <ul>${rels.map(r => `<li><strong>${r[0]}</strong>　${r[1]}</li>`).join('')}</ul>
+  </div>`;
+}
+
+// ---------- 學習 ----------
+function renderLearnHub() {
+  const host = document.getElementById('learnHub');
+  if (!host) return;
+  const progress = loadProgress();
+  const done = getCompletedCount();
+  const next = LESSONS.find(l => !progress[l.id]);
+  const concepts = [
+    ['philosophy', '時間就是藝術', '13 月亮曆的核心想法'],
+    ['structure', '13×28 曆法結構', '一年 13 個月，每月 28 天'],
+    ['tzolkin', '卓爾金曆 260', '20 印記 × 13 音調的大圖']
+  ];
+  host.innerHTML = `<div class="h-wrap">
+    <div class="h-title">學習</div>
+    <div class="a-card">
+      <div class="a-row-between"><div class="a-h">學習進度</div><div class="a-meta">${done} / ${LESSONS.length} 課</div></div>
+      <div class="l-prog"><span style="width:${Math.round(done / LESSONS.length * 100)}%"></span></div>
+      ${next ? `<button class="a-btn" onclick="selectItem('lesson', ${next.id})" style="align-self:flex-start">繼續：第 ${next.id} 課 ${esc(next.title)}</button>` : '<div class="a-body">28 堂課都完成了！</div>'}
+    </div>
+    <div class="h-grid">${concepts.map(x => `<button class="h-tile" onclick="selectItem('concept','${x[0]}')"><span class="t">${x[1]}</span><span class="d">${x[2]}</span></button>`).join('')}</div>
+    ${PARTS.map(p => {
+      const ls = LESSONS.filter(l => l.part === p.id);
+      return `<div class="a-card l-part" style="gap:4px"><div class="a-row-between" style="padding-bottom:6px"><div class="a-h" style="font-size:18px">${esc(p.title)}</div><div class="a-meta">${ls.filter(l => progress[l.id]).length}/${ls.length}</div></div>
+        ${ls.map(l => `<button class="l-lesson" onclick="selectItem('lesson', ${l.id})"><span class="num">${String(l.id).padStart(2,'0')}</span><span>${esc(l.title)}</span><span class="ck ${progress[l.id] ? 'done' : ''}">${progress[l.id] ? '✓' : ''}</span></button>`).join('')}</div>`;
+    }).join('')}
+  </div>`;
+}
+
+// ---------- 工具 ----------
+const HUB_ICONS = {
+  calc: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M8 7h8M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg>',
+  heart: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>',
+  wave: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/><path d="M3 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></svg>',
+  quiz: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 015 .5c0 1.5-2.5 2-2.5 3.5M12 17h.01"/></svg>',
+  note: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/></svg>',
+  grid: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
+  theme: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>'
+};
+function renderToolsHub() {
+  const host = document.getElementById('toolsHub');
+  if (!host) return;
+  const tiles = [
+    ['calc', 'Kin 計算器', '輸入任何生日，查出 Kin', "selectItem('tool','calculator')"],
+    ['heart', '關係合盤', '看兩個人是什麼關係', "goMatch()"],
+    ['wave', '波符日記', '13 天一段的紀錄', "selectItem('tool','wavespell')"],
+    ['quiz', '互動測驗', '考考自己記得多少', "selectItem('tool','quiz')"],
+    ['note', '我的筆記', '課程筆記和每日心得', "selectItem('tool','notes')"],
+    ['grid', '卓爾金 260', '260 天全圖', "selectItem('concept','tzolkin')"],
+    ['theme', '深色／淺色', '切換畫面主題', "toggleTheme()"]
+  ];
+  host.innerHTML = `<div class="h-wrap">
+    <div class="h-title">工具</div>
+    <div class="h-grid">${tiles.map(t => `<button class="h-tile" onclick="${t[3]}">${HUB_ICONS[t[0]]}<span class="t">${t[1]}</span><span class="d">${t[2]}</span></button>`).join('')}</div>
+    <div class="a-card"><div class="a-h">20 太陽印記</div>
+      <div class="h-seals">${SEALS.map(s => `<button class="h-seal" onclick="selectItem('seal', ${s.id})">${glyphDisc(s.id)}<span class="n">${s.name}</span></button>`).join('')}</div>
+    </div>
+    <div class="a-card"><div class="a-h">13 銀河音調</div>
+      <div class="h-tones">${TONES.map(t => `<button class="h-tone" onclick="selectItem('tone', ${t.id})"><span class="bars">${toneBars(t.id, 26)}</span><span class="n">${t.name}</span></button>`).join('')}</div>
+    </div>
+  </div>`;
+}
+function goMatch() {
+  if (!loadUserKin()) { selectItem('tool', 'report'); return; }
+  selectItem('tool', 'report');
+  setTimeout(() => { const m = document.getElementById('rMatch'); if (m) { m.scrollIntoView({ behavior: 'smooth', block: 'start' }); const i = document.getElementById('rMatchDate'); if (i) i.focus({ preventScroll: true }); } }, 60);
+}
+
+// ---------- Tab bar ----------
+function tabFor(type, id) {
+  if (type === 'daily') return 'today';
+  if (type === 'tool' && id === 'report') return 'me';
+  if (type === 'tool' && id === 'calendar') return 'calendar';
+  if (type === 'lesson' || type === 'concept' || (type === 'tool' && id === 'learn')) return 'learn';
+  return 'tools';
+}
+function updateTabbar(type, id) {
+  const t = tabFor(type, id);
+  document.querySelectorAll('.tabbar button').forEach(b => {
+    const on = b.dataset.tab === t;
+    b.classList.toggle('active', on);
+    if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+  });
+}
+function tabGo(tab) {
+  if (tab === 'today') { todaySel = todayDate(); selectItem('daily', 'today'); }
+  else if (tab === 'me') selectItem('tool', 'report');
+  else if (tab === 'calendar') selectItem('tool', 'calendar');
+  else if (tab === 'learn') selectItem('tool', 'learn');
+  else selectItem('tool', 'hub');
+}
+
 function selectItem(type, id) {
   document.getElementById('dailyKinSection').classList.remove('visible');
   document.getElementById('detailCard').classList.remove('visible');
@@ -4503,6 +5099,7 @@ function selectItem(type, id) {
   document.getElementById('quizSection').classList.remove('visible');
   document.getElementById('calendarSection').classList.remove('visible');
   document.getElementById('wavespellSection').classList.remove('visible');
+  ['reportSection','learnHub','toolsHub'].forEach(x => document.getElementById(x).classList.remove('visible'));
   document.querySelectorAll('.concept-section').forEach(el => el.classList.remove('visible'));
   // Hide personal panel except on daily view
   const panel = document.getElementById('personalPanelHost');
@@ -4525,6 +5122,18 @@ function selectItem(type, id) {
   }
   else if (type === 'lesson') {
     renderLesson(id);
+  }
+  else if (type === 'tool' && id === 'report') {
+    document.getElementById('reportSection').classList.add('visible');
+    renderReport();
+  }
+  else if (type === 'tool' && id === 'learn') {
+    document.getElementById('learnHub').classList.add('visible');
+    renderLearnHub();
+  }
+  else if (type === 'tool' && id === 'hub') {
+    document.getElementById('toolsHub').classList.add('visible');
+    renderToolsHub();
   }
   else if (type === 'tool' && id === 'notes') {
     document.getElementById('notesHub').classList.add('visible');
@@ -4557,6 +5166,7 @@ function selectItem(type, id) {
     const el = document.getElementById(map[id]);
     if (el) { el.classList.add('visible'); if (id === 'tzolkin') renderTzolkin(); }
   }
+  updateTabbar(type, id);
   // Sync URL hash for bookmarking / sharing / back-button
   _syncUrlHash(type, id);
   window.scrollTo({ top: document.querySelector('.toolbar').offsetHeight, behavior: 'smooth' });
