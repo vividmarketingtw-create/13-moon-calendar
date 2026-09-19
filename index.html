@@ -25,6 +25,12 @@
 <meta name="twitter:description" content="20 印記 × 13 音調 × 260 卓爾金曆 · 28 堂深度課程 · Kin 計算器 · 每日反思。">
 <meta name="twitter:image" content="https://vividmarketingtw-create.github.io/13-moon-calendar/og-image.jpg">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="13月亮曆">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "13月亮曆全圖解", "url": "https://vividmarketingtw-create.github.io/13-moon-calendar/", "inLanguage": "zh-TW", "applicationCategory": "LifestyleApplication", "operatingSystem": "Any", "description": "13月亮曆 Dreamspell 中文工具：每日 Kin、我的銀河報告、關係合盤、月曆、28 堂課程與 Kin 計算器。", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TWD"}}</script>
 <!-- Favicon -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2208,6 +2214,93 @@ details.howto > p { padding: 0 22px 18px; }
 }
 .share-btn:hover { border-color: var(--gold-bright); background: var(--gold-soft); }
 .share-btn.copied { background: var(--green-soft); border-color: var(--green); color: #1e7a3e; }
+
+/* ===== 2026-09 全站風格統一 + 桌機頂部導覽 ===== */
+.header { display: none !important; }
+.hamburger-btn { display: inline-flex; background: var(--a-card); border-color: var(--a-line); color: var(--a-accent); }
+.search-box { background: var(--a-card); border-color: var(--a-line); border-radius: 14px; }
+.toolbar .filter-group { display: none; }
+.layout { grid-template-columns: minmax(0, 1fr) !important; }
+.sidebar { position: fixed !important; top: 0 !important; left: 0; width: 86%; max-width: 360px; max-height: 100vh !important; height: 100vh; z-index: 200; transform: translateX(-100%); transition: transform 0.28s ease; box-shadow: 4px 0 24px rgba(0,0,0,0.18); padding-top: 18px; overflow-y: auto; }
+.sidebar:not(.open) { box-shadow: none !important; visibility: hidden; }
+.sidebar.open { transform: translateX(0); visibility: visible; }
+.main { max-width: 1160px; margin: 0 auto; width: 100%; }
+
+@media (min-width: 901px) {
+  body { padding-top: 64px; }
+  .tabbar { display: flex; position: fixed; top: 0; left: 0; right: 0; height: 64px; z-index: 150; align-items: center; justify-content: center; gap: 4px; background: var(--a-card); border-bottom: 1px solid var(--a-line); padding: 0 24px; }
+  .tabbar::before { content: '✦ 13月亮曆'; position: absolute; left: 84px; font-family: var(--serif); font-weight: 900; font-size: 19px; color: var(--a-accent); letter-spacing: 0.04em; }
+  .tabbar button { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 12px; background: none; border: none; color: var(--a-ink-dim); font-size: 15px; font-family: inherit; cursor: pointer; }
+  .tabbar button svg { width: 20px; height: 20px; }
+  .tabbar button:hover { background: var(--a-chip); }
+  .tabbar button.active { background: var(--a-hero); color: #fff; font-weight: 700; }
+  [data-theme="dark"] .tabbar button.active { background: var(--a-chip); color: var(--a-accent); }
+  .toolbar { position: fixed !important; top: 0; left: 0; right: 0; height: 64px; z-index: 151; background: none !important; border: none !important; box-shadow: none !important; backdrop-filter: none !important; padding: 0 24px !important; justify-content: space-between; pointer-events: none; flex-wrap: nowrap; }
+  .toolbar > * { pointer-events: auto; }
+  .toolbar .search-box { flex: 0 0 260px; min-width: 0; padding: 8px 12px !important; }
+  .main { padding: 28px 32px 60px; }
+}
+@media (min-width: 901px) and (max-width: 1180px) { .tabbar::before { display: none; } .toolbar .search-box { flex-basis: 200px; } .tabbar button { padding: 0 11px; } }
+
+.kin-result { background: var(--a-hero) !important; border: none !important; border-radius: 22px !important; }
+.kin-result .kin-label { color: var(--a-hero-gold) !important; }
+.kin-result .kin-num, .kin-result .kin-name { color: #fff !important; font-family: var(--serif); }
+.kin-result .kin-en { color: var(--a-hero-sub) !important; }
+.kin-card, .calc-row { border-radius: 16px !important; }
+
+/* footer index */
+.footer-index { margin-top: 14px; font-size: 12px; line-height: 2; color: var(--a-ink-mute); }
+.footer-index a { color: var(--a-ink-dim); text-decoration: none; }
+.footer-index a:hover { color: var(--a-link); text-decoration: underline; }
+@media (max-width: 900px) { .footer { padding-bottom: 96px !important; } }
+
+/* back button */
+.d-back { display: inline-flex; align-items: center; gap: 4px; min-height: 40px; padding: 0 14px 0 10px; margin: 0 0 12px; border-radius: 999px; background: var(--a-card); border: 1px solid var(--a-line); color: var(--a-accent); font-size: 14px; font-weight: 700; font-family: inherit; cursor: pointer; }
+.d-back[hidden] { display: none; }
+.d-back:hover { background: var(--a-chip); }
+
+/* detail (seal / tone) */
+.detail-card { background: none !important; border: none !important; box-shadow: none !important; padding: 0 !important; border-radius: 0 !important; }
+.d-tone-box { width: 112px; height: 112px; border-radius: 50%; background: var(--a-chip); color: var(--a-accent); display: flex; align-items: center; justify-content: center; }
+.d-attrs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 4px; }
+@media (max-width: 420px) { .d-attrs { grid-template-columns: minmax(0, 1fr); } }
+.d-attrs > div { background: var(--a-soft); border-radius: 12px; padding: 10px 12px; font-size: 14px; color: var(--a-ink); }
+.d-attrs > div > span:first-child { display: block; font-size: 11px; letter-spacing: 0.12em; color: var(--a-label); font-weight: 700; margin-bottom: 2px; }
+.d-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.d-nav .a-btn { padding: 0 8px; font-size: 14px; }
+.d-wrap .related-links, .d-wrap .cross-links { background: var(--a-card); border: 1px solid var(--a-line); border-radius: 22px; padding: 18px 20px; margin: 0; }
+
+/* calendar */
+#calendarSection { background: none; border: none; box-shadow: none; padding: 0; }
+.c-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.c-title { text-align: center; display: flex; flex-direction: column; gap: 2px; align-items: center; }
+.c-title .h-title { padding: 0; }
+.c-card { padding: 14px 10px; gap: 6px; }
+.c-week-label { font-size: 12px; color: var(--a-ink-dim); padding: 8px 6px 2px; display: flex; align-items: center; gap: 6px; }
+.c-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.c-day { position: relative; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 8px 0 6px; border-radius: 14px; border: 1.5px solid transparent; background: none; cursor: pointer; font-family: inherit; color: var(--a-ink); min-width: 0; }
+.c-day:hover { background: var(--a-chip); }
+.c-day .dn { font-size: 11px; color: var(--a-ink-mute); }
+.c-day .g-disc { width: 34px; height: 34px; font-size: 15px; }
+.c-day .k { font-size: 12px; font-weight: 700; }
+.c-day .gd { font-size: 10px; color: var(--a-ink-mute); }
+.c-day.today { background: var(--a-hero); color: #fff; }
+.c-day.today .dn, .c-day.today .gd { color: var(--a-hero-sub); }
+.c-day.mine { border-color: var(--c-yellow-bright); }
+.c-day .star { position: absolute; top: 2px; right: 4px; font-size: 11px; color: var(--c-yellow-bright); }
+.c-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 0 4px; }
+@media (min-width: 700px) { .c-day .g-disc { width: 46px; height: 46px; font-size: 20px; } .c-day { padding: 12px 0 10px; } .c-card { padding: 20px; } }
+
+/* older sections → same card language */
+.lesson-section, .quiz-section, .concept-section, .calc-section, .notes-hub {
+  background: var(--a-card) !important; border: 1px solid var(--a-line) !important; border-radius: 22px !important; box-shadow: none !important; color: var(--a-ink);
+}
+.lesson-section h2, .quiz-section h2, .concept-section h2, .calc-section h2, .notes-hub h2 { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--a-ink); letter-spacing: 0.02em; }
+@media (max-width: 900px) { .lesson-section, .quiz-section, .concept-section, .calc-section, .notes-hub { padding: 22px 18px !important; } }
+.wavespell-hero { background: var(--a-hero) !important; border-radius: 22px !important; }
+.wavespell-hero .ws-name { display: flex; align-items: center; gap: 10px; font-family: var(--serif); }
+.compass-glyph { display: flex; justify-content: center; }
+.share-btn { font-size: 13px !important; padding: 5px 12px !important; }
 </style>
 </head>
 <body>
@@ -2386,6 +2479,7 @@ details.howto > p { padding: 0 22px 18px; }
   </aside>
 
   <main class="main">
+    <button class="d-back" id="appBack" onclick="goBack()" hidden>‹ 返回</button>
     <div class="app-view" id="dailyKinSection"><div id="todayApp"></div></div>
     <div class="app-view" id="reportSection"></div>
     <div class="app-view" id="learnHub"></div>
@@ -2406,13 +2500,13 @@ details.howto > p { padding: 0 22px 18px; }
 
     <!-- Notes Hub -->
     <div class="notes-hub" id="notesHub">
-      <h2>📓 我的學習筆記</h2>
+      <h2>我的筆記</h2>
       <p class="lead">所有你在課程中寫下的筆記都會收集在這裡。透過記錄，把學習變成你的修行。</p>
       <div id="notesList"></div>
     </div>
 
     <div class="calc-section" id="calcSection">
-      <h2>✨ Kin 計算器</h2>
+      <h2>Kin 計算器</h2>
       <p class="lead">輸入你的西元生日，找出你的銀河身份 Galactic Signature。</p>
 
       <div class="calc-row">
@@ -2467,7 +2561,7 @@ details.howto > p { padding: 0 22px 18px; }
     </div>
 
     <div class="concept-section" id="conceptPhilosophy">
-      <h2>★ 時間就是藝術</h2>
+      <h2>時間就是藝術</h2>
       <p class="lead">Time is Art — 13月亮曆的核心哲學</p>
       <p style="margin-bottom:18px;">13月亮曆由 José Argüelles 博士於1990年代依據馬雅曆法靈感發展而成，旨在取代現行的格里高利曆（公曆）。其核心信念：「時間不是金錢（Time is Money），而是藝術（Time is Art）。」</p>
       <div class="concept-grid">
@@ -2485,7 +2579,7 @@ details.howto > p { padding: 0 22px 18px; }
     </div>
 
     <div class="concept-section" id="conceptStructure">
-      <h2>★ 13×28 曆法結構</h2>
+      <h2>13×28 曆法結構</h2>
       <p class="lead">完美的時間幾何 — 13個月亮、28天循環</p>
       <div class="equation">
         <span class="big">13</span> 個月亮 × <span class="big">28</span> 天 + <span class="big">1</span> 天 = <span class="big">365</span> 天
@@ -2516,7 +2610,7 @@ details.howto > p { padding: 0 22px 18px; }
     </div>
 
     <div class="concept-section" id="conceptTzolkin">
-      <h2>★ 卓爾金曆 Tzolkin 260</h2>
+      <h2>卓爾金曆 Tzolkin 260</h2>
       <p class="lead">13個音調 × 20個印記 = 260個獨特的Kin（銀河生命密碼）</p>
       <p style="margin-bottom:14px;">卓爾金曆是馬雅文明最神聖的曆法，被視為「銀河母體」、「生命的基因密碼」。每個Kin都有獨特的能量印記，循環一周為260天，正好接近人類懷孕週期。</p>
       <div class="tzolkin-wrap"><div class="tzolkin" id="tzolkin"></div></div>
@@ -2547,6 +2641,7 @@ details.howto > p { padding: 0 22px 18px; }
 <div class="footer">
   <span class="accent">✦</span> 願時間成為藝術，願你回歸自然韻律 <span class="accent">✦</span><br>
   <em>In Lak'ech · 我是另一個你</em>
+  <div class="footer-index"><a href="seals/red-dragon.html">紅龍</a> · <a href="seals/white-wind.html">白風</a> · <a href="seals/blue-night.html">藍夜</a> · <a href="seals/yellow-seed.html">黃種子</a> · <a href="seals/red-serpent.html">紅蛇</a> · <a href="seals/white-worldbridger.html">白世界橋</a> · <a href="seals/blue-hand.html">藍手</a> · <a href="seals/yellow-star.html">黃星星</a> · <a href="seals/red-moon.html">紅月</a> · <a href="seals/white-dog.html">白狗</a> · <a href="seals/blue-monkey.html">藍猴</a> · <a href="seals/yellow-human.html">黃人</a> · <a href="seals/red-skywalker.html">紅天行者</a> · <a href="seals/white-wizard.html">白巫師</a> · <a href="seals/blue-eagle.html">藍鷹</a> · <a href="seals/yellow-warrior.html">黃戰士</a> · <a href="seals/red-earth.html">紅地球</a> · <a href="seals/white-mirror.html">白鏡</a> · <a href="seals/blue-storm.html">藍風暴</a> · <a href="seals/yellow-sun.html">黃太陽</a><br><a href="tones/magnetic.html">磁性音</a> · <a href="tones/lunar.html">月亮音</a> · <a href="tones/electric.html">電力音</a> · <a href="tones/self-existing.html">自我存在音</a> · <a href="tones/overtone.html">超頻音</a> · <a href="tones/rhythmic.html">韻律音</a> · <a href="tones/resonant.html">共振音</a> · <a href="tones/galactic.html">銀河音</a> · <a href="tones/solar.html">太陽音</a> · <a href="tones/planetary.html">行星音</a> · <a href="tones/spectral.html">光譜音</a> · <a href="tones/crystal.html">水晶音</a> · <a href="tones/cosmic.html">宇宙音</a></div>
 </div>
 
 <script>
@@ -3290,7 +3385,7 @@ function renderCompass(kin, containerId) {
     return `
       <div class="compass-cell ${c.role}" ${onclick}>
         <span class="compass-role">${c.label}</span>
-        <span class="compass-glyph">${seal.glyph}</span>
+        <span class="compass-glyph">${glyphDisc(seal.id, 44)}</span>
         <div class="compass-kin">Kin ${c.data.kin}</div>
         <div class="compass-name">${tone.name}的${seal.name}</div>
         <div class="compass-meaning">${c.meaning}</div>
@@ -3602,6 +3697,7 @@ function setupKeyboardShortcuts() {
     if (e.key === 'Escape') {
       hideShortcuts();
       closeSetupModal();
+      { const ob = document.getElementById('onboardingModal'); if (ob && ob.classList.contains('visible')) onboardingChoose('today'); }
       if (typeof closeKinCard === 'function') closeKinCard();
       const search = document.getElementById('search');
       if (search && search.value) { search.value = ''; currentSearch = ''; applyFilter(); search.blur(); }
@@ -3752,39 +3848,64 @@ function renderCalendarSection() {
 
   const fmt = d => `${d.getMonth()+1}/${d.getDate()}`;
 
-  section.innerHTML = `
-    <h2>📅 月曆視圖</h2>
-    <p class="lead">當前 13月亮 月份視覺化，每天的能量一目了然。今天用金邊高亮，本命Kin用★標記。</p>
-    <div class="cal-nav">
-      <button onclick="navigateMoon(-1)">← 上個月</button>
-      <div class="cal-title">
-        ${MOON_NAMES[calendarMonth.moonNum]} · Moon ${calendarMonth.moonNum}
-        <span class="sub">${fmt(moonStart)} - ${fmt(moonEnd)} (${calendarMonth.year} 年度)</span>
+  const WEEK_NAMES = ['紅 · 啟動','白 · 淨化','藍 · 蛻變','黃 · 成熟'];
+  const isThisMoon = cells.some(c => c.isToday);
+  section.innerHTML = `<div class="h-wrap c-wrap">
+    <div class="c-head">
+      <button class="t-week-arrow" onclick="navigateMoon(-1)" aria-label="上個月">‹</button>
+      <div class="c-title">
+        <div class="a-label">第 ${calendarMonth.moonNum} 個月 · MOON ${calendarMonth.moonNum}</div>
+        <div class="h-title">${MOON_NAMES[calendarMonth.moonNum]}</div>
+        <div class="a-meta">${fmt(moonStart)} – ${fmt(moonEnd)}</div>
       </div>
-      <button onclick="navigateMoon(1)">下個月 →</button>
+      <button class="t-week-arrow" onclick="navigateMoon(1)" aria-label="下個月">›</button>
     </div>
-    <div class="cal-week-headers">
-      <div class="cal-week-header red">第1週 紅啟動</div>
-      <div class="cal-week-header white">第2週 白淨化</div>
-      <div class="cal-week-header blue">第3週 藍蛻變</div>
-      <div class="cal-week-header yellow">第4週 黃成熟</div>
+    <div class="a-card c-card">
+      ${[0,1,2,3].map(w => `
+        <div class="c-week-label"><span class="clan-dot ${['red','white','blue','yellow'][w]}"></span> 第 ${w+1} 週 · ${WEEK_NAMES[w]}</div>
+        <div class="c-week">
+          ${cells.slice(w*7, w*7+7).map(c => `
+            <button class="c-day ${c.isToday ? 'today' : ''} ${c.isUserKin ? 'mine' : ''}" onclick="calPick('${dateKey(c.date)}')"
+              title="${fmt(c.date)} · Kin ${c.kin} · ${c.tone.name}的${c.seal.name}">
+              <span class="dn">${c.dayInMonth}</span>
+              ${glyphDisc(c.seal.id)}
+              <span class="k">${c.kin}</span>
+              <span class="gd">${fmt(c.date)}</span>
+              ${c.isUserKin ? '<span class="star" aria-label="你的本命 Kin">★</span>' : ''}
+            </button>`).join('')}
+        </div>`).join('')}
     </div>
-    <div class="calendar-grid">
-      ${cells.map(c => `
-        <div class="cal-cell ${c.weekColor} ${c.isToday ? 'today' : ''} ${c.isUserKin ? 'is-user-kin' : ''}"
-             onclick="selectItem('seal', ${c.seal.id})"
-             title="${fmt(c.date)} · Kin ${c.kin} · ${c.tone.name}的${c.seal.name}">
-          <div class="cal-day-num">第${c.dayInMonth}天</div>
-          <div class="cal-date">${fmt(c.date)}</div>
-          <div class="cal-glyph">${c.seal.glyph}</div>
-          <div class="cal-kin">Kin ${c.kin}</div>
-        </div>
-      `).join('')}
+    <div class="c-foot">
+      <span class="a-meta">點任何一天，看那天的能量。★ 是和你本命 Kin 相同的日子。</span>
+      ${isThisMoon ? '' : `<button class="a-btn ghost" onclick="calendarMonth = null; renderCalendarSection()">回到這個月</button>`}
     </div>
-    <p style="margin-top:18px; font-size:0.88em; color:var(--text-dim); text-align:center;">
-      💫 點擊任一天可查看該日對應的太陽印記詳情
-    </p>
-  `;
+    <div class="a-card">
+      <div class="a-h">把 13 月亮曆放進手機行事曆</div>
+      <div class="a-body">下載接下來 91 天的每日 Kin，匯入 Google 日曆或 iPhone 行事曆，每天打開行事曆就看得到今天的能量。</div>
+      <div class="t-more"><button class="a-btn" onclick="downloadIcs()">下載行事曆檔（.ics）</button></div>
+    </div>
+  </div>`;
+}
+function calPick(key) { todaySel = new Date(key + 'T00:00:00'); selectItem('daily', 'today'); }
+function downloadIcs() {
+  const pad = n => String(n).padStart(2, '0');
+  const ymd = d => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//13 Moon Calendar//zh-TW','CALSCALE:GREGORIAN','X-WR-CALNAME:13月亮曆 每日 Kin'];
+  const start = todayDate();
+  for (let i = 0; i < 91; i++) {
+    const d = new Date(start); d.setDate(d.getDate() + i);
+    const n = new Date(d); n.setDate(n.getDate() + 1);
+    const k = getKinFromDate(d), t = kinTone(k);
+    lines.push('BEGIN:VEVENT', `UID:kin-${ymd(d)}@13moon`, `DTSTAMP:${ymd(start)}T000000Z`,
+      `DTSTART;VALUE=DATE:${ymd(d)}`, `DTEND;VALUE=DATE:${ymd(n)}`,
+      `SUMMARY:Kin ${k} ${kinName(k)}`,
+      `DESCRIPTION:今日一問：${toneQuestion(t).replace(/[,;]/g, '，')}`,
+      'TRANSP:TRANSPARENT', 'END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = '13moon-daily-kin.ics';
+  document.body.appendChild(a); a.click(); a.remove();
 }
 
 function navigateMoon(delta) {
@@ -3865,12 +3986,12 @@ function renderWavespellSection() {
     .sort((a,b) => a[1].dayInWavespell - b[1].dayInWavespell);
 
   section.innerHTML = `
-    <h2>🌊 波符追蹤</h2>
+    <h2>波符日記</h2>
     <p class="lead">波符是 13 天為一個學習循環。今天在哪一天？對應什麼反思？</p>
 
     <div class="wavespell-hero">
       <div class="ws-label">CURRENT WAVESPELL · 當前波符</div>
-      <div class="ws-name">${startSeal.glyph} ${startSeal.name} 波符</div>
+      <div class="ws-name">${glyphDisc(startSeal.id, 40)} ${startSeal.name}波符</div>
       <div class="ws-meta">第 ${ws.dayInWavespell} / 13 天 · 目前 ${currentTone.name}音 · Kin ${ws.currentKin}</div>
       <div class="wavespell-progress">
         ${days.map(day => `
@@ -3883,7 +4004,7 @@ function renderWavespellSection() {
     </div>
 
     <div class="wavespell-today">
-      <h3>🌟 今日反思（第 ${ws.dayInWavespell} 天 · ${currentTone.name}音）</h3>
+      <h3>今日反思（第 ${ws.dayInWavespell} 天 · ${currentTone.name}音）</h3>
       <div class="prompt-q">${WAVESPELL_PROMPTS[ws.dayInWavespell - 1]}</div>
       <p style="color:var(--text-mid); font-size:0.92em;">
         以「<strong>${currentTone.power}</strong>」的方式回應今天。
@@ -4146,7 +4267,7 @@ function renderQuizSection() {
   const existingGameHTML = existingGameHost ? existingGameHost.innerHTML : '';
 
   section.innerHTML = `
-    <h2>🎯 互動測驗</h2>
+    <h2>互動測驗</h2>
     <p class="lead">主動回憶是學習的核心。每次測驗 5 題，答錯的會在「弱點複習」中重點訓練。</p>
     <div class="quiz-stats-grid">
       <div class="quiz-stat-card"><div class="stat-num">${totalAnswered}</div><div class="stat-label">總題數</div></div>
@@ -5037,6 +5158,38 @@ const HUB_ICONS = {
   grid: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
   theme: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>'
 };
+HUB_ICONS.down = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>';
+HUB_ICONS.up = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V5M7 9l5-5 5 5M5 20h14"/></svg>';
+const BACKUP_KEYS = ['moon13_user','moon13_journal','moon13_notes','moon13_progress','moon13_quiz','moon13_wavespell_notes','moon13_theme'];
+function backupAll() {
+  const data = {};
+  BACKUP_KEYS.forEach(k => { try { const v = localStorage.getItem(k); if (v != null) data[k] = v; } catch (e) {} });
+  const out = { app: '13moon', version: 1, exportedAt: new Date().toISOString(), data };
+  const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = `13moon-backup-${dateKey(new Date())}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+function restoreAll() {
+  const inp = document.createElement('input'); inp.type = 'file'; inp.accept = 'application/json,.json';
+  inp.onchange = () => {
+    const f = inp.files && inp.files[0]; if (!f) return;
+    const r = new FileReader();
+    r.onload = () => {
+      try {
+        const o = JSON.parse(r.result);
+        if (!o || o.app !== '13moon' || !o.data) throw new Error('format');
+        const keys = Object.keys(o.data).filter(k => BACKUP_KEYS.includes(k));
+        if (!keys.length) throw new Error('empty');
+        if (!confirm(`要用這份備份（${String(o.exportedAt || '').slice(0, 10)}）蓋掉這台裝置上現有的資料嗎？`)) return;
+        keys.forEach(k => localStorage.setItem(k, o.data[k]));
+        location.reload();
+      } catch (e) { alert('這個檔案看起來不是 13月亮曆的備份檔，請再確認一次。'); }
+    };
+    r.readAsText(f);
+  };
+  inp.click();
+}
 function renderToolsHub() {
   const host = document.getElementById('toolsHub');
   if (!host) return;
@@ -5047,7 +5200,9 @@ function renderToolsHub() {
     ['quiz', '互動測驗', '考考自己記得多少', "selectItem('tool','quiz')"],
     ['note', '我的筆記', '課程筆記和每日心得', "selectItem('tool','notes')"],
     ['grid', '卓爾金 260', '260 天全圖', "selectItem('concept','tzolkin')"],
-    ['theme', '深色／淺色', '切換畫面主題', "toggleTheme()"]
+    ['theme', '深色／淺色', '切換畫面主題', "toggleTheme()"],
+    ['down', '備份我的資料', '心得、日記、進度存成一個檔', "backupAll()"],
+    ['up', '還原資料', '換手機時把備份檔放回來', "restoreAll()"]
   ];
   host.innerHTML = `<div class="h-wrap">
     <div class="h-title">工具</div>
@@ -5081,6 +5236,12 @@ function updateTabbar(type, id) {
     b.classList.toggle('active', on);
     if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
   });
+}
+let _navCount = 0;
+function goBack() {
+  if (_navCount > 1 && history.length > 1) { history.back(); return; }
+  const t = document.querySelector('.tabbar button.active');
+  tabGo(t ? t.dataset.tab : 'tools');
 }
 function tabGo(tab) {
   if (tab === 'today') { todaySel = todayDate(); selectItem('daily', 'today'); }
@@ -5166,6 +5327,9 @@ function selectItem(type, id) {
     const el = document.getElementById(map[id]);
     if (el) { el.classList.add('visible'); if (id === 'tzolkin') renderTzolkin(); }
   }
+  _navCount++;
+  const _bk = document.getElementById('appBack');
+  if (_bk) _bk.hidden = (type === 'daily') || (type === 'tool' && ['report','calendar','learn','hub'].includes(id));
   updateTabbar(type, id);
   // Sync URL hash for bookmarking / sharing / back-button
   _syncUrlHash(type, id);
@@ -5174,74 +5338,93 @@ function selectItem(type, id) {
   if (window.scrollY > _top) window.scrollTo({ top: _top, behavior: 'smooth' });
 }
 
-function renderSeal(id) {
-  const s = SEALS[id - 1];
+function detailShell(inner) {
   const card = document.getElementById('detailCard');
   card.classList.add('visible');
-  card.style.borderTopColor = CLAN_COLORS[s.clan];
-  card.innerHTML = `
-    <div class="detail-inner">
-      <div class="glyph-panel">
-        <div class="card-no">No.${String(s.id).padStart(2, '0')}</div>
-        <div class="glyph-big">${s.glyph}</div>
-        <div class="panel-label-1">第 ${s.id} 印記</div>
-        <div class="panel-label-2">${CLAN_NAMES[s.clan].toUpperCase()}</div>
-        <div class="glyph-clan ${s.clan}"></div>
-      </div>
-      <div class="detail-info">
-        <h2>${s.name}<span class="en">${s.en}</span><button class="share-btn" onclick="copyShareLink(this)" title="複製此印記的連結">🔗 分享</button></h2>
-        <p class="lead">${s.desc.split('。')[0]}。</p>
-        <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${s.power}</div></div>
-        <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${s.action}</div></div>
-        <div class="attr-row"><div class="attr-label">本質 <span class="en">Essence</span></div><div class="attr-value">${s.essence}</div></div>
-        <div class="attr-row"><div class="attr-label">族群 <span class="en">Clan</span></div><div class="attr-value"><span class="clan-dot ${s.clan}"></span>${CLAN_NAMES[s.clan]}</div></div>
-        <div class="attr-row"><div class="attr-label">方位 <span class="en">Direction</span></div><div class="attr-value">${s.direction}</div></div>
-        <div class="attr-row"><div class="attr-label">元素 <span class="en">Element</span></div><div class="attr-value">${s.element} · ${s.element_alt}</div></div>
-        <div class="kw-section">
-          <div class="kw-row"><span class="kw-tag positive">正向 Positive</span><span class="kw-text">${s.positive.join(' · ')}</span></div>
-          <div class="kw-row"><span class="kw-tag shadow">陰影 Shadow</span><span class="kw-text">${s.shadow.join(' · ')}</span></div>
-          <div class="kw-row"><span class="kw-tag medicine">藥引 Medicine</span><span class="kw-text">${s.medicine}</span></div>
-        </div>
-        <div class="desc-block">
-          <div class="label">🌟 深度解讀 Deep Reading</div>
-          <p>${s.desc}</p>
-        </div>
-        ${renderCrossLinks(findRelatedLessonsForSeal(id))}
+  card.style.borderTopColor = '';
+  card.innerHTML = `<div class="r-wrap d-wrap">${inner}</div>`;
+}
+function renderSeal(id) {
+  const s = SEALS[id - 1];
+  const prev = id === 1 ? 20 : id - 1, next = id === 20 ? 1 : id + 1;
+  detailShell(`
+    <div class="r-id">
+      <div class="outer">${glyphDisc(s.id)}</div>
+      <div class="kin">第 ${s.id} 印記 · ${CLAN_NAMES[s.clan]}</div>
+      <div class="name">${s.name}</div>
+      <div class="en">${s.en}</div>
+      <div class="r-pills">
+        <span class="a-pill">力量 · ${zhPart(s.power)}</span>
+        <span class="a-pill">行動 · ${zhPart(s.action)}</span>
+        <span class="a-pill">本質 · ${zhPart(s.essence)}</span>
       </div>
     </div>
-  `;
+    <div class="r-dark">
+      <div class="a-label">一句話認識${s.name}</div>
+      <div class="big">${s.desc.split('。')[0]}。</div>
+    </div>
+    <div class="r-two">
+      <div class="a-card"><div class="a-h">天賦</div><div class="r-tags">${s.positive.map(x => `<span class="a-tag">${x}</span>`).join('')}</div></div>
+      <div class="a-card"><div class="a-h">練習平衡</div><div class="r-tags">${s.shadow.map(x => `<span class="a-tag">${x}</span>`).join('')}</div></div>
+    </div>
+    <div class="a-card"><div class="a-label">藥引</div><div class="a-body">${s.medicine}</div></div>
+    <div class="a-card">
+      <div class="a-h">深度解讀</div>
+      <div class="a-body">${s.desc}</div>
+      <div class="d-attrs">
+        <div><span>力量</span>${s.power}</div>
+        <div><span>行動</span>${s.action}</div>
+        <div><span>本質</span>${s.essence}</div>
+        <div><span>方位</span>${s.direction}</div>
+        <div><span>元素</span>${s.element} · ${s.element_alt}</div>
+        <div><span>族群</span><span class="clan-dot ${s.clan}"></span> ${CLAN_NAMES[s.clan]}</div>
+      </div>
+    </div>
+    ${renderCrossLinks(findRelatedLessonsForSeal(id))}
+    <div class="d-nav">
+      <button class="a-btn ghost" onclick="selectItem('seal', ${prev})">‹ ${SEALS[prev-1].name}</button>
+      <button class="a-btn ghost" onclick="copyShareLink(this)">複製連結</button>
+      <button class="a-btn ghost" onclick="selectItem('seal', ${next})">${SEALS[next-1].name} ›</button>
+    </div>
+  `);
 }
 
 function renderTone(id) {
   const t = TONES[id - 1];
-  const color = TONE_COLORS[id - 1];
-  const card = document.getElementById('detailCard');
-  card.classList.add('visible');
-  card.style.borderTopColor = color;
-  card.innerHTML = `
-    <div class="detail-inner">
-      <div class="glyph-panel" style="background: linear-gradient(180deg, ${color}15, var(--bg-page));">
-        <div class="card-no">Tone ${String(t.id).padStart(2, '0')}</div>
-        <div class="glyph-big" style="color:${color}; font-family: Georgia, serif; font-weight: 800;">${t.id}</div>
-        <div class="panel-label-1">第 ${t.id} 音調</div>
-        <div class="panel-label-2" style="color:${color};">${t.en.toUpperCase()}</div>
-        <div class="glyph-clan" style="background:${color};"></div>
-      </div>
-      <div class="detail-info">
-        <h2>${t.name}音<span class="en">${t.en} Tone</span><button class="share-btn" onclick="copyShareLink(this)" title="複製此音調的連結">🔗 分享</button></h2>
-        <p class="lead">${t.desc.split('。')[0]}。</p>
-        <div class="attr-row"><div class="attr-label">力量 <span class="en">Power</span></div><div class="attr-value">${t.power}</div></div>
-        <div class="attr-row"><div class="attr-label">行動 <span class="en">Action</span></div><div class="attr-value">${t.action}</div></div>
-        <div class="attr-row"><div class="attr-label">本質 <span class="en">Essence</span></div><div class="attr-value">${t.essence}</div></div>
-        <div class="attr-row"><div class="attr-label">咒語 <span class="en">Mantra</span></div><div class="attr-value" style="color:${color}; font-weight:700;">${t.keyword}</div></div>
-        <div class="desc-block" style="border-left-color:${color};">
-          <div class="label" style="color:${color};">🌀 音調解讀 Tone Reading</div>
-          <p>${t.desc}</p>
-        </div>
-        ${renderCrossLinks(findRelatedLessonsForTone(id))}
+  const prev = id === 1 ? 13 : id - 1, next = id === 13 ? 1 : id + 1;
+  detailShell(`
+    <div class="r-id">
+      <div class="outer"><span class="d-tone-box">${toneBars(t.id, 56)}</span></div>
+      <div class="kin">第 ${t.id} 音調</div>
+      <div class="name">${t.name}音</div>
+      <div class="en">${t.en} Tone</div>
+      <div class="r-pills">
+        <span class="a-pill">力量 · ${zhPart(t.power)}</span>
+        <span class="a-pill">行動 · ${zhPart(t.action)}</span>
+        <span class="a-pill">本質 · ${zhPart(t.essence)}</span>
       </div>
     </div>
-  `;
+    <div class="r-dark">
+      <div class="a-label">這個音調在問</div>
+      <div class="big">${toneQuestion(t)}</div>
+      <p>${t.keyword}</p>
+    </div>
+    <div class="a-card">
+      <div class="a-h">音調解讀</div>
+      <div class="a-body">${t.desc}</div>
+      <div class="d-attrs">
+        <div><span>力量</span>${t.power}</div>
+        <div><span>行動</span>${t.action}</div>
+        <div><span>本質</span>${t.essence}</div>
+      </div>
+    </div>
+    ${renderCrossLinks(findRelatedLessonsForTone(id))}
+    <div class="d-nav">
+      <button class="a-btn ghost" onclick="selectItem('tone', ${prev})">‹ ${TONES[prev-1].name}</button>
+      <button class="a-btn ghost" onclick="copyShareLink(this)">複製連結</button>
+      <button class="a-btn ghost" onclick="selectItem('tone', ${next})">${TONES[next-1].name} ›</button>
+    </div>
+  `);
 }
 
 document.getElementById('search').addEventListener('input', (e) => {
@@ -5397,6 +5580,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
 </script>
 </body>
 </html>
